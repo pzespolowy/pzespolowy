@@ -1,0 +1,21 @@
+app-root {
+	height: 100%;
+	width: 100vw;
+	display: grid;
+	grid-template-columns: auto 4fr;
+	grid-template-rows: auto 1fr;
+	grid-template-areas: 'side top' 'side cont';
+
+	.header {
+		grid-area: top;
+	}
+
+	.sidenav {
+		grid-area: side;
+		background-color: $primary-navy-1;
+	}
+
+	.content {
+		grid-area: cont;
+	}
+}

@@ -1,0 +1,13 @@
+<ng-container *ngTemplateOutlet="isOpen ? message : icon"></ng-container>
+<ng-template #icon>
+	<div>
+		<img
+			class="h3"
+			[src]="'assets/icons/' + sideNavData.iconLink"
+			[alt]="sideNavData.message"
+		/>
+	</div>
+</ng-template>
+<ng-template #message>
+	<div class="h3 text">{{ sideNavData.message }}</div>
+</ng-template>

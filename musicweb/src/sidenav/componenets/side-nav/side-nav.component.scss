@@ -1,0 +1,35 @@
+mw-side-nav {
+	color: $primary-white;
+	height: 100%;
+	display: grid;
+	justify-items: center;
+
+	.active-link {
+		background-color: $primary-navy-2;
+	}
+
+	.side-header {
+		justify-self: flex-start;
+		width: 100%;
+	}
+
+	.side-footer {
+		align-self: flex-end;
+		width: 100%;
+	}
+
+	.sider-content {
+		width: 100%;
+	}
+
+	.row {
+		align-items: center;
+		margin: 0;
+
+		padding: 0.5em;
+		img {
+			height: 2.25rem;
+			align-items: center;
+		}
+	}
+}

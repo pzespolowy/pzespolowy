@@ -25,4 +25,8 @@ body {
 
 * {
 	box-sizing: border-box;
+	font-family: Iceland;
 }
+
+@import './app/app.component.scss';
+@import './sidenav/sidenav.module.scss';
