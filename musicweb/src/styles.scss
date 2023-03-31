@@ -1,1 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
+
+$primary-black: #0a0908;
+$primary-white: #f2f4f3;
+$primary-brown-1: #5e503f;
+$primary-brown-2: #a9927d;
+$primary-navy-1: #22333b;
+$primary-navy-2: #38474e;
+$primary-gray-1: #d9d8da;
+$secondary-red: #aa0000;
+$secondary-gold: #d4af37;
+$secondary-silver: #c0c0c0;
+$secondary-bronze: #cd7f32;
+$secondary-brown-1: #9e968b;
+$secondary-gray: #e9ebea;
+
+html,
+body {
+	height: 100%;
+}
+body {
+	margin: 0;
+	font-family: Iceland;
+}
+
+* {
+	box-sizing: border-box;
+}
