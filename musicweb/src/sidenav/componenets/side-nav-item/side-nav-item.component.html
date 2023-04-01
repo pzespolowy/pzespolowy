@@ -1,13 +1,30 @@
-<ng-container *ngTemplateOutlet="isOpen ? message : icon"></ng-container>
+<ng-container
+	*ngTemplateOutlet="withoutLabel ? icon : isOpen ? message : icon"
+></ng-container>
 <ng-template #icon>
-	<div>
-		<img
-			class="h3"
-			[src]="'assets/icons/' + sideNavData.iconLink"
-			[alt]="sideNavData.message"
-		/>
-	</div>
+	<ng-container
+		*ngTemplateOutlet="isOpen ? onlyIcon : tooltip"
+	></ng-container>
+	<ng-template #tooltip>
+		<div [matTooltip]="sideNavData.message" [matTooltipPosition]="'right'">
+			<ng-container *ngTemplateOutlet="image"></ng-container>
+		</div>
+	</ng-template>
+	<ng-template #onlyIcon>
+		<div>
+			<ng-container *ngTemplateOutlet="image"></ng-container>
+		</div>
+	</ng-template>
 </ng-template>
+
 <ng-template #message>
 	<div class="h3 text">{{ sideNavData.message }}</div>
+</ng-template>
+
+<ng-template #image>
+	<img
+		class="h3"
+		[src]="'assets/icons/' + sideNavData.iconLink"
+		[alt]="sideNavData.message"
+	/>
 </ng-template>

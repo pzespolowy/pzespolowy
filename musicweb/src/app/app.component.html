@@ -1,8 +1,40 @@
-<header class="header h1">musicWeb</header>
-<section class="sidenav">
-	<mw-side-nav></mw-side-nav>
-</section>
-<section class="content">
-	contetn
-	<router-outlet></router-outlet>
-</section>
+<!-- <main [ngClass]="isOpen ? 'opened' : 'closed'">
+	<header class="header h1">musicWeb</header>
+	<section class="sidenav">
+		<mw-side-nav [(open)]="isOpen"></mw-side-nav>
+		<mat-drawer-container>
+			<mat-drawer [mode]="'push'" [opened]="isOpen">
+				<mw-side-nav [open]="true"></mw-side-nav>
+			</mat-drawer>
+			<mat-drawer-content>asdasd</mat-drawer-content>
+		</mat-drawer-container>
+	</section>
+	<section class="content">
+		contetn
+		<router-outlet></router-outlet>
+	</section>
+</main> -->
+
+<main>
+	<mat-drawer-container [hasBackdrop]="false">
+		<mat-drawer [opened]="!isOpen" [mode]="'side'">
+			<mw-side-nav [withoutLabel]="true" [(open)]="isOpen"></mw-side-nav>
+		</mat-drawer>
+		<mat-drawer-content>
+			<mat-drawer-container class="inner-bar" [hasBackdrop]="false">
+				<mat-drawer class="sidenav" [mode]="'push'" [opened]="isOpen">
+					<mw-side-nav
+						[fixedOpen]="true"
+						[(open)]="isOpen"
+					></mw-side-nav>
+				</mat-drawer>
+				<mat-drawer-content>
+					<header class="header h1">musicWeb</header>
+					<section class="content">
+						<router-outlet></router-outlet>
+					</section>
+				</mat-drawer-content>
+			</mat-drawer-container>
+		</mat-drawer-content>
+	</mat-drawer-container>
+</main>

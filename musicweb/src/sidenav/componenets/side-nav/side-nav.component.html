@@ -8,7 +8,9 @@
 				(click)="openStateChange()"
 			/>
 		</div>
-		<h2 class="col-6 h2" *ngIf="isLogged">{{ 'Hi user' }}</h2>
+		<h2 class="col-6 h2" *ngIf="isLogged && !withoutLabel">
+			{{ 'Hi user' }}
+		</h2>
 	</div>
 </div>
 <div class="side-content">
@@ -18,7 +20,8 @@
 		[routerLink]="tab.routerLink"
 		routerLinkActive="active-link"
 		[sideNavData]="tab"
-		[isOpen]="isOpen"
+		[isOpen]="fixedOpen || open"
+		[withoutLabel]="withoutLabel"
 	>
 	</mw-side-nav-item>
 </div>
@@ -27,33 +30,36 @@
 	<ng-template *ngIf="isLogged; else notLogged">
 		<mw-side-nav-item
 			class="row text-center"
-			[isOpen]="isOpen"
+			[isOpen]="fixedOpen || open"
 			[sideNavData]="{
 				message: 'Logout',
 				iconLink: 'logoutIcon.svg'
 			}"
+			[withoutLabel]="withoutLabel"
 		>
 		</mw-side-nav-item>
 	</ng-template>
 	<ng-template #notLogged>
 		<mw-side-nav-item
 			class="row text-center"
-			[isOpen]="isOpen"
+			[isOpen]="fixedOpen || open"
 			[sideNavData]="{
 				message: 'Sing up',
 				iconLink: 'personAddIcon.svg'
 			}"
 			[routerLink]="'/register'"
+			[withoutLabel]="withoutLabel"
 		>
 		</mw-side-nav-item>
 		<mw-side-nav-item
 			class="row text-center"
-			[isOpen]="isOpen"
+			[isOpen]="fixedOpen || open"
 			[sideNavData]="{
 				message: 'Login',
-				iconLink: 'logoutIcon.svg'
+				iconLink: 'loginIcon.svg'
 			}"
 			[routerLink]="'/login'"
+			[withoutLabel]="withoutLabel"
 		>
 		</mw-side-nav-item>
 	</ng-template>

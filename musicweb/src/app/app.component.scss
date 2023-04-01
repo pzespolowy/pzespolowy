@@ -1,21 +1,20 @@
-app-root {
-	height: 100%;
-	width: 100vw;
-	display: grid;
-	grid-template-columns: auto 4fr;
-	grid-template-rows: auto 1fr;
-	grid-template-areas: 'side top' 'side cont';
+mw-root {
+	main {
+		height: 100%;
+		width: 100vw;
+		display: grid;
+		transition: 500ms ease-in-out;
 
-	.header {
-		grid-area: top;
-	}
+		.inner-bar {
+			height: 100%;
+		}
 
-	.sidenav {
-		grid-area: side;
-		background-color: $primary-navy-1;
-	}
+		mat-drawer {
+			background-color: $primary-navy-1 !important;
+		}
 
-	.content {
-		grid-area: cont;
+		mat-drawer-content {
+			background-color: $primary-white !important;
+		}
 	}
 }

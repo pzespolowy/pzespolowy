@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html'
+	selector: 'mw-root',
+	templateUrl: './app.component.html',
 })
 export class AppComponent {
-  title = 'musicweb';
+	title = 'musicweb';
+	isOpen = true;
 }
