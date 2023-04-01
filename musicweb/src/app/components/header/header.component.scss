@@ -1,0 +1,15 @@
+mw-header {
+	header {
+		display: grid;
+		position: relative;
+		background-color: #a9927d;
+		color: #f2f4f3;
+		justify-content: center;
+
+		.search {
+			position: absolute;
+			top: 0;
+			bottom: 0;
+		}
+	}
+}

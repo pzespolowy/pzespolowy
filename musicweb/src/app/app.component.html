@@ -29,7 +29,10 @@
 					></mw-side-nav>
 				</mat-drawer>
 				<mat-drawer-content>
-					<header class="header h1">musicWeb</header>
+					<mw-header
+						class="header h1"
+						[title]="'musicWeb'"
+					></mw-header>
 					<section class="content">
 						<router-outlet></router-outlet>
 					</section>
