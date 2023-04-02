@@ -4,11 +4,12 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { SideNavItemComponent } from './componenets/side-nav-item/side-nav-item.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { TopNavComponent } from './componenets/top-nav/top-nav.component';
 
 @NgModule({
-	declarations: [SideNavComponent, SideNavItemComponent],
+	declarations: [SideNavComponent, SideNavItemComponent, TopNavComponent],
 	imports: [CommonModule, RouterModule, MatTooltipModule],
 	providers: [],
-	exports: [SideNavComponent],
+	exports: [SideNavComponent, TopNavComponent],
 })
 export class SideNavModule {}
