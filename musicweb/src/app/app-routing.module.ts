@@ -8,6 +8,7 @@ const routes: Routes = [
 		loadChildren: () => HomeModule,
 	},
 	{ path: '', redirectTo: 'musicweb', pathMatch: 'full' },
+	{ path: 'login', loadChildren: () => import('../login/login.module').then(m => m.LoginModule)},
 	{
 		path: '**',
 		loadComponent: () =>
