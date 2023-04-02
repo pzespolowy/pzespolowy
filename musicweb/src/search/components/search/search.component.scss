@@ -1,6 +1,7 @@
 mw-search {
 	.input-container {
 		display: flex;
+		height: 100%;
 
 		.inputDiv {
 			display: grid;
@@ -8,16 +9,22 @@ mw-search {
 			align-items: center;
 
 			input {
-				height: 2.4rem;
 				border-radius: 10px;
 				border: none;
-				font-size: 1.5rem;
+				font-size: 1.3rem;
 				min-width: 250px;
 				width: 30vw;
-				padding: 0.2rem;
+				padding: 0.2em;
 				outline: none;
 				background-color: $primary-white;
 				color: $primary-black;
+			}
+
+			@media screen and (max-width: 650px) {
+				input {
+					width: 60vw;
+					font-size: 1.1rem;
+				}
 			}
 		}
 	}

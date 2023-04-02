@@ -5,6 +5,9 @@ mw-header {
 		background-color: $primary-brown-2;
 		color: $primary-white;
 		justify-content: center;
+		min-height: 1em;
+		padding-right: 24px;
+		justify-content: flex-end;
 
 		.search {
 			position: absolute;
@@ -12,15 +15,20 @@ mw-header {
 			bottom: 0;
 		}
 
+		.title {
+			display: flex;
+			align-items: center;
+		}
+
 		@media screen and (max-width: 650px) {
 			display: block;
 			height: 5vh;
-			
-			.search{
+
+			.search {
 				width: 100%;
 			}
 
-			.title{
+			.title {
 				display: none;
 			}
 		}

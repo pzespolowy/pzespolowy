@@ -14,6 +14,10 @@ body {
 	font-family: Iceland;
 }
 
+.icon {
+	padding: 0.2em;
+}
+
 @import './app/app.module.scss';
 @import './sidenav/sidenav.module.scss';
 @import './search/search.module.scss';
