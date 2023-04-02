@@ -1,0 +1,45 @@
+mw-top-nav {
+	color: $primary-white;
+	height: 100%;
+	display: grid;
+	justify-items: center;
+	font-size: 1.5em;
+	transition: all ease-in-out 0.25s;
+
+	.active-link {
+		background-color: $primary-navy-2;
+	}
+
+	.top-content {
+		width: 100%;
+		height: fit-content;
+		margin: 0;
+	}
+
+	.top-header {
+		width: 100%;
+		height: fit-content;
+		margin: 0;
+	}
+
+	.row {
+		align-items: center;
+		margin: 0;
+
+		padding: 0.5em;
+
+		.title-row {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+
+			div {
+				display: flex;
+			}
+
+			img {
+				height: 2.25rem;
+			}
+		}
+	}
+}
