@@ -11,5 +11,18 @@ mw-header {
 			top: 0;
 			bottom: 0;
 		}
+
+		@media screen and (max-width: 650px) {
+			display: block;
+			height: 5vh;
+			
+			.search{
+				width: 100%;
+			}
+
+			.title{
+				display: none;
+			}
+		}
 	}
 }
