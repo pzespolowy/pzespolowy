@@ -2,8 +2,8 @@ mw-header {
 	header {
 		display: grid;
 		position: relative;
-		background-color: #a9927d;
-		color: #f2f4f3;
+		background-color: $primary-brown-2;
+		color: $primary-white;
 		justify-content: center;
 
 		.search {
