@@ -10,7 +10,7 @@ export class SideNavService {
 			tab: {
 				message: 'Home',
 				iconLink: 'homeIcon.svg',
-				routerLink: '/home',
+				routerLink: '/musicweb/home',
 			},
 			auth: false,
 		},
@@ -18,7 +18,7 @@ export class SideNavService {
 			tab: {
 				message: 'Rankings',
 				iconLink: 'rankingIcon.svg',
-				routerLink: '/ranking',
+				routerLink: '/musicweb/ranking',
 			},
 			auth: false,
 		},
@@ -26,7 +26,7 @@ export class SideNavService {
 			tab: {
 				message: 'Music library',
 				iconLink: 'libraryIcon.svg',
-				routerLink: '/library',
+				routerLink: '/musicweb/library',
 			},
 			auth: false,
 		},
@@ -34,7 +34,7 @@ export class SideNavService {
 			tab: {
 				message: 'Fabourites',
 				iconLink: 'favoriteIcon.svg',
-				routerLink: '/favourite',
+				routerLink: '/musicweb/favourite',
 			},
 			auth: true,
 		},
@@ -42,7 +42,7 @@ export class SideNavService {
 			tab: {
 				message: 'My reviews',
 				iconLink: 'reviewsIcon.svg',
-				routerLink: '/reviews',
+				routerLink: '/musicweb/reviews',
 			},
 			auth: true,
 		},
@@ -50,7 +50,7 @@ export class SideNavService {
 			tab: {
 				message: 'Manage account',
 				iconLink: 'personIcon.svg',
-				routerLink: '/setting',
+				routerLink: '/musicweb/setting',
 			},
 			auth: true,
 		},
