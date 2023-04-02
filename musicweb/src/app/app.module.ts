@@ -7,6 +7,8 @@ import { SideNavModule } from 'src/sidenav/sidenav.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { HeaderComponent } from './components/header/header.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { SearchModule } from 'src/search/search.module';
 
 @NgModule({
 	declarations: [AppComponent, HeaderComponent],
@@ -16,6 +18,7 @@ import { HeaderComponent } from './components/header/header.component';
 		SideNavModule,
 		BrowserAnimationsModule,
 		MatSidenavModule,
+		SearchModule,
 	],
 	providers: [],
 	bootstrap: [AppComponent],

@@ -1,0 +1,31 @@
+<div class="input-container">
+	<ng-container
+		*ngTemplateOutlet="!!search ? nonCollapsable : collapsable"
+	></ng-container>
+	<div class="collapse collapse-horizontal" id="collapseInput">
+		<div class="inputDiv">
+			<input type="text" [formControl]="searchControl" />
+		</div>
+	</div>
+</div>
+
+<ng-template #collapsable>
+	<img
+		[src]="'assets/icons/searchIcon.svg'"
+		[alt]="'Menu logo button'"
+		[height]="48"
+		class="searchIcon"
+		data-bs-toggle="collapse"
+		data-bs-target="#collapseInput"
+	/>
+</ng-template>
+
+<ng-template #nonCollapsable>
+	<img
+		[src]="'assets/icons/searchIcon.svg'"
+		[alt]="'Menu logo button'"
+		[height]="48"
+		class="searchIcon"
+		(click)="searchData()"
+	/>
+</ng-template>
