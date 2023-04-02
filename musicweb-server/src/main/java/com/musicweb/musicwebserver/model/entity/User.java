@@ -22,21 +22,11 @@ public class User {
     @Column(name = "ID_USER")
     private Long id;
 
-    @Column(name = "EMAIL")
+    @Column(name = "login")
     private String email;
 
-    @Column(name = "PASSWORD")
+    @Column(name = "password")
     private String password;
-
-    @Column(name = "NAME")
-    private String name;
-
-    @Column(name = "SURNAME")
-    private String surname;
-
-    @Column(name = "PHONE_NUMBER")
-    private String phoneNumber;
-
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "USER_ROLE",
