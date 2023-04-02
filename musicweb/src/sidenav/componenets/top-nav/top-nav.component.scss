@@ -3,8 +3,8 @@ mw-top-nav {
 	height: 100%;
 	display: grid;
 	justify-items: center;
-    font-size: 1.5em;
-    transition: all ease-in-out 0.25s;
+	font-size: 1.5em;
+	transition: all ease-in-out 0.25s;
 
 	.active-link {
 		background-color: $primary-navy-2;
@@ -12,15 +12,15 @@ mw-top-nav {
 
 	.top-content {
 		width: 100%;
-        height: fit-content;
-        margin: 0;
+		height: fit-content;
+		margin: 0;
 	}
 
-    .top-header{
-        width: 100%;
-        height: fit-content;
-        margin: 0;
-    }
+	.top-header {
+		width: 100%;
+		height: fit-content;
+		margin: 0;
+	}
 
 	.row {
 		align-items: center;
@@ -28,14 +28,18 @@ mw-top-nav {
 
 		padding: 0.5em;
 
-        .title-row{
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+		.title-row {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
 
-            div{
-                display: flex;
-            }
-        }
+			div {
+				display: flex;
+			}
+
+			img {
+				height: 2.25rem;
+			}
+		}
 	}
 }

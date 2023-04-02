@@ -3,22 +3,16 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SideNavModule } from 'src/sidenav/sidenav.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { HeaderComponent } from './components/header/header.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { SearchModule } from 'src/search/search.module';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
-	declarations: [AppComponent, HeaderComponent],
+	declarations: [AppComponent],
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
-		SideNavModule,
 		BrowserAnimationsModule,
-		MatSidenavModule,
-		SearchModule,
+		CommonModule,
 	],
 	providers: [],
 	bootstrap: [AppComponent],
