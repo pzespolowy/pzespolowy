@@ -1,0 +1,97 @@
+<section class="container">
+	<div class="text-center h1">Register in musicWeb</div>
+	<form [formGroup]="registerForm" class="col-5">
+		<app-error-notification
+			*ngIf="!!error"
+			[error]="error"
+			class="col-5"
+		></app-error-notification>
+		<mat-form-field>
+			<mat-label>Name</mat-label>
+			<input
+				type="text"
+				matInput
+				formControlName="name"
+				[errorStateMatcher]="matcher"
+			/>
+			<mat-error *ngIf="name?.invalid && (name?.dirty || name?.touched)">
+				Name is <strong>required</strong>
+			</mat-error>
+		</mat-form-field>
+		<mat-form-field>
+			<mat-label>Surname</mat-label>
+			<input
+				type="text"
+				matInput
+				formControlName="surname"
+				[errorStateMatcher]="matcher"
+			/>
+			<mat-error
+				*ngIf="surname?.invalid && (surname?.dirty || surname?.touched)"
+			>
+				Surname is <strong>required</strong>
+			</mat-error>
+		</mat-form-field>
+		<mat-form-field>
+			<mat-label>Email</mat-label>
+			<input type="email" matInput formControlName="email" />
+			<mat-error
+				*ngIf="email?.invalid && (email?.dirty || email?.touched)"
+			>
+				<span *ngIf="email?.errors?.['required']"
+					>Email is <strong>required</strong></span
+				>
+				<span *ngIf="email?.errors?.['email']"
+					>That not looklike email</span
+				>
+			</mat-error>
+		</mat-form-field>
+
+		<mat-form-field class="passwordField">
+			<mat-label>Password</mat-label>
+			<input
+				type="password"
+				matInput
+				formControlName="password"
+				[errorStateMatcher]="matcher"
+			/>
+			<mat-error
+				class="password-errors"
+				*ngIf="
+					password?.invalid && (password?.dirty || password?.touched)
+				"
+			>
+				<span *ngIf="password?.errors?.['required']"
+					>Password is <strong>required </strong></span
+				>
+				<span *ngIf="password?.errors?.['minlength']"
+					>Password should have at least 8 characters</span
+				>
+				<ng-container *ngIf="password?.errors?.['errors']">
+					<span *ngFor="let error of password?.errors?.['errors']">
+						{{ error }}
+					</span>
+				</ng-container>
+			</mat-error>
+		</mat-form-field>
+
+		<mat-form-field>
+			<mat-label>Repeat password</mat-label>
+			<input
+				type="password"
+				matInput
+				formControlName="passwordRepeat"
+				[errorStateMatcher]="watchMatcher"
+			/>
+			<mat-error
+				*ngIf="
+					(passwordRepeat?.invalid || registerForm.errors?.['notSame']) &&
+					(passwordRepeat?.dirty || passwordRepeat?.touched) 
+				"
+			>
+				Password not match
+			</mat-error>
+		</mat-form-field>
+		<button mat-raised-button (click)="singUp()">Sing up</button>
+	</form>
+</section>

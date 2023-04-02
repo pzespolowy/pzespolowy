@@ -1,0 +1,46 @@
+mw-register {
+	section {
+		padding: 24px;
+
+		form {
+			display: flex;
+			flex-direction: column;
+			margin: auto;
+			justify-items: center;
+
+			button[mat-raised-button] {
+				border-radius: 0.5rem !important;
+				background-color: $primary-navy-1 !important;
+				color: $primary-white !important;
+
+				&:hover {
+					background-color: $primary-navy-2 !important;
+				}
+			}
+
+			.passwordField {
+				.mat-mdc-form-field-subscript-wrapper {
+					display: grid;
+
+					.mat-mdc-form-field-error-wrapper {
+						position: static;
+					}
+				}
+
+				.mat-mdc-form-field-bottom-align::before {
+					height: 0 !important;
+				}
+				margin-bottom: 16px;
+			}
+
+			.password-errors {
+				&::before {
+					height: 0;
+				}
+
+				display: flex;
+				flex-direction: column;
+			}
+		}
+	}
+}

@@ -7,6 +7,13 @@ const routes: Routes = [
 		path: 'musicweb',
 		loadChildren: () => HomeModule,
 	},
+	{
+		path: 'register',
+		loadChildren: () =>
+			import('../register/register.module').then(
+				(mod) => mod.RegisterModule
+			),
+	},
 	{ path: '', redirectTo: 'musicweb', pathMatch: 'full' },
 	{
 		path: '**',
