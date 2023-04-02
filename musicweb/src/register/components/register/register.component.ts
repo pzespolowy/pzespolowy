@@ -15,6 +15,7 @@ export class RegisterComponent implements OnInit {
 	registerForm = this.fb.nonNullable.group(
 		{
 			email: ['', [Validators.required, Validators.email]],
+			nickname: ['', Validators.required],
 			name: ['', Validators.required],
 			surname: ['', Validators.required],
 			password: [
@@ -80,6 +81,10 @@ export class RegisterComponent implements OnInit {
 
 	get name() {
 		return this.registerForm.get('name');
+	}
+
+	get nickname() {
+		return this.registerForm.get('nickname');
 	}
 
 	get email() {

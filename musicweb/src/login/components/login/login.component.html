@@ -1,27 +1,43 @@
 <div class="screen">
-    <div class="logo-box">
-        <img
-				[src]="'assets/icons/musicWebIcon.svg'"
-				[alt]="'Menu logo button'"
-                height="150"
+	<div class="logo-box">
+		<img
+			[src]="'assets/icons/musicWebIcon.svg'"
+			[alt]="'Menu logo button'"
+			height="150"
 		/>
-        <div id="logo">musicWeb</div>
-    </div>
-    <div class="login-box">
-        <form [formGroup] = "loginForm">
-            <div id="login-form">
-                <p class="h2">Login to our app</p>
-                <mat-form-field appearance="fill">
-                    <mat-label>Email</mat-label>
-                    <input matInput formControlName="login" [errorStateMatcher]="matcher">
-                  </mat-form-field>
-                  <mat-form-field appearance="fill">
-                    <mat-label>Password</mat-label>
-                    <input matInput  type="password" formControlName="password" [errorStateMatcher]="matcher">
-                </mat-form-field>
-                <button mat-raised-button (click)="login()">Next</button>
-            </div>
-            <p class="h4" id="registration">Or sing up <a [routerLink]="'/register'">here!</a></p>
-        </form>
-    </div>
+		<div id="logo">musicWeb</div>
+	</div>
+	<div class="login-box">
+		<form [formGroup]="loginForm">
+			<div id="login-form">
+				<p class="h2">Login to our app</p>
+				<app-error-notification
+					*ngIf="!!error"
+					[error]="error"
+					class="col-9"
+				></app-error-notification>
+				<mat-form-field appearance="fill">
+					<mat-label>Email</mat-label>
+					<input
+						matInput
+						formControlName="login"
+						[errorStateMatcher]="matcher"
+					/>
+				</mat-form-field>
+				<mat-form-field appearance="fill">
+					<mat-label>Password</mat-label>
+					<input
+						matInput
+						type="password"
+						formControlName="password"
+						[errorStateMatcher]="matcher"
+					/>
+				</mat-form-field>
+				<button mat-raised-button (click)="login()">Login</button>
+			</div>
+			<p class="h4" id="registration">
+				Or sing up <a [routerLink]="'/register'">here!</a>
+			</p>
+		</form>
+	</div>
 </div>

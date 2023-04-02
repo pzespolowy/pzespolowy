@@ -10,8 +10,24 @@
 		<app-error-notification
 			*ngIf="!!error"
 			[error]="error"
-			class="col-5"
+			class="col-9"
 		></app-error-notification>
+		<mat-form-field>
+			<mat-label>Nickname</mat-label>
+			<input
+				type="text"
+				matInput
+				formControlName="nickname"
+				[errorStateMatcher]="matcher"
+			/>
+			<mat-error
+				*ngIf="
+					nickname?.invalid && (nickname?.dirty || nickname?.touched)
+				"
+			>
+				Nickname is <strong>required</strong>
+			</mat-error>
+		</mat-form-field>
 		<mat-form-field>
 			<mat-label>Name</mat-label>
 			<input

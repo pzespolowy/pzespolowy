@@ -14,7 +14,7 @@ export class RegisterService {
 
 	register(userData: Partial<RegisterData>) {
 		return this.httpClient
-			.post(`${this.apiPath}/auth/register`, userData)
+			.post(`${this.apiPath}/v1/auth/register`, userData)
 			.pipe(
 				map((data) => ({
 					status: 201,
@@ -22,8 +22,8 @@ export class RegisterService {
 				})),
 				catchError((error: HttpErrorResponse) => {
 					return of({
-						status: error.status,
-						message: error.error.message,
+						status: error.status ?? 500,
+						message: error.error.message ?? 'Api error',
 					});
 				})
 			);
