@@ -18,12 +18,15 @@ body {
 	padding: 0.2em;
 }
 
-.logoIcon{
-	filter:invert(100%) sepia(79%) saturate(483%) hue-rotate(140deg) brightness(118%) contrast(91%);
+.logoIcon {
+	filter: invert(100%) sepia(79%) saturate(483%) hue-rotate(140deg)
+		brightness(118%) contrast(91%);
 }
 
 @import './app/app.module.scss';
 @import './home/home.module.scss';
 @import './sidenav/sidenav.module.scss';
 @import './search/search.module.scss';
+@import './register/register.module.scss';
 @import './login/login.module.scss';
+@import './shared/shared.module.scss';
