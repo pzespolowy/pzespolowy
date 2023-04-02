@@ -1,12 +1,23 @@
 mw-register {
 	section {
-		padding: 24px;
+		overflow: hidden;
+
+		.form-title {
+			padding-top: 24px;
+			img {
+				filter: invert(64%) sepia(32%) saturate(256%) hue-rotate(347deg)
+					brightness(87%) contrast(85%);
+				height: 1em;
+			}
+		}
 
 		form {
 			display: flex;
 			flex-direction: column;
 			margin: auto;
 			justify-items: center;
+			padding-bottom: 24px;
+			width: 45%;
 
 			button[mat-raised-button] {
 				border-radius: 0.5rem !important;
@@ -15,6 +26,18 @@ mw-register {
 
 				&:hover {
 					background-color: $primary-navy-2 !important;
+				}
+			}
+
+			button[mat-button].text-btn {
+				border-radius: 0.5rem !important;
+				background-color: $primary-white !important;
+				color: $primary-navy-1 !important;
+				margin-top: 24px;
+
+				&:hover {
+					background-color: $primary-white !important;
+					border: 1px solid $primary-navy-1;
 				}
 			}
 
@@ -40,6 +63,12 @@ mw-register {
 
 				display: flex;
 				flex-direction: column;
+			}
+		}
+
+		@media only screen and (max-device-width: 915px) {
+			form {
+				width: 85%;
 			}
 		}
 	}

@@ -1,6 +1,12 @@
 <section class="container">
-	<div class="text-center h1">Register in musicWeb</div>
-	<form [formGroup]="registerForm" class="col-5">
+	<div class="text-center h1 form-title">
+		Register in musicWeb
+		<img
+			[src]="'assets/icons/musicWebIcon.svg'"
+			[alt]="'Menu logo button'"
+		/>
+	</div>
+	<form [formGroup]="registerForm">
 		<app-error-notification
 			*ngIf="!!error"
 			[error]="error"
@@ -93,5 +99,8 @@
 			</mat-error>
 		</mat-form-field>
 		<button mat-raised-button (click)="singUp()">Sing up</button>
+		<button mat-button class="text-btn" [routerLink]="'/'">
+			Go to musicWeb
+		</button>
 	</form>
 </section>
