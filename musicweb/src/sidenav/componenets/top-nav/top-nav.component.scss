@@ -25,7 +25,6 @@ mw-top-nav {
 	.row {
 		align-items: center;
 		margin: 0;
-
 		padding: 0.5em;
 
 		.title-row {
@@ -41,5 +40,9 @@ mw-top-nav {
 				height: 2.25rem;
 			}
 		}
+	}
+
+	#collapsedMenu{
+		width: 100%;
 	}
 }

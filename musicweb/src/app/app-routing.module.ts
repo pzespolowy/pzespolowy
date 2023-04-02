@@ -15,6 +15,7 @@ const routes: Routes = [
 			),
 	},
 	{ path: '', redirectTo: 'musicweb', pathMatch: 'full' },
+	{ path: 'login', loadChildren: () => import('../login/login.module').then(m => m.LoginModule)},
 	{
 		path: '**',
 		loadComponent: () =>
