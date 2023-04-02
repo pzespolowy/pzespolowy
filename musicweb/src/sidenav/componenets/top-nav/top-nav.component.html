@@ -1,0 +1,70 @@
+<div class="top-header">
+	<div class="row">
+		<div class="title-row">
+			<img
+				[src]="'assets/icons/musicWebIcon.svg'"
+				[alt]="'Menu logo button'"
+				data-bs-toggle="collapse"
+				data-bs-target="#collapsedMenu"
+			/>
+			<div class="h1">
+				{{ title }}
+			</div>
+		</div>
+		<h2 class="col-6 h2" *ngIf="isLogged && !withoutLabel">
+			{{ 'Hi user' }}
+		</h2>
+	</div>
+</div>
+
+<div class="collapse multi-collapse" id="collapsedMenu">
+	<div class="top-content">
+		<mw-side-nav-item
+			class="row text-center"
+			*ngFor="let tab of tabs"
+			[routerLink]="tab.routerLink"
+			routerLinkActive="active-link"
+			[sideNavData]="tab"
+			[isOpen]="true"
+			[withoutLabel]="false"
+		>
+		</mw-side-nav-item>
+
+		<ng-template *ngIf="isLogged; else notLogged">
+			<mw-side-nav-item
+				class="row text-center"
+				[isOpen]="true"
+				[sideNavData]="{
+					message: 'Logout',
+					iconLink: 'logoutIcon.svg'
+				}"
+				[withoutLabel]="false"
+			>
+			</mw-side-nav-item>
+		</ng-template>
+		<ng-template #notLogged>
+			<mw-side-nav-item
+				class="row text-center"
+				[isOpen]="true"
+				[sideNavData]="{
+					message: 'Sing up',
+					iconLink: 'personAddIcon.svg'
+				}"
+				[routerLink]="'/register'"
+				[withoutLabel]="false"
+			>
+			</mw-side-nav-item>
+			<mw-side-nav-item
+				class="row text-center"
+				[isOpen]="true"
+				[sideNavData]="{
+					message: 'Login',
+					iconLink: 'loginIcon.svg'
+				}"
+				[routerLink]="'/login'"
+				[withoutLabel]="false"
+			>
+			</mw-side-nav-item>
+		</ng-template>
+	</div>
+</div>

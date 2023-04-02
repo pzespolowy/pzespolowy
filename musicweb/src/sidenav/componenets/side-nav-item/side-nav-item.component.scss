@@ -1,0 +1,17 @@
+mw-side-nav-item {
+	cursor: pointer;
+
+	&:hover {
+		background-color: $primary-navy-2;
+	}
+	.row {
+		align-items: center;
+		img {
+			cursor: pointer;
+		}
+	}
+
+	.text {
+		min-width: 200px;
+	}
+}

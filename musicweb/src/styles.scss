@@ -1,1 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
+@import 'variables.scss';
+html,
+body {
+	height: 100%;
+}
+body {
+	margin: 0;
+	font-family: Iceland;
+}
+
+* {
+	box-sizing: border-box;
+	font-family: Iceland;
+}
+
+.icon {
+	padding: 0.2em;
+}
+
+@import './app/app.module.scss';
+@import './home/home.module.scss';
+@import './sidenav/sidenav.module.scss';
+@import './search/search.module.scss';

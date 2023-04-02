@@ -1,0 +1,52 @@
+mw-home {
+	main {
+		height: 100%;
+		width: 100vw;
+		display: grid;
+
+		.inner-bar {
+			height: 100%;
+		}
+
+		mat-drawer {
+			background-color: $primary-navy-1 !important;
+		}
+
+		mat-drawer-content {
+			background-color: $primary-white !important;
+		}
+
+		.mobileview {
+			display: none;
+		}
+
+		@media screen and (max-width: 650px) {
+			display: block;
+			.header {
+				margin: 0;
+			}
+
+			.desktopview {
+				display: none;
+			}
+
+			.mobileview {
+				display: grid;
+			}
+
+			.mobilenav {
+				background-color: $primary-navy-1 !important;
+				height: fit-content;
+				align-content: space-between;
+			}
+
+			.bottom {
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: auto;
+				transform: translate3d(0, 100%, 0);
+			}
+		}
+	}
+}
