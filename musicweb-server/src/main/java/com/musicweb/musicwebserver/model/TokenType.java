@@ -1,4 +1,5 @@
 package com.musicweb.musicwebserver.model;
 
-public class Artist {
+public enum TokenType {
+    BEARER
 }
