@@ -1,0 +1,24 @@
+.notFound {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+	background-color: $primary-white;
+
+	div {
+		text-align: center;
+	}
+
+	.back-btn {
+		border-radius: 8px;
+		padding: 0.5em;
+		background-color: $primary-navy-1;
+		color: $primary-white;
+		border: none;
+
+		&:hover {
+			background-color: $primary-navy-2;
+		}
+	}
+}
