@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
-import { LoginService } from 'src/login/services/login.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { ErrorStateStrategy } from 'src/shared/directives/match-error-strategy';
 
 @Component({
@@ -20,7 +20,7 @@ export class LoginComponent {
 
 	constructor(
 		private fb: FormBuilder,
-		private loginService: LoginService,
+		private authService: AuthService,
 		private title: Title
 	) {
 		title.setTitle('Login to app');
@@ -31,12 +31,10 @@ export class LoginComponent {
 			this.loginForm.markAllAsTouched();
 			return;
 		}
-		this.loginService
+		this.authService
 			.login({ ...this.loginForm.getRawValue() })
 			.subscribe((response) => {
-				if (response.status === 200) {
-					//open snackbar
-				} else {
+				if (response.status !== 200) {
 					this.error = response.message;
 				}
 			});
