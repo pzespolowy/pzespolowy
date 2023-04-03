@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { StoreModule } from '@ngrx/store';
+import { userReducer } from './store/user.reducer';
 
 @NgModule({
 	declarations: [AppComponent],
@@ -15,6 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
 		BrowserAnimationsModule,
 		CommonModule,
 		HttpClientModule,
+		StoreModule.forRoot({ user: userReducer }),
 	],
 	providers: [],
 	bootstrap: [AppComponent],
