@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 import { LoginService } from 'src/login/services/login.service';
 import { ErrorStateStrategy } from 'src/shared/directives/match-error-strategy';
 
@@ -17,7 +18,13 @@ export class LoginComponent {
 
 	error?: string;
 
-	constructor(private fb: FormBuilder, private loginService: LoginService) {}
+	constructor(
+		private fb: FormBuilder,
+		private loginService: LoginService,
+		private title: Title
+	) {
+		title.setTitle('Login to app');
+	}
 
 	login() {
 		if (this.loginForm.invalid) {
