@@ -7,6 +7,7 @@ body {
 body {
 	margin: 0;
 	font-family: Iceland;
+	background: $primary-white;
 }
 
 * {
@@ -21,6 +22,10 @@ body {
 .logoIcon {
 	filter: invert(100%) sepia(79%) saturate(483%) hue-rotate(140deg)
 		brightness(118%) contrast(91%);
+}
+
+.pointer {
+	cursor: pointer;
 }
 
 @import './app/app.module.scss';

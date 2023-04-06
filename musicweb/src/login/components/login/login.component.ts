@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { LoginService } from 'src/login/services/login.service';
+import { Title } from '@angular/platform-browser';
+import { AuthService } from 'src/app/services/auth.service';
 import { ErrorStateStrategy } from 'src/shared/directives/match-error-strategy';
 
 @Component({
@@ -17,19 +18,23 @@ export class LoginComponent {
 
 	error?: string;
 
-	constructor(private fb: FormBuilder, private loginService: LoginService) {}
+	constructor(
+		private fb: FormBuilder,
+		private authService: AuthService,
+		private title: Title
+	) {
+		title.setTitle('Login to app');
+	}
 
 	login() {
 		if (this.loginForm.invalid) {
 			this.loginForm.markAllAsTouched();
 			return;
 		}
-		this.loginService
+		this.authService
 			.login({ ...this.loginForm.getRawValue() })
 			.subscribe((response) => {
-				if (response.status === 200) {
-					//open snackbar
-				} else {
+				if (response.status !== 200) {
 					this.error = response.message;
 				}
 			});

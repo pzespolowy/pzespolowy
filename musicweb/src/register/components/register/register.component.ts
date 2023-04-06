@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
+import { AuthService } from 'src/app/services/auth.service';
 import { matchPasswordValidator } from 'src/register/directives/match-password-validator.directive';
 import { passwordValidator } from 'src/register/directives/password-validator.directive';
 import { WatchRepeatPasswordErrorStrategy } from 'src/register/directives/watch-form-error-strategy';
-import { RegisterService } from 'src/register/services/register.service';
 import { ErrorStateStrategy } from 'src/shared/directives/match-error-strategy';
 
 @Component({
@@ -38,7 +38,7 @@ export class RegisterComponent implements OnInit {
 
 	constructor(
 		private fb: FormBuilder,
-		private registerService: RegisterService,
+		private authService: AuthService,
 		private title: Title
 	) {}
 
@@ -54,8 +54,8 @@ export class RegisterComponent implements OnInit {
 		const { passwordRepeat, ...registerData } = {
 			...this.registerForm.getRawValue(),
 		};
-		this.registerService.register(registerData).subscribe((response) => {
-			if (response.status === 201) {
+		this.authService.register(registerData).subscribe((response) => {
+			if (response.status !== 201) {
 				//open snackbar
 			} else {
 				this.error = response.message;
