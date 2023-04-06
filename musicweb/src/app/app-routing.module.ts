@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeModule } from 'src/home/home.module';
+import { authCantMatch } from './guards/authCantMatch.guard';
 
 const routes: Routes = [
 	{
 		path: 'musicweb',
 		loadChildren: () => HomeModule,
 	},
+	{ path: '', redirectTo: 'musicweb', pathMatch: 'full' },
 	{
 		path: 'register',
 		loadChildren: () =>
@@ -14,14 +16,19 @@ const routes: Routes = [
 				(mod) => mod.RegisterModule
 			),
 	},
-	{ path: '', redirectTo: 'musicweb', pathMatch: 'full' },
-	{ path: 'login', loadChildren: () => import('../login/login.module').then(m => m.LoginModule)},
+	{
+		path: 'login',
+		loadChildren: () =>
+			import('../login/login.module').then((m) => m.LoginModule),
+		canMatch: [authCantMatch],
+	},
 	{
 		path: '**',
 		loadComponent: () =>
 			import('./components/not-found/not-found.component').then(
 				(m) => m.NotFoundComponent
 			),
+		canMatch: [authCantMatch],
 	},
 ];
 

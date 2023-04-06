@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { SideNavLink } from '../models/side-nav-link.inerface';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
+import { JwtService } from 'src/app/services/jwt.service';
 
 @Injectable({
 	providedIn: 'root',
@@ -56,9 +58,14 @@ export class SideNavService {
 		},
 	];
 
+	constructor(
+		private localStorage: LocalStorageService,
+		private jwtService: JwtService
+	) {}
+
 	getTabs(): SideNavLink[] {
-		const isLogged = false;
-		//check if user is logged
+		const token = this.localStorage.get('token');
+		const isLogged = token && !this.jwtService.isTokenExpired();
 
 		return (
 			this.tabs

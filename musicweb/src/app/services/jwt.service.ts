@@ -5,14 +5,15 @@ import jwt_decode from 'jwt-decode';
 	providedIn: 'root',
 })
 export class JwtService {
-	jwtToken!: string;
-	decodedToken!: { [key: string]: string };
+	private jwtToken!: string;
+	private decodedToken!: { [key: string]: string };
 
 	setToken(token: string): void {
 		this.jwtToken = token;
+		this.decodeToken();
 	}
 
-	decodeToken(): void {
+	private decodeToken(): void {
 		if (this.jwtToken) {
 			this.decodedToken = jwt_decode(this.jwtToken);
 		}
@@ -22,8 +23,7 @@ export class JwtService {
 		return this.decodedToken;
 	}
 
-	getExpiryTime() {
-		this.decodeToken();
+	private getExpiryTime() {
 		return this.decodedToken ? this.decodedToken['exp'] : null;
 	}
 

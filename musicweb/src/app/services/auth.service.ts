@@ -8,17 +8,20 @@ import { afterLoginDto } from '../interfaces/afterLoginDto.interface';
 import { catchError, map, of } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { UserActions } from '../store/user.actions';
+import { JwtService } from './jwt.service';
 
 @Injectable({
 	providedIn: 'root',
 })
 export class AuthService {
 	apiPath = environment.apiPath;
+	redirectUrl = '/musicweb/home';
 
 	constructor(
 		private http: HttpClient,
 		private localStorage: LocalStorageService,
-		private store: Store
+		private store: Store,
+		private jwtService: JwtService
 	) {}
 
 	public login(user: loginDto) {
@@ -27,6 +30,7 @@ export class AuthService {
 			.pipe(
 				map((data) => {
 					this.localStorage.set('jwt', data.token);
+					this.jwtService.setToken(data.token);
 					return {
 						status: 200,
 						message: data,
@@ -45,10 +49,14 @@ export class AuthService {
 		return this.http
 			.post<afterLoginDto>(`${this.apiPath}/v1/auth/register`, userData)
 			.pipe(
-				map((data) => ({
-					status: 201,
-					message: data,
-				})),
+				map((data) => {
+					this.localStorage.set('jwt', data.token);
+					this.jwtService.setToken(data.token);
+					return {
+						status: 201,
+						message: data,
+					};
+				}),
 				catchError((error: HttpErrorResponse) => {
 					return of({
 						status: error.status ?? 500,
