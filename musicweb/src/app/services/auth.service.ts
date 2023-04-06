@@ -70,4 +70,11 @@ export class AuthService {
 		this.localStorage.remove('token');
 		this.store.dispatch(UserActions.removeUser());
 	}
+
+	isAuth(): boolean {
+		return (
+			!!this.localStorage.get('token') &&
+			!this.jwtService.isTokenExpired()
+		);
+	}
 }

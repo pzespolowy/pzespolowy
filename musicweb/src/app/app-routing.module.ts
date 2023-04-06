@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeModule } from 'src/home/home.module';
-import { authCantMatch } from './guards/authCantMatch.guard';
+import { authCantMatch } from './guards/auth-cant-match.guard';
 
 const routes: Routes = [
 	{
