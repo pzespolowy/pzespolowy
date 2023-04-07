@@ -3,6 +3,10 @@ mw-search {
 		display: flex;
 		height: 100%;
 
+		#collapseInput {
+			position: relative;
+		}
+
 		.inputDiv {
 			display: grid;
 			height: 100%;
@@ -26,6 +30,40 @@ mw-search {
 					font-size: 1.1rem;
 				}
 			}
+		}
+
+		.results {
+			position: absolute;
+			display: grid;
+			grid-gap: 8px;
+			padding: 24px 12px;
+			top: 2.1em;
+			right: 0;
+			border-radius: 10px;
+			width: 100%;
+			font-size: 1.2rem;
+			background-color: $primary-gray-2;
+			max-height: 60vh;
+			overflow-y: scroll;
+		}
+
+		.no-results {
+			justify-content: center;
+			align-items: center;
+
+			span {
+				white-space: nowrap;
+				color: $primary-black;
+			}
+		}
+
+		.close-btn {
+			position: absolute;
+			right: 0;
+			top: 0;
+			cursor: pointer;
+			z-index: 2;
+			color: $primary-black;
 		}
 	}
 }
