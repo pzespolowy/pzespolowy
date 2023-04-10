@@ -23,13 +23,6 @@ mw-search {
 				background-color: $primary-white;
 				color: $primary-black;
 			}
-
-			@media screen and (max-width: 650px) {
-				input {
-					width: 60vw;
-					font-size: 1.1rem;
-				}
-			}
 		}
 
 		.results {
@@ -37,14 +30,14 @@ mw-search {
 			display: grid;
 			grid-gap: 8px;
 			padding: 24px 12px;
-			top: 2.1em;
+			top: 2.3em;
 			right: 0;
 			border-radius: 10px;
 			width: 100%;
 			font-size: 1.2rem;
 			background-color: $primary-gray-2;
 			max-height: 60vh;
-			overflow-y: scroll;
+			overflow-y: auto;
 		}
 
 		.no-results {
@@ -65,5 +58,38 @@ mw-search {
 			z-index: 2;
 			color: $primary-black;
 		}
+
+		@media screen and (max-width: 650px) {
+			.inputDiv {
+				input {
+					width: 60vw;
+					font-size: 1.1rem;
+				}
+			}
+
+			.results {
+				top: 1.7em;
+			}
+		}
+	}
+
+	::-webkit-scrollbar {
+		width: 8px;
+	}
+
+	/* Track */
+	::-webkit-scrollbar-track {
+		background: #f1f1f1;
+	}
+
+	/* Handle */
+	::-webkit-scrollbar-thumb {
+		background: #888;
+		border-radius: 10px;
+	}
+
+	/* Handle on hover */
+	::-webkit-scrollbar-thumb:hover {
+		background: #555;
 	}
 }
