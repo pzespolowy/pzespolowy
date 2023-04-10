@@ -4,7 +4,34 @@
 	></ng-container>
 	<div class="collapse collapse-horizontal" id="collapseInput">
 		<div class="inputDiv">
-			<input type="text" [formControl]="searchControl" />
+			<input
+				type="text"
+				[formControl]="searchControl"
+				(input)="query$.next(search)"
+				(click)="showResults()"
+			/>
+		</div>
+		<div class="search-box" *ngIf="!!search && resultsVisible">
+			<div class="results" *ngIf="hasData; else noResults">
+				<div class="close-btn" (click)="hideResults()">
+					<span class="material-symbols-outlined"> close </span>
+				</div>
+				<mw-search-tile
+					*ngFor="
+						let searchData of results$ | async;
+						trackBy: identify
+					"
+					[searchData]="searchData"
+				></mw-search-tile>
+			</div>
+			<ng-template #noResults>
+				<div class="results no-results">
+					<div class="close-btn" (click)="hideResults()">
+						<span class="material-symbols-outlined"> close </span>
+					</div>
+					<span>No results</span>
+				</div>
+			</ng-template>
 		</div>
 	</div>
 </div>
@@ -24,6 +51,5 @@
 		[src]="'assets/icons/searchIcon.svg'"
 		[alt]="'Search'"
 		class="searchIcon icon"
-		(click)="searchData()"
 	/>
 </ng-template>
