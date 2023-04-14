@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { SearchService } from '../services/search.service';
 import { SearchData } from 'src/search/interfaces/search-data.interface';
 
@@ -11,7 +11,7 @@ import { SearchData } from 'src/search/interfaces/search-data.interface';
 })
 export class SearchComponent {
 	searchControl = new FormControl('', { nonNullable: true });
-	query$ = new BehaviorSubject<string>('');
+	query$ = new Subject<string>();
 	results$: Observable<Array<SearchData>> = new Observable<
 		Array<SearchData>
 	>();
