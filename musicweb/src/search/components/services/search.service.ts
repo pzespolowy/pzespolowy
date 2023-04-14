@@ -4,6 +4,7 @@ import {
 	BehaviorSubject,
 	Observable,
 	Subject,
+	catchError,
 	debounceTime,
 	distinctUntilChanged,
 	from,
@@ -26,10 +27,10 @@ export class SearchService {
 
 	constructor(private http: HttpClient) {}
 
-	private searchData(q: string): Observable<SearchData[]> {
-		const params = new HttpParams({ fromObject: { q } });
+	private searchData(query: string): Observable<SearchData[]> {
+		const params = new HttpParams({ fromObject: { query } });
 		return this.http
-			.get<SearchResultData[]>(`https://api.deezer.com/search/track`, {
+			.get<SearchResultData[]>(`${this.apiPath}/search`, {
 				params,
 			})
 			.pipe(
@@ -47,7 +48,10 @@ export class SearchService {
 						searchResult,
 					],
 					[]
-				)
+				),
+				catchError((error) => {
+					return [];
+				})
 			);
 	}
 
