@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
 import java.util.Set;
 
 
@@ -27,6 +28,9 @@ public class User {
 
     @Column(name = "password")
     private String password;
+
+    @OneToMany
+    private List<Review> reviews;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "USER_ROLE",

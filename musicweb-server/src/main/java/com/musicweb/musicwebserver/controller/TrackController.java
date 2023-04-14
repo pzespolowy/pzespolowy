@@ -15,8 +15,8 @@ public class TrackController {
     private final TrackClient trackClient;
 
     @GetMapping("/{trackId}")
-    public void getTrackById(@PathVariable Integer trackId) {
-        trackClient.getTrackById(trackId);
+    public String getTrackById(@PathVariable Integer trackId) {
+        return trackClient.getTrackById(trackId);
     }
 
 

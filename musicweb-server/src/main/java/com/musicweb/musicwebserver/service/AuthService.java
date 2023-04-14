@@ -36,8 +36,6 @@ public class AuthService {
 
     public AuthenticationResponseDto register(RegisterRequestDto registerRequestDto) {
         User newUser = User.builder()
-                .name(registerRequestDto.getName())
-                .surname(registerRequestDto.getSurname())
                 .email(registerRequestDto.getEmail())
                 .password(passwordEncoder.encode(registerRequestDto.getPassword()))
                 .roles(Set.of(new Role(RoleEnum.ROLE_USER)))
