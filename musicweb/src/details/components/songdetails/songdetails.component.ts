@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Observable, switchMap } from 'rxjs';
+import { Track } from 'src/app/interfaces/track.interface';
 import { TrackDetailsService } from 'src/details/services/track-details.service';
 
 @Component({
@@ -9,7 +10,8 @@ import { TrackDetailsService } from 'src/details/services/track-details.service'
 	styleUrls: ['./songdetails.component.scss'],
 })
 export class SongdetailsComponent implements OnInit {
-	track$: Observable<any> = new Observable();
+	track$: Observable<Track> = new Observable();
+	track!: Track;
 
 	constructor(
 		private trackDetailsService: TrackDetailsService,
@@ -21,8 +23,9 @@ export class SongdetailsComponent implements OnInit {
 		this.track$ = this.route.paramMap.pipe(
 			switchMap((params: ParamMap) => {
 				const id = params.get('id');
-				return this.trackDetailsService.getDetails(id ?? '');
+				return this.trackDetailsService.getTrackDetails(id ?? '');
 			})
 		);
+		this.track$.subscribe((x) => (this.track = x));
 	}
 }

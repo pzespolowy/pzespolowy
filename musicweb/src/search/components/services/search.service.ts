@@ -18,7 +18,7 @@ import {
 import { CreationType } from 'src/app/interfaces/creation-type.enum';
 import { environment } from 'src/environments/environment';
 import { SearchData } from 'src/search/interfaces/search-data.interface';
-import { SearchResultData } from 'src/search/interfaces/search-results-data.interface';
+import { TrackResponse } from 'src/app/interfaces/track-response.interface';
 
 @Injectable({
 	providedIn: 'root',
@@ -31,7 +31,7 @@ export class SearchService {
 	private searchData(query: string): Observable<SearchData[]> {
 		const params = new HttpParams({ fromObject: { query } });
 		return this.http
-			.get<{ data: SearchResultData[] }>(`${this.apiPath}/search`, {
+			.get<{ data: TrackResponse[] }>(`${this.apiPath}/search`, {
 				params,
 			})
 			.pipe(

@@ -25,7 +25,6 @@ export class SearchComponent implements OnDestroy, OnInit {
 			.subscribe((x) => {
 				this.hasData = !!x.length;
 				this.results = x;
-				console.log(this.results);
 			});
 	}
 
