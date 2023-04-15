@@ -13,6 +13,7 @@ import {
 	reduce,
 	scan,
 	switchMap,
+	tap,
 } from 'rxjs';
 import { CreationType } from 'src/app/interfaces/creation-type.enum';
 import { environment } from 'src/environments/environment';
@@ -30,24 +31,20 @@ export class SearchService {
 	private searchData(query: string): Observable<SearchData[]> {
 		const params = new HttpParams({ fromObject: { query } });
 		return this.http
-			.get<SearchResultData[]>(`${this.apiPath}/search`, {
+			.get<{ data: SearchResultData[] }>(`${this.apiPath}/search`, {
 				params,
 			})
 			.pipe(
-				switchMap((searchResults) => from(searchResults)),
-				map((searchResult) => ({
-					artist: searchResult.artist.name,
-					coverLink: searchResult.album.cover_small,
-					id: searchResult.id,
-					title: searchResult.title,
-					creationType: searchResult.type,
-				})),
-				scan(
-					(acc: SearchData[], searchResult: SearchData) => [
-						...acc,
-						searchResult,
-					],
-					[]
+				map((searchResults) =>
+					searchResults.data.map((searchResult) => {
+						return {
+							artist: searchResult.artist.name,
+							coverLink: searchResult.album.cover_small,
+							id: searchResult.id,
+							title: searchResult.title,
+							creationType: searchResult.type,
+						};
+					})
 				),
 				catchError((error) => {
 					return [];

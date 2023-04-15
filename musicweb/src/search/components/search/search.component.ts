@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
 import { SearchService } from '../services/search.service';
 import { SearchData } from 'src/search/interfaces/search-data.interface';
 
@@ -9,18 +9,28 @@ import { SearchData } from 'src/search/interfaces/search-data.interface';
 	templateUrl: './search.component.html',
 	styleUrls: ['./search.component.scss'],
 })
-export class SearchComponent {
+export class SearchComponent implements OnDestroy, OnInit {
 	searchControl = new FormControl('', { nonNullable: true });
 	query$ = new Subject<string>();
-	results$: Observable<Array<SearchData>> = new Observable<
-		Array<SearchData>
-	>();
 	hasData = false;
 	resultsVisible = false;
+	results: Array<SearchData> = [];
+	subscription?: Subscription;
 
-	constructor(private searchService: SearchService) {
-		this.results$ = this.searchService.search(this.query$);
-		this.results$.subscribe((x) => (this.hasData = !!x.length));
+	constructor(private searchService: SearchService) {}
+
+	ngOnInit(): void {
+		this.subscription = this.searchService
+			.search(this.query$)
+			.subscribe((x) => {
+				this.hasData = !!x.length;
+				this.results = x;
+				console.log(this.results);
+			});
+	}
+
+	ngOnDestroy(): void {
+		this.subscription?.unsubscribe();
 	}
 
 	get search(): string {
