@@ -1,4 +1,4 @@
 export enum CreationType {
-	SONG = 'song',
+	SONG = 'track',
 	ALBUM = 'album',
 }
