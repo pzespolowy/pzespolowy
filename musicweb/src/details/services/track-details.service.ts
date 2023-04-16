@@ -16,15 +16,16 @@ export class TrackDetailsService {
 	getTrackDetails(id: string): Observable<Track> {
 		return this.http.get<TrackResponse>(`${this.apiPath}/track/${id}`).pipe(
 			map((data) => {
-				const { album, ...trackData } = data;
+				const { album, release_date, ...trackData } = data;
 				const track = {
 					...trackData,
+					releaseData: release_date,
 					albumId: album.id,
 					albumTitle: album.title,
-					cover_small: album.cover_small,
-					cover_medium: album.cover_medium,
-					cover_big: album.cover_big,
-					cover_xl: album.cover_xl,
+					coverSmall: album.cover_small,
+					coverMedium: album.cover_medium,
+					coverBig: album.cover_big,
+					coverXl: album.cover_xl,
 				};
 				return track;
 			})
