@@ -1,10 +1,7 @@
 package com.musicweb.musicwebserver.model.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 import java.util.Set;
@@ -13,6 +10,7 @@ import java.util.Set;
 @Entity
 @Table(name = "_USER")
 @Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -22,6 +20,15 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID_USER")
     private Long id;
+
+    @Column(name = "NICKNAME")
+    private String nickname;
+
+    @Column(name = "NAME")
+    private String name;
+
+    @Column(name = "SURNAME")
+    private String surname;
 
     @Column(name = "login")
     private String email;

@@ -1,14 +1,13 @@
 package com.musicweb.musicwebserver.client;
 
-
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-@FeignClient(name = "track", url = "https://api.deezer.com/track")
-public interface TrackClient {
+@FeignClient(name = "artist", url = "https://api.deezer.com/artist")
+public interface ArtistClient {
 
-    @GetMapping("/{trackId}")
-    String getTrackById(@PathVariable Long trackId);
+    @GetMapping("/{artistId}")
+    String getArtistById(@PathVariable Long artistId);
 
 }
