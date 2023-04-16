@@ -1,0 +1,22 @@
+<div class="search-wrapper">
+	<div class="row">
+		<div class="col">
+			<div class="row head-row">
+				{{ searchData.creationType | mwFirstUpper }}
+			</div>
+			<div class="row">
+				{{ searchData.title }}
+			</div>
+		</div>
+		<div class="col">
+			<div class="row head-row">Artist</div>
+			<div class="row">{{ searchData.artist }}</div>
+		</div>
+		<div class="col">
+			<img
+				[src]="searchData.coverLink"
+				[alt]="searchData.title + ' cover'"
+			/>
+		</div>
+	</div>
+</div>

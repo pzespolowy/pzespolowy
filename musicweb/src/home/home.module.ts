@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { HeaderComponent } from './components/header/header.component';
 import { HomeRoutingModule } from './home-routing.module';
+import { DetailsModule } from 'src/details/details.module';
 
 @NgModule({
 	declarations: [HomeComponent, HeaderComponent],
@@ -15,6 +16,7 @@ import { HomeRoutingModule } from './home-routing.module';
 		SearchModule,
 		CommonModule,
 		MatSidenavModule,
+		DetailsModule,
 	],
 	providers: [],
 })
