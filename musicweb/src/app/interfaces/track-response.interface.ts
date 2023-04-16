@@ -6,7 +6,7 @@ export interface TrackResponse {
 	id: string;
 	title: string;
 	duration: number;
-	release_data: string;
+	release_date: string;
 	bpm: string;
 	artist: Artist;
 	album: AlbumResponse;

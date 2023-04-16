@@ -5,11 +5,11 @@ import { Track } from './track.interface';
 export interface Album {
 	id: string;
 	title: string;
-	cover_small: string;
-	cover_medium: string;
-	cover_big: string;
-	cover_xl: string;
-	release_date: string;
+	coverSmall: string;
+	coverMedium: string;
+	coverBig: string;
+	coverXl: string;
+	releaseDate: string;
 	artist?: Artist;
 	genres?: {
 		data: { name: string }[];

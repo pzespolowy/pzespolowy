@@ -1,10 +1,10 @@
 <div class="contentWrapper">
 	<div class="content">
 		<div class="details">
-			<div class="cover">
-				<img class="cover-img" src="assets/photos/test-cover.jpg" />
+			<div class="cover" *ngIf="track">
+				<img class="cover-img" [srcset]="track | coverSrcset" />
 			</div>
-			<div class="info">
+			<div class="info" *ngIf="track">
 				<div class="mobile-favorite-wrapper">
 					<div class="mobile-favorite-box">
 						<img
@@ -13,12 +13,9 @@
 						/>
 					</div>
 				</div>
-				<mw-text-with-label
-					class="song-title row"
-					[label]="'Song title'"
-					[message]="track.title"
-				></mw-text-with-label>
-
+				<div class="song-title row">
+					<div class="col h1">{{ track.title }}</div>
+				</div>
 				<mw-text-with-label
 					id="your-grade"
 					class="row"
@@ -27,14 +24,12 @@
 				></mw-text-with-label>
 
 				<mw-text-with-label
-					id="your-grade"
 					class="row"
 					[label]="'Ratings'"
 					[message]="'0'"
 				></mw-text-with-label>
 
 				<mw-text-with-label
-					id="your-grade"
 					class="row"
 					[label]="'Artist'"
 					[message]="track.artist.name"
@@ -42,17 +37,27 @@
 
 				<mw-text-with-label
 					*ngIf="track.genre"
-					id="your-grade"
 					class="row"
 					[label]="'Genre'"
 					[message]="track.genre"
 				></mw-text-with-label>
 
 				<mw-text-with-label
-					id="your-grade"
 					class="row"
 					[label]="'Album'"
 					[message]="track.albumTitle"
+				></mw-text-with-label>
+
+				<mw-text-with-label
+					class="row"
+					[label]="'Duration'"
+					[message]="track.duration | duration"
+				></mw-text-with-label>
+
+				<mw-text-with-label
+					class="row"
+					[label]="'Release date'"
+					[message]="track.releaseData"
 				></mw-text-with-label>
 			</div>
 			<div class="favorite-box">
@@ -65,4 +70,3 @@
 		<div class="reviews"></div>
 	</div>
 </div>
->

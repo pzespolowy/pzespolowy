@@ -5,13 +5,13 @@ export interface Track {
 	id: string;
 	title: string;
 	duration: number;
-	release_data: string;
+	releaseData: string;
 	bpm: string;
 	artist: Artist;
-	cover_small: string;
-	cover_medium: string;
-	cover_big: string;
-	cover_xl: string;
+	coverSmall: string;
+	coverMedium: string;
+	coverBig: string;
+	coverXl: string;
 	albumTitle: string;
 	albumId: string;
 	type: CreationType;

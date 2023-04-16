@@ -9,6 +9,7 @@ import { catchError, map, of } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { UserActions } from '../store/user.actions';
 import { JwtService } from './jwt.service';
+import { UserInfo } from '../interfaces/user-info.interface';
 
 @Injectable({
 	providedIn: 'root',
@@ -26,7 +27,7 @@ export class AuthService {
 
 	public login(user: loginDto) {
 		return this.http
-			.post<afterLoginDto>(`${this.apiPath}/v1/auth/login`, user)
+			.post<afterLoginDto>(`${this.apiPath}/auth/login`, user)
 			.pipe(
 				map((data) => {
 					this.localStorage.set('jwt', data.token);
@@ -47,7 +48,7 @@ export class AuthService {
 
 	register(userData: Partial<RegisterData>) {
 		return this.http
-			.post<afterLoginDto>(`${this.apiPath}/v1/auth/register`, userData)
+			.post<afterLoginDto>(`${this.apiPath}/auth/register`, userData)
 			.pipe(
 				map((data) => {
 					this.localStorage.set('jwt', data.token);
@@ -67,14 +68,27 @@ export class AuthService {
 	}
 
 	logout() {
-		this.localStorage.remove('token');
+		this.localStorage.remove('jwt');
 		this.store.dispatch(UserActions.removeUser());
 	}
 
 	isAuth(): boolean {
+		if (
+			!!this.localStorage.get('jwt') &&
+			this.jwtService.isTokenExpired()
+		) {
+			this.logout();
+		}
 		return (
-			!!this.localStorage.get('token') &&
-			!this.jwtService.isTokenExpired()
+			!!this.localStorage.get('jwt') && !this.jwtService.isTokenExpired()
 		);
+	}
+
+	getUserInfo() {
+		this.http
+			.get<UserInfo>(`${this.apiPath}/users/currentuser`)
+			.subscribe((userInfo) => {
+				this.store.dispatch(UserActions.addUser({ user: userInfo }));
+			});
 	}
 }
