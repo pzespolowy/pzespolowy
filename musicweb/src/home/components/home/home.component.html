@@ -7,19 +7,22 @@
 <ng-template #desktop>
 	<mat-drawer-container class="desktopview" [hasBackdrop]="false">
 		<mat-drawer [disableClose]="true" [opened]="!isOpen" [mode]="'side'">
-			<mw-side-nav [withoutLabel]="true" [(open)]="isOpen"></mw-side-nav>
+			<mw-side-nav
+				[withoutLabel]="true"
+				[(open)]="!!isOpen"
+			></mw-side-nav>
 		</mat-drawer>
 		<mat-drawer-content>
 			<mat-drawer-container class="inner-bar" [hasBackdrop]="false">
 				<mat-drawer
 					[disableClose]="true"
 					class="sidenav"
-					[mode]="'push'"
-					[opened]="isOpen"
+					[mode]="'side'"
+					[opened]="!!isOpen"
 				>
 					<mw-side-nav
 						[fixedOpen]="true"
-						[(open)]="isOpen"
+						[(open)]="!!isOpen"
 					></mw-side-nav>
 				</mat-drawer>
 				<mat-drawer-content (click)="hidebar()">

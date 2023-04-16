@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable, switchMap } from 'rxjs';
 import { Track } from 'src/app/interfaces/track.interface';
 import { TrackDetailsService } from 'src/details/services/track-details.service';
@@ -16,7 +17,7 @@ export class SongdetailsComponent implements OnInit {
 	constructor(
 		private trackDetailsService: TrackDetailsService,
 		private route: ActivatedRoute,
-		private router: Router
+		private title: Title
 	) {}
 
 	ngOnInit() {
@@ -26,6 +27,9 @@ export class SongdetailsComponent implements OnInit {
 				return this.trackDetailsService.getTrackDetails(id ?? '');
 			})
 		);
-		this.track$.subscribe((x) => (this.track = x));
+		this.track$.subscribe((x) => {
+			this.track = x;
+			this.title.setTitle(this.track.title);
+		});
 	}
 }
