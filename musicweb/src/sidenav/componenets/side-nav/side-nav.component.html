@@ -1,6 +1,6 @@
 <div class="side-header">
 	<div class="row">
-		<div>
+		<div class="col-auto">
 			<img
 				[src]="'assets/icons/musicWebIcon.svg'"
 				[alt]="'Menu logo button'"
@@ -8,9 +8,9 @@
 				class="logoIcon"
 			/>
 		</div>
-		<h2 class="col-6 h2" *ngIf="isLogged && !withoutLabel">
+		<div class="col h3" *ngIf="isLogged && !withoutLabel">
 			{{ 'Hi user' }}
-		</h2>
+		</div>
 	</div>
 </div>
 <div class="side-content">
@@ -27,7 +27,8 @@
 </div>
 
 <div class="side-footer">
-	<ng-template *ngIf="isLogged; else notLogged">
+	<ng-teplate [ngTemplateOutlet]="isLogged ? logged : notLogged"></ng-teplate>
+	<ng-template #logged>
 		<mw-side-nav-item
 			class="row text-center"
 			[isOpen]="fixedOpen || open"
@@ -36,6 +37,7 @@
 				iconLink: 'logoutIcon.svg'
 			}"
 			[withoutLabel]="withoutLabel"
+			(click)="logout()"
 		>
 		</mw-side-nav-item>
 	</ng-template>
