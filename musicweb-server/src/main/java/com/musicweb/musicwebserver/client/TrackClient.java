@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 public interface TrackClient {
 
     @GetMapping("/{trackId}")
-    String getTrackById(@PathVariable Integer trackId);
+    String getTrackById(@PathVariable String trackId);
 
 }
