@@ -1,4 +1,9 @@
 mw-grade {
+	position: absolute;
+	width: 30vw;
+	top: -100%;
+	left: 1em;
+
 	.review-wrapper {
 		position: relative;
 
@@ -6,13 +11,18 @@ mw-grade {
 			width: 10px;
 			height: 10px;
 			transform: rotate(-45deg);
-			top: 50%;
+			top: 1.2rem;
 			left: -5px;
+			background: $primary-brown-3;
+			position: absolute;
 		}
 
 		.review-content {
 			display: grid;
 			grid-template-rows: 1fr 5fr;
+			background: $primary-brown-3;
+			padding: 0.3rem;
+			border-radius: 10px;
 		}
 
 		.form-floating {
@@ -20,6 +30,14 @@ mw-grade {
 				position: absolute;
 				right: 0;
 				top: 0;
+				aspect-ratio: 1;
+				height: 1em;
+				filter: invert(97%) sepia(5%) saturate(48%) hue-rotate(97deg)
+					brightness(94%) contrast(95%);
+			}
+
+			&:not(.form-control:disabled)::before {
+				z-index: -1;
 			}
 		}
 	}
