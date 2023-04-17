@@ -55,11 +55,9 @@
 				
 
 				<ng-container *ngFor="let track of album.tracks; index as i;">
-					<mw-text-with-label
-					class="row"
-					[label]="i+'.'"
-					[message]="track.title"
-				></mw-text-with-label>
+                    <div class="row h3">
+                        <div class="col">{{i+1 +'. ' + track.title}}</div>
+                    </div>
 				</ng-container>
 
 			</div>
