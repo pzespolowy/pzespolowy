@@ -20,4 +20,5 @@ export interface Album {
 	type: CreationType;
 	grade?: number;
 	rating?: Rating;
+	isFavourite?: boolean;
 }

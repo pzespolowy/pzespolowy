@@ -51,12 +51,13 @@
 					top: 0;
 					right: 0;
 					color: black;
-					filter: invert(2%) sepia(5%) saturate(2316%)
-						hue-rotate(349deg) brightness(99%) contrast(96%);
+					filter: invert(2%) sepia(3%) saturate(2799%)
+						hue-rotate(349deg) brightness(104%) contrast(97%);
 				}
 			}
 
-			.reviews {
+			.icon-middle {
+				display: inline-flex;
 			}
 
 			@media screen and (max-width: 650px) {
@@ -86,9 +87,9 @@
 								position: absolute;
 								top: 0;
 								right: 0;
-								filter: invert(2%) sepia(5%) saturate(2316%)
-									hue-rotate(349deg) brightness(99%)
-									contrast(96%);
+								filter: invert(2%) sepia(3%) saturate(2799%)
+									hue-rotate(349deg) brightness(104%)
+									contrast(97%);
 							}
 						}
 					}
@@ -96,6 +97,11 @@
 
 				.favorite-box {
 					display: none;
+				}
+
+				.in-favourite {
+					filter: invert(13%) sepia(87%) saturate(4856%)
+						hue-rotate(357deg) brightness(71%) contrast(113%);
 				}
 			}
 		}

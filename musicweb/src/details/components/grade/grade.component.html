@@ -1,0 +1,24 @@
+<div class="review-wrapper">
+	<div class="triangle"></div>
+	<div class="review-content">
+		<div class="grade"></div>
+		<div class="review">
+			<div class="form-floating">
+				<textarea
+					class="form-control"
+					placeholder="Leave a review here"
+					id="floatingTextarea2"
+					[formControl]="review"
+				></textarea>
+				<label for="floatingTextarea2">Review</label>
+				<img
+					[src]="'assets/icons/saveIcon.svg'"
+					[alt]="'Save review'"
+					[matTooltip]="'Save review'"
+					[matTooltipPosition]="'right'"
+					(click)="saveReview()"
+				/>
+			</div>
+		</div>
+	</div>
+</div>

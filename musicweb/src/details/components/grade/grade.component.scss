@@ -1,0 +1,26 @@
+mw-grade {
+	.review-wrapper {
+		position: relative;
+
+		.triangle {
+			width: 10px;
+			height: 10px;
+			transform: rotate(-45deg);
+			top: 50%;
+			left: -5px;
+		}
+
+		.review-content {
+			display: grid;
+			grid-template-rows: 1fr 5fr;
+		}
+
+		.form-floating {
+			img {
+				position: absolute;
+				right: 0;
+				top: 0;
+			}
+		}
+	}
+}

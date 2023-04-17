@@ -19,4 +19,5 @@ export interface Track {
 	genre?: string;
 	grade?: number;
 	rating?: Rating;
+	isFavourite?: boolean;
 }

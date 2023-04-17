@@ -10,6 +10,10 @@
 						<img
 							class="mobile-favorite-icon"
 							src="assets/icons/favoriteIcon.svg"
+							[ngClass]="
+								!!track.isFavourite ? 'in-favourite' : ''
+							"
+							(onclick)="addToFav()"
 						/>
 					</div>
 				</div>
@@ -29,9 +33,6 @@
 					[label]="'Ratings'"
 					[message]="'0'"
 					[messageTemplate]="ratingMessageTemplate"
-					[templateToDisplay]="
-						track.rating?.rate ? 'custom' : 'default'
-					"
 				></mw-text-with-label>
 
 				<mw-text-with-label
@@ -69,6 +70,8 @@
 				<img
 					class="favorite-icon"
 					src="assets/icons/favoriteIcon.svg"
+					[ngClass]="!!track.isFavourite ? 'in-favourite' : ''"
+					(onclick)="addToFav()"
 				/>
 			</div>
 		</div>
@@ -78,12 +81,37 @@
 
 <ng-template #ratingMessageTemplate>
 	<div>
-		<span>{{ track.rating?.rate + ' ' }}</span>
-		<span>
-			<img />
+		<span class="align-middle">{{ track.rating?.rate || '0' + ' ' }}</span>
+		<span class="align-middle icon-middle">
+			<ng-container
+				*ngTemplateOutlet="
+					track.grade === 0 ? filledStar : unfilledStar
+				"
+			></ng-container>
+			<ng-container
+				*ngIf="isReviewBoxOpen"
+				[ngTemplateOutlet]="reviewOpen"
+			></ng-container>
 		</span>
-		<span *ngIf="!!track.rating?.gradeCounts"
+		<span class="align-middle" *ngIf="!!track.rating?.gradeCounts"
 			>{{ ' based on ' + track.rating?.gradeCounts }}
 		</span>
 	</div>
 </ng-template>
+
+<ng-template #filledStar>
+	<img
+		[src]="'assets/icons/starFillIcon.svg'"
+		[alt]="'Filled star'"
+		(click)="openCloseReview()"
+	/>
+</ng-template>
+<ng-template #unfilledStar>
+	<img
+		[src]="'assets/icons/starOutlineIcon.svg'"
+		[alt]="'Star'"
+		(click)="openCloseReview()"
+	/>
+</ng-template>
+
+<ng-template #reviewOpen> </ng-template>

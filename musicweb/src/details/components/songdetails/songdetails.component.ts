@@ -13,6 +13,7 @@ import { TrackDetailsService } from 'src/details/services/track-details.service'
 export class SongdetailsComponent implements OnInit {
 	track$: Observable<Track> = new Observable();
 	track!: Track;
+	isReviewBoxOpen = false;
 
 	constructor(
 		private trackDetailsService: TrackDetailsService,
@@ -32,4 +33,10 @@ export class SongdetailsComponent implements OnInit {
 			this.title.setTitle(this.track.title);
 		});
 	}
+
+	openCloseReview() {
+		this.isReviewBoxOpen = !this.isReviewBoxOpen;
+	}
+
+	addToFav() {}
 }
