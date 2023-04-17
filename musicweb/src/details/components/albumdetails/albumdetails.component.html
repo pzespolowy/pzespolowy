@@ -1,10 +1,10 @@
 <div class="contentWrapper">
 	<div class="content">
 		<div class="details">
-			<div class="cover" *ngIf="track">
-				<img class="cover-img" [srcset]="track | coverSrcset" />
+			<div class="cover" *ngIf="album">
+				<img class="cover-img" [srcset]="album | coverSrcset" />
 			</div>
-			<div class="info" *ngIf="track">
+			<div class="info" *ngIf="album">
 				<div class="mobile-favorite-wrapper">
 					<div class="mobile-favorite-box">
 						<img
@@ -14,7 +14,7 @@
 					</div>
 				</div>
 				<div class="song-title row">
-					<div class="col h1">{{ track.title }}</div>
+					<div class="col h1">{{ album.title }}</div>
 				</div>
 				<mw-text-with-label
 					id="your-grade"
@@ -32,34 +32,36 @@
 				<mw-text-with-label
 					class="row"
 					[label]="'Artist'"
-					[message]="track.artist.name"
+					[message]="album.artist.name"
 				></mw-text-with-label>
 
 				<mw-text-with-label
-					*ngIf="track.genre"
+					*ngIf="album.genres"
 					class="row"
 					[label]="'Genre'"
-					[message]="track.genre"
-				></mw-text-with-label>
-
-				<mw-text-with-label
-					class="row"
-					[label]="'Album'"
-					[message]="track.albumTitle"
-					[routerLink]="['albumdetails', track.albumId]"
-				></mw-text-with-label>
-
-				<mw-text-with-label
-					class="row"
-					[label]="'Duration'"
-					[message]="track.duration | duration"
+					[message]="album.genres.data[0].name"
 				></mw-text-with-label>
 
 				<mw-text-with-label
 					class="row"
 					[label]="'Release date'"
-					[message]="track.releaseData"
+					[message]="album.releaseDate"
 				></mw-text-with-label>
+
+                <mw-text-with-label
+					class="row"
+					[label]="'Track list:'"
+				></mw-text-with-label>
+				
+
+				<ng-container *ngFor="let track of album.tracks; index as i;">
+					<mw-text-with-label
+					class="row"
+					[label]="i+'.'"
+					[message]="track.title"
+				></mw-text-with-label>
+				</ng-container>
+
 			</div>
 			<div class="favorite-box">
 				<img
