@@ -21,12 +21,17 @@
 					class="row"
 					[label]="'Your grade'"
 					[message]="'0'"
+					*ngIf="track.grade"
 				></mw-text-with-label>
 
 				<mw-text-with-label
 					class="row"
 					[label]="'Ratings'"
 					[message]="'0'"
+					[messageTemplate]="ratingMessageTemplate"
+					[templateToDisplay]="
+						track.rating?.rate ? 'custom' : 'default'
+					"
 				></mw-text-with-label>
 
 				<mw-text-with-label
@@ -70,3 +75,15 @@
 		<div class="reviews"></div>
 	</div>
 </div>
+
+<ng-template #ratingMessageTemplate>
+	<div>
+		<span>{{ track.rating?.rate + ' ' }}</span>
+		<span>
+			<img />
+		</span>
+		<span *ngIf="!!track.rating?.gradeCounts"
+			>{{ ' based on ' + track.rating?.gradeCounts }}
+		</span>
+	</div>
+</ng-template>
