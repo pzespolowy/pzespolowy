@@ -20,7 +20,6 @@ export class AlbumDetailsService {
 			.get<AlbumResponse>(`${this.apiPath}/albums/${id}`)
 			.pipe(
 				map((albumData) => {
-					console.log(albumData);
 					const { tracks, ...data } = albumData;
 					const album = {
 						id: data.id,

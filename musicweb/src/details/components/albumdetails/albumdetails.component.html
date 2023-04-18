@@ -53,12 +53,13 @@
 					[label]="'Track list:'"
 				></mw-text-with-label>
 				
-
+				<div class="song-wrapper">
 				<ng-container *ngFor="let track of album.tracks; index as i;">
-                    <div class="row h3">
-                        <div class="col">{{i+1 +'. ' + track.title}}</div>
+                    <div class="h3">
+                        <div >{{i+1 +'. ' + track.title}}</div>
                     </div>
 				</ng-container>
+				</div>
 
 			</div>
 			<div class="favorite-box">

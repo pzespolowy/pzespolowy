@@ -27,8 +27,8 @@
 				padding-left: 0.4em;
 				width: 70%;
 				font-size: 3em;
-				display: grid;
-				grid-auto-rows: 0.5fr 0.5fr 1fr 1fr 1fr 1fr;
+				display: flex;
+				flex-direction: column;
 
 				#your-grade {
 					font-size: 0.5em;
@@ -36,6 +36,11 @@
 
 				.mobile-favorite-wrapper {
 					display: none;
+				}
+
+				.song-wrapper{
+					display: flex;
+					flex-direction: column;
 				}
 
 				@media screen and (max-width: 1000px) {

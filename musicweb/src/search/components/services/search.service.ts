@@ -31,9 +31,12 @@ export class SearchService {
 	private searchData(query: string): Observable<SearchData[]> {
 		const params = new HttpParams({ fromObject: { query } });
 		return this.http
-			.get<{ data: TrackResponse[] }>(`${this.apiPath}/search`, {
+		.get<{ data: TrackResponse[] }>(
+			`${this.apiPath}/homepage/search/tracks`,
+			{
 				params,
-			})
+			}
+		)
 			.pipe(
 				map((searchResults) =>
 					searchResults.data.map((searchResult) => {
