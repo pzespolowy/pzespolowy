@@ -61,21 +61,7 @@
 					[message]="track.releaseData"
 				></mw-text-with-label>
 
-				<mw-text-with-label
-					class="row"
-					[label]="'Preview'"
-					[message]="track.preview"
-				>
-				<audio id="music" preload="true">
-					<source src="{{track.preview}}">
-				  </audio>
-				  <div id="audioplayer">
-					<i id="pButton" class="fas fa-play"></i>
-					<div id="timeline">
-					  <div id="playhead"></div>
-					</div>
-				  </div>
-				</mw-text-with-label>
+				<audio class="col-10" controls #audioTrack preload="auto" [src]="track.preview"></audio>
 			</div>
 			<div class="favorite-box">
 				<img
