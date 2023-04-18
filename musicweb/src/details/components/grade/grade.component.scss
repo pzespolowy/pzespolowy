@@ -1,7 +1,7 @@
 mw-grade {
 	position: absolute;
-	width: 30vw;
-	top: -100%;
+	width: 35vw;
+	top: -2.4rem;
 	left: 1em;
 
 	.review-wrapper {
@@ -11,7 +11,7 @@ mw-grade {
 			width: 10px;
 			height: 10px;
 			transform: rotate(-45deg);
-			top: 1.2rem;
+			top: 2.6rem;
 			left: -5px;
 			background: $primary-brown-3;
 			position: absolute;
@@ -19,10 +19,31 @@ mw-grade {
 
 		.review-content {
 			display: grid;
-			grid-template-rows: 1fr 5fr;
+			grid-template-rows: 0.5fr 1fr 5fr;
 			background: $primary-brown-3;
-			padding: 0.3rem;
+			padding: 0.7rem 0.3rem;
 			border-radius: 10px;
+
+			.close {
+				display: flex;
+				justify-content: flex-end;
+				color: $primary-white;
+			}
+
+			.grades {
+				gap: 6px;
+				color: $primary-white;
+				display: flex;
+				align-items: center;
+				padding-left: 3px;
+				font-size: 0.7em;
+			}
+
+			.your-grade-wrapper {
+				display: flex;
+				justify-content: flex-end;
+				flex-grow: 1;
+			}
 		}
 
 		.form-floating {

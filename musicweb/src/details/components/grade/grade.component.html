@@ -1,31 +1,52 @@
 <div class="review-wrapper">
 	<div class="triangle"></div>
 	<div class="review-content">
+		<div class="pointer close">
+			<span
+				_ngcontent-skr-c87=""
+				class="material-symbols-outlined"
+				(click)="hideReviewBox.emit(true)"
+			>
+				close
+			</span>
+		</div>
 		<div class="grade">
-			<div class="col-10 grades">
-				<ng-container *ngFor="let i of sequence(hoveredGrade)">
+			<div class="col grades">
+				<div
+					*ngFor="let i of sequence(hoveredGrade)"
+					(mouseenter)="hoverGrade(i)"
+					(click)="selectGrade(i)"
+				>
 					<img
-						[src]="'assets/icons/starfilledIcon.svg'"
+						[src]="'assets/icons/starFillIcon.svg'"
 						[alt]="'Filled star'"
-						(click)="hoverGrade(i)"
 					/>
-				</ng-container>
-				<ng-container *ngFor="let i of sequence(10 - hoveredGrade)">
+				</div>
+				<div
+					*ngFor="let i of sequence(10 - hoveredGrade)"
+					(mouseenter)="hoverGrade(10 - i + 1)"
+					(click)="selectGrade(10 - i + 1)"
+				>
 					<img
 						[src]="'assets/icons/starOutlineIcon.svg'"
 						[alt]="'Star'"
-						(click)="hoverGrade(10 - i)"
 					/>
-				</ng-container>
-			</div>
-			<div class="col-2">
-				{{
-					selectedGrade
-						? selectedGrade + '/10'
-						: grade
-						? grade + '/10'
-						: 'NA'
-				}}
+				</div>
+				<div class="grade">
+					{{ hoveredGrade + '/10' }}
+				</div>
+				<div class="your-grade-wrapper">
+					<div class="your-grade">
+						Your grade:
+						{{
+							selectedGrade
+								? selectedGrade + '/10'
+								: grade
+								? grade + '/10'
+								: 'NA'
+						}}
+					</div>
+				</div>
 			</div>
 		</div>
 		<div class="review">

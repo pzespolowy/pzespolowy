@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -8,6 +8,9 @@ import { FormControl } from '@angular/forms';
 export class GradeComponent {
 	@Input()
 	grade?: number;
+
+	@Output()
+	hideReviewBox: EventEmitter<boolean> = new EventEmitter();
 
 	selectedGrade?: number;
 	hoveredGrade = 1;

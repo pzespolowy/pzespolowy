@@ -115,5 +115,8 @@
 </ng-template>
 
 <ng-template #reviewOpen>
-	<mw-grade [grade]="track.grade"></mw-grade>
+	<mw-grade
+		[grade]="track.grade"
+		(hideReviewBox)="closeReview($event)"
+	></mw-grade>
 </ng-template>

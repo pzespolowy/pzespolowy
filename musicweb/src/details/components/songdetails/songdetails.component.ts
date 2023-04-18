@@ -38,5 +38,9 @@ export class SongdetailsComponent implements OnInit {
 		this.isReviewBoxOpen = !this.isReviewBoxOpen;
 	}
 
+	closeReview(event: boolean) {
+		this.isReviewBoxOpen = false;
+	}
+
 	addToFav() {}
 }
