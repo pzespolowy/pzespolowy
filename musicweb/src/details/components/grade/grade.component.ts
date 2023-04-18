@@ -9,7 +9,8 @@ export class GradeComponent {
 	@Input()
 	grade?: number;
 
-	selectedGrade = 1;
+	selectedGrade?: number;
+	hoveredGrade = 1;
 
 	review = new FormControl('', { nonNullable: true });
 
@@ -19,4 +20,12 @@ export class GradeComponent {
 	}
 
 	saveReview() {}
+
+	hoverGrade(i: number) {
+		this.hoveredGrade = i;
+	}
+
+	sequence(n: number): Array<number> {
+		return Array.from({ length: n }, (_, i) => i + 1);
+	}
 }
