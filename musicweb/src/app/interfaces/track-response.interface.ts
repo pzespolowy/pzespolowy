@@ -11,4 +11,5 @@ export interface TrackResponse {
 	artist: Artist;
 	album: AlbumResponse;
 	type: CreationType;
+	preview: string;
 }

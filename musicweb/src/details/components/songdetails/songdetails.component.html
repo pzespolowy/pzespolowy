@@ -60,6 +60,22 @@
 					[label]="'Release date'"
 					[message]="track.releaseData"
 				></mw-text-with-label>
+
+				<mw-text-with-label
+					class="row"
+					[label]="'Preview'"
+					[message]="track.preview"
+				>
+				<audio id="music" preload="true">
+					<source src="{{track.preview}}">
+				  </audio>
+				  <div id="audioplayer">
+					<i id="pButton" class="fas fa-play"></i>
+					<div id="timeline">
+					  <div id="playhead"></div>
+					</div>
+				  </div>
+				</mw-text-with-label>
 			</div>
 			<div class="favorite-box">
 				<img
