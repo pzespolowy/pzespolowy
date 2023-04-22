@@ -12,7 +12,7 @@ export class AuthInterceptor implements HttpInterceptor {
 	constructor(private localStorage: LocalStorageService) {}
 
 	intercept(req: HttpRequest<any>, next: HttpHandler) {
-		const authToken = this.localStorage.get('token');
+		const authToken = this.localStorage.get('jwt');
 
 		if (!authToken) {
 			return next.handle(req);

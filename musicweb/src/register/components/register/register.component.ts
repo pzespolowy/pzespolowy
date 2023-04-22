@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { matchPasswordValidator } from 'src/register/directives/match-password-validator.directive';
 import { passwordValidator } from 'src/register/directives/password-validator.directive';
@@ -39,7 +40,8 @@ export class RegisterComponent implements OnInit {
 	constructor(
 		private fb: FormBuilder,
 		private authService: AuthService,
-		private title: Title
+		private title: Title,
+		private router: Router
 	) {}
 
 	ngOnInit(): void {
@@ -55,8 +57,9 @@ export class RegisterComponent implements OnInit {
 			...this.registerForm.getRawValue(),
 		};
 		this.authService.register(registerData).subscribe((response) => {
-			if (response.status !== 201) {
-				//open snackbar
+			if (response.status === 201) {
+				this.authService.getUserInfo();
+				this.router.navigate(['/musicweb/home']);
 			} else {
 				this.error = response.message;
 			}

@@ -17,11 +17,11 @@
 					<span class="material-symbols-outlined"> close </span>
 				</div>
 				<mw-search-tile
-					*ngFor="
-						let searchData of results$ | async;
-						trackBy: identify
-					"
+					class="pointer"
+					*ngFor="let searchData of results; trackBy: identify"
 					[searchData]="searchData"
+					[routerLink]="['details', searchData.id]"
+					(click)="hideResults()"
 				></mw-search-tile>
 			</div>
 			<ng-template #noResults>

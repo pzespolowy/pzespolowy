@@ -1,0 +1,12 @@
+<div class="row h3">
+	<div class="col-3">{{ label }}</div>
+	<div class="col-9">
+		<ng-container
+			*ngTemplateOutlet="messageTemplate || defaultMessageTemplate"
+		></ng-container>
+	</div>
+</div>
+
+<ng-template #defaultMessageTemplate>
+	<span>{{ message }}</span>
+</ng-template>

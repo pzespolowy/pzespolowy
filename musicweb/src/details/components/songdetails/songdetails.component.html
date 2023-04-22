@@ -1,40 +1,89 @@
 <div class="contentWrapper">
-    <div class="content">
-        <div class="details">
-            <div class="cover">
-                <img class="cover-img" src="assets/photos/test-cover.jpg"/>
-            </div>
-            <div class="info">
-                <div class="mobile-favorite-wrapper">
-                    <div class="mobile-favorite-box">
-                        <img class="mobile-favorite-icon" src="assets/icons/favoriteIcon.svg"/>
-                    </div>
-                </div>
-                <div class="song-title">
-                    Song title
-                </div>
-                <div id="your-grade">
-                    Your grade:
-                </div>
-                <div>
-                    Ratings:
-                </div>
-                <div>
-                    Author:
-                </div>
-                <div>
-                    Genre:
-                </div>
-                <div>
-                    Album:
-                </div>
-            </div>
-            <div class="favorite-box">
-                <img class="favorite-icon" src="assets/icons/favoriteIcon.svg"/>
-            </div>
-        </div>
-        <div class="reviews">
+	<div class="content">
+		<div class="details">
+			<div class="cover" *ngIf="track">
+				<img class="cover-img" [srcset]="track | coverSrcset" />
+			</div>
+			<div class="info" *ngIf="track">
+				<div class="mobile-favorite-wrapper">
+					<div class="mobile-favorite-box">
+						<img
+							class="mobile-favorite-icon"
+							src="assets/icons/favoriteIcon.svg"
+						/>
+					</div>
+				</div>
+				<div class="song-title row">
+					<div class="col h1">{{ track.title }}</div>
+				</div>
+				<mw-text-with-label
+					id="your-grade"
+					class="row"
+					[label]="'Your grade'"
+					[message]="'0'"
+					*ngIf="track.grade"
+				></mw-text-with-label>
 
-        </div>
-    </div>
-</div>>
+				<mw-text-with-label
+					class="row"
+					[label]="'Ratings'"
+					[message]="'0'"
+					[messageTemplate]="ratingMessageTemplate"
+					[templateToDisplay]="
+						track.rating?.rate ? 'custom' : 'default'
+					"
+				></mw-text-with-label>
+
+				<mw-text-with-label
+					class="row"
+					[label]="'Artist'"
+					[message]="track.artist.name"
+				></mw-text-with-label>
+
+				<mw-text-with-label
+					*ngIf="track.genre"
+					class="row"
+					[label]="'Genre'"
+					[message]="track.genre"
+				></mw-text-with-label>
+
+				<mw-text-with-label
+					class="row"
+					[label]="'Album'"
+					[message]="track.albumTitle"
+				></mw-text-with-label>
+
+				<mw-text-with-label
+					class="row"
+					[label]="'Duration'"
+					[message]="track.duration | duration"
+				></mw-text-with-label>
+
+				<mw-text-with-label
+					class="row"
+					[label]="'Release date'"
+					[message]="track.releaseData"
+				></mw-text-with-label>
+			</div>
+			<div class="favorite-box">
+				<img
+					class="favorite-icon"
+					src="assets/icons/favoriteIcon.svg"
+				/>
+			</div>
+		</div>
+		<div class="reviews"></div>
+	</div>
+</div>
+
+<ng-template #ratingMessageTemplate>
+	<div>
+		<span>{{ track.rating?.rate + ' ' }}</span>
+		<span>
+			<img />
+		</span>
+		<span *ngIf="!!track.rating?.gradeCounts"
+			>{{ ' based on ' + track.rating?.gradeCounts }}
+		</span>
+	</div>
+</ng-template>

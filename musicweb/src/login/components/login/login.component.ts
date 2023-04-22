@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { ErrorStateStrategy } from 'src/shared/directives/match-error-strategy';
 
@@ -12,7 +13,7 @@ export class LoginComponent {
 	matcher = new ErrorStateStrategy();
 
 	loginForm = this.fb.nonNullable.group({
-		login: ['', [Validators.required, Validators.email]],
+		email: ['', [Validators.required, Validators.email]],
 		password: ['', Validators.required],
 	});
 
@@ -21,7 +22,8 @@ export class LoginComponent {
 	constructor(
 		private fb: FormBuilder,
 		private authService: AuthService,
-		private title: Title
+		private title: Title,
+		private router: Router
 	) {
 		title.setTitle('Login to app');
 	}
@@ -36,6 +38,9 @@ export class LoginComponent {
 			.subscribe((response) => {
 				if (response.status !== 200) {
 					this.error = response.message;
+				} else {
+					this.authService.getUserInfo();
+					this.router.navigate(['/musicweb/home']);
 				}
 			});
 	}

@@ -1,0 +1,148 @@
+<div class="profile">
+    <div class="summary">
+        <div class="nickname h1">
+            Welcome {{playerNick}}!
+        </div>
+        <div class="edit-btns">
+            <form [formGroup]="nicknameForm">
+                <app-error-notification
+                    *ngIf="!!error"
+                    [error]="error"
+                    class="col-9"
+                ></app-error-notification>
+                <mat-form-field>
+                    <mat-label>Nickname</mat-label>
+                    <input
+                        type="text"
+                        matInput
+                        formControlName="nickname"
+                        value={{playerNick}}
+                    />
+                    <mat-error
+                        *ngIf="
+                            nickname?.invalid && (nickname?.dirty || nickname?.touched)
+                        "
+                    >
+                        Nickname is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+                <div class="action-icons">
+                    <i [ngClass]="isNicknameActive ? 'active' : 'inactive'" class="bi bi-x-lg" (click)="OnNicknameChange(false)"></i>
+                    <i [ngClass]="isNicknameActive ? 'active' : 'inactive'" class="bi bi-check-lg" (click)="OnNicknameChange(true)"></i>
+                    <i [ngClass]="isNicknameActive ? 'inactive' : 'active'" class="bi bi-pencil" (click)="OnNicknameEdit()"></i>
+                </div>
+            </form>
+            <form [formGroup]="nameForm">
+                <mat-form-field>
+                    <mat-label>Name</mat-label>
+                    <input
+                        type="text"
+                        matInput
+                        formControlName="name"
+                    />
+                    <mat-error *ngIf="name?.invalid && (name?.dirty || name?.touched)">
+                        Name is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+                <div class="action-icons">
+                    <i [ngClass]="isNameActive ? 'active' : 'inactive'" class="bi bi-x-lg" (click)="OnNameChange(false)"></i>
+                    <i [ngClass]="isNameActive ? 'active' : 'inactive'" class="bi bi-check-lg" (click)="OnNameChange(true)"></i>
+                    <i [ngClass]="isNameActive ? 'inactive' : 'active'" class="bi bi-pencil" (click)="OnNameEdit()"></i>
+                </div>
+            </form>
+            <form [formGroup]="surnameForm">
+                <mat-form-field>
+                    <mat-label>Surname</mat-label>
+                    <input
+                        type="text"
+                        matInput
+                        formControlName="surname"
+                    />
+                    <mat-error
+                        *ngIf="surname?.invalid && (surname?.dirty || surname?.touched)"
+                    >
+                        Surname is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+                <div class="action-icons">
+                    <i [ngClass]="isSurnameActive ? 'active' : 'inactive'" class="bi bi-x-lg" (click)="OnSurnameChange(false)"></i>
+                    <i [ngClass]="isSurnameActive ? 'active' : 'inactive'" class="bi bi-check-lg" (click)="OnSurnameChange(true)"></i>
+                    <i [ngClass]="isSurnameActive ? 'inactive' : 'active'" class="bi bi-pencil" (click)="OnSurnameEdit()"></i>
+                </div>
+            </form>
+            <form [formGroup]="emailForm">
+                <mat-form-field>
+                    <mat-label>Email</mat-label>
+                    <input type="email" matInput formControlName="email" />
+                    <mat-error
+                        *ngIf="email?.invalid && (email?.dirty || email?.touched)"
+                    >
+                        <span *ngIf="email?.errors?.['required']"
+                            >Email is <strong>required</strong></span
+                        >
+                        <span *ngIf="email?.errors?.['email']"
+                            >That not looklike email</span
+                        >
+                    </mat-error>
+                </mat-form-field>
+                <div class="action-icons">
+                    <i [ngClass]="isEmailActive ? 'active' : 'inactive'" class="bi bi-x-lg" (click)="OnEmailChange(false)"></i>
+                    <i [ngClass]="isEmailActive ? 'active' : 'inactive'" class="bi bi-check-lg" (click)="OnEmailChange(true)"></i>
+                    <i [ngClass]="isEmailActive ? 'inactive' : 'active'" class="bi bi-pencil" (click)="OnEmailEdit()"></i>
+                </div>
+            </form>
+            <form [formGroup]="passwordForm" class="passwordForm">
+                <mat-form-field class="passwordField">
+                    <mat-label>Password</mat-label>
+                    <input
+                        type="password"
+                        matInput
+                        formControlName="password"
+                    />
+                    <mat-error
+                        class="password-errors"
+                        *ngIf="
+                            password?.invalid && (password?.dirty || password?.touched)
+                        "
+                    >
+                        <span *ngIf="password?.errors?.['required']"
+                            >Password is <strong>required </strong></span
+                        >
+                        <span *ngIf="password?.errors?.['minlength']"
+                            >Password should have at least 8 characters</span
+                        >
+                        <ng-container *ngIf="password?.errors?.['errors']">
+                            <span *ngFor="let error of password?.errors?.['errors']">
+                                {{ error }}
+                            </span>
+                        </ng-container>
+                    </mat-error>
+                </mat-form-field>
+        
+                <mat-form-field>
+                    <mat-label>Repeat password</mat-label>
+                    <input
+                        type="password"
+                        matInput
+                        formControlName="passwordRepeat"
+                        [errorStateMatcher]="watchMatcher"
+                    />
+                    <mat-error
+                        *ngIf="
+                            (passwordRepeat?.invalid || passwordForm.errors?.['notSame']) &&
+                            (passwordRepeat?.dirty || passwordRepeat?.touched) 
+                        "
+                    >
+                        Password not match
+                    </mat-error>
+                </mat-form-field>
+                <div class="action-icons">
+                    <i [ngClass]="isPasswordActive ? 'active' : 'inactive'" class="bi bi-x-lg" (click)="OnPasswordChange(false)"></i>
+                    <i [ngClass]="isPasswordActive ? 'active' : 'inactive'" class="bi bi-check-lg" (click)="OnPasswordChange(true)"></i>
+                    <i [ngClass]="isPasswordActive ? 'inactive' : 'active'" class="bi bi-pencil" (click)="OnPasswordEdit()"></i>
+                </div>
+            </form>
+            <button mat-raised-button color="warn" (click)="deletePopout()">Delete account</button>
+        </div>
+    </div>
+</div>

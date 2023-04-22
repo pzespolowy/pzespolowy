@@ -34,7 +34,7 @@ export class SideNavService {
 		},
 		{
 			tab: {
-				message: 'Fabourites',
+				message: 'Favourites',
 				iconLink: 'favoriteIcon.svg',
 				routerLink: '/musicweb/favourite',
 			},
@@ -64,7 +64,7 @@ export class SideNavService {
 	) {}
 
 	getTabs(): SideNavLink[] {
-		const token = this.localStorage.get('token');
+		const token = this.localStorage.get('jwt');
 		const isLogged = token && !this.jwtService.isTokenExpired();
 
 		return (

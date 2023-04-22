@@ -13,8 +13,9 @@ public class TrackController {
     private final TrackClient trackClient;
 
     @GetMapping("/{trackId}")
-    public String getTrackById(@PathVariable Long trackId) {
+    public String getTrackById(@PathVariable String trackId) {
         return trackClient.getTrackById(trackId);
     }
+
 
 }
