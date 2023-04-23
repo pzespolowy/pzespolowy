@@ -1,19 +1,26 @@
 package com.musicweb.musicwebserver.model.entity;
 
 import jakarta.persistence.*;
+import lombok.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
 @Table(name = "TRACK")
-public class Track {
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+public class Track extends ReviewSubject {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID_TRACK")
     private Long id;
 
-    @OneToMany
-    private List<Review> review;
-
+    @Builder
+    public Track(List<Review> reviews, BigDecimal ranking, Long id) {
+        super(reviews, ranking);
+        this.id = id;
+    }
 }

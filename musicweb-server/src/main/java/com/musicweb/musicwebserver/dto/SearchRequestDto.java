@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Builder
 @Getter
-public class SearchDto {
+public class SearchRequestDto {
 
     private String q;
     private int limit;
