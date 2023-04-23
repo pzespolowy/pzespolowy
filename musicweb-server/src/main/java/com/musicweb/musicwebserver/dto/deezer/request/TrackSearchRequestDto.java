@@ -8,5 +8,6 @@ import lombok.Data;
 public class TrackSearchRequestDto {
 
     private String q;
+    private int limit = 100;
 
 }

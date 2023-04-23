@@ -28,6 +28,7 @@ public class SearchService {
     public TrackSearchResponseDto searchTracks(DetailSearchDto detailSearchDto) {
         String res = searchClient.getTracks(TrackSearchRequestDto.builder()
                 .q(detailSearchDto.getQuery())
+                .limit(detailSearchDto.getLimit())
                 .build());
 
         TrackSearchResponseDto tracks = parseDeezerTrackResponse(res);

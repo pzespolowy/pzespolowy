@@ -15,6 +15,6 @@ public class DetailSearchDto {
 //    private BigDecimal numberOfOpinionsFrom;
 //    private BigDecimal numberOfOpinionsTo;
 //    private int index;
-//    private int limit;
+    private int limit = 100;
 
 }

@@ -20,13 +20,13 @@ public class SearchController {
     private final SearchService searchService;
 
     //deprecated
-    @GetMapping("/homepage/search/tracks")
-    public String getHomepageSearchResults(@RequestParam String query) {
-        return searchClient.getHomepageSearchResults(SearchRequestDto.builder()
-                .q(query)
-                .limit(20)
-                .build());
-    }
+//    @GetMapping("/homepage/search/tracks")
+//    public String getHomepageSearchResults(@RequestParam String query) {
+//        return searchClient.getHomepageSearchResults(SearchRequestDto.builder()
+//                .q(query)
+//                .limit(20)
+//                .build());
+//    }
 
     @GetMapping("/search/tracks")
     public TrackSearchResponseDto searchTracks(@RequestBody DetailSearchDto detailSearchDto) {
