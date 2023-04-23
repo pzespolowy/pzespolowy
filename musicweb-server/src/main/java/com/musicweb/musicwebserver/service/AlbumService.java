@@ -15,6 +15,10 @@ public class AlbumService {
 
     private final AlbumRepository albumRepository;
 
+    public void saveNewAlbum(Album album) {
+        albumRepository.save(album);
+    }
+
     public Album getAlbumById(Long id) {
         return albumRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Album with ID " + id + " not found"));

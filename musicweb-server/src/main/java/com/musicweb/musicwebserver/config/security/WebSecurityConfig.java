@@ -1,5 +1,6 @@
 package com.musicweb.musicwebserver.config.security;
 
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -39,8 +40,10 @@ public class WebSecurityConfig {
                 .authenticationProvider(authenticationProvider())
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .logout()
-                .logoutUrl("/api/v1/auth/logout")
-                .logoutSuccessHandler(((request, response, authentication) -> SecurityContextHolder.clearContext()));
+                .logoutSuccessHandler(((request, response, authentication) -> {
+                    response.setStatus(HttpServletResponse.SC_OK);
+//                    SecurityContextHolder.clearContext();
+                }));
 
         return http.build();
     }

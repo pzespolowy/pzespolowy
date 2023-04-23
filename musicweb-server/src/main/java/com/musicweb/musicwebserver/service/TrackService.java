@@ -12,6 +12,10 @@ public class TrackService {
 
     private final TrackRepository trackRepository;
 
+    public void saveNewTrack(Track track) {
+        trackRepository.save(track);
+    }
+
     public Track getTrackById(Long id) {
         return trackRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Track with ID " + id + " not found"));

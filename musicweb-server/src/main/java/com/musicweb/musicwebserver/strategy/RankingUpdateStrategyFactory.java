@@ -11,7 +11,7 @@ public class RankingUpdateStrategyFactory {
     private final TrackReviewUpdateStrategy trackRankingUpdateStrategy;
     private final AlbumReviewUpdateStrategy albumReviewUpdateStrategy;
 
-    public ReviewUpdateStrategy<?> createRankingUpdateStrategy(ReviewType reviewType) {
+    public ReviewUpdateStrategy<?> getRankingUpdateStrategy(ReviewType reviewType) {
         return switch (reviewType) {
             case TRACK -> trackRankingUpdateStrategy;
             case ALBUM -> albumReviewUpdateStrategy;

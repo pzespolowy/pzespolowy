@@ -53,7 +53,7 @@ class ReviewServiceTest extends Specification {
         Long reviewSubjectId = 10L
 
         when:
-        reviewService.postReview(newReview, reviewSubjectId)
+        reviewService.postNewReview(newReview, reviewSubjectId)
 
         then:
         re

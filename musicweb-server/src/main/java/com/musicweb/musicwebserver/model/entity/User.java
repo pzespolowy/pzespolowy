@@ -45,4 +45,8 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "ID_ROLE"))
     private Set<Role> roles;
 
+    public void addReview(Review review) {
+        this.reviews.add(review);
+    }
+
 }

@@ -15,7 +15,6 @@ import java.util.List;
 public class Album extends ReviewSubject {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID_ALBUM")
     private Long id;
 
@@ -24,14 +23,5 @@ public class Album extends ReviewSubject {
         super(reviews, ranking);
         this.id = id;
     }
-
-    //    @OneToMany
-//    private List<Review> reviews;
-
-//    private BigDecimal ranking = BigDecimal.ZERO;
-
-//    public void addReview(Review review) {
-//        this.reviews.add(review);
-//    }
 
 }

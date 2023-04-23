@@ -1,18 +1,14 @@
 package com.musicweb.musicwebserver.controller;
 
 import com.musicweb.musicwebserver.client.SearchClient;
-import com.musicweb.musicwebserver.client.TrackClient;
 import com.musicweb.musicwebserver.dto.ArtistSearchRequestDto;
 import com.musicweb.musicwebserver.dto.DetailSearchDto;
 import com.musicweb.musicwebserver.dto.SearchRequestDto;
-import com.musicweb.musicwebserver.dto.deezer.request.TrackSearchRequestDto;
-import com.musicweb.musicwebserver.model.entity.Album;
-import com.musicweb.musicwebserver.service.AlbumService;
+import com.musicweb.musicwebserver.dto.deezer.response.album.AlbumSearchResponseDto;
+import com.musicweb.musicwebserver.dto.deezer.response.track.TrackSearchResponseDto;
 import com.musicweb.musicwebserver.service.SearchService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api")
@@ -21,9 +17,9 @@ import java.util.List;
 public class SearchController {
 
     private final SearchClient searchClient;
-    private final AlbumService albumService;
     private final SearchService searchService;
 
+    //deprecated
     @GetMapping("/homepage/search/tracks")
     public String getHomepageSearchResults(@RequestParam String query) {
         return searchClient.getHomepageSearchResults(SearchRequestDto.builder()
@@ -33,16 +29,13 @@ public class SearchController {
     }
 
     @GetMapping("/search/tracks")
-    public String searchTracks(@RequestBody DetailSearchDto detailSearchDto) {
-        searchService.searchTracks(detailSearchDto);
-        return null;
+    public TrackSearchResponseDto searchTracks(@RequestBody DetailSearchDto detailSearchDto) {
+        return searchService.searchTracks(detailSearchDto);
     }
 
     @GetMapping("/search/albums")
-    public String searchAlbums(@RequestBody DetailSearchDto detailSearchDto) {
-        List<Album> albums = albumService.findAlbums(detailSearchDto);
-
-        return null;
+    public AlbumSearchResponseDto searchAlbums(@RequestBody DetailSearchDto detailSearchDto) {
+        return searchService.searchAlbums(detailSearchDto);
     }
 
     @GetMapping("/search/artists")

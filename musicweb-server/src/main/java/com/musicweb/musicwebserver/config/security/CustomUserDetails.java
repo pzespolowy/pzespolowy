@@ -13,23 +13,23 @@ import java.util.Collection;
 @Getter
 public class CustomUserDetails implements UserDetails {
 
-    private final User user;
+    private final User currentUser;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return user.getRoles().stream()
+        return currentUser.getRoles().stream()
                 .map(role -> new SimpleGrantedAuthority(String.valueOf(role.getName())))
                 .toList();
     }
 
     @Override
     public String getPassword() {
-        return user.getPassword();
+        return currentUser.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return user.getEmail();
+        return currentUser.getEmail();
     }
 
     @Override

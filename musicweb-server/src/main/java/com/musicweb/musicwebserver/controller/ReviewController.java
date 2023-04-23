@@ -1,11 +1,14 @@
 package com.musicweb.musicwebserver.controller;
 
+import com.musicweb.musicwebserver.dto.NewReviewDto;
 import com.musicweb.musicwebserver.dto.ReviewDto;
-import com.musicweb.musicwebserver.model.entity.Review;
+import com.musicweb.musicwebserver.dto.ReviewParamsDto;
 import com.musicweb.musicwebserver.service.ReviewService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/reviews")
@@ -16,11 +19,16 @@ public class ReviewController {
     private final ModelMapper modelMapper;
     private final ReviewService reviewService;
 
+    @GetMapping
+    public List<ReviewDto> getReviews(@RequestBody ReviewParamsDto reviewParamsDto) {
+        return reviewService.getReviewsFor(reviewParamsDto).stream()
+                .map(review -> modelMapper.map(review, ReviewDto.class))
+                .toList();
+    }
+
     @PostMapping
-    public void postReview(@RequestBody ReviewDto reviewDto) {
-        reviewService.postReview(modelMapper.map(reviewDto, Review.class),
-                reviewDto.getReviewSubjectId(),
-                reviewDto.getReviewType());
+    public void postReview(@RequestBody NewReviewDto newReviewDto) {
+        reviewService.postNewReview(newReviewDto);
     }
 
 }

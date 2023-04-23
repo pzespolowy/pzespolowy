@@ -20,8 +20,9 @@ public class Review {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToOne
-    private User user;
+//    @ManyToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "ID_USER", nullable = false)
+//    private User user;
 
     @Column(name = "DESCRIPTION")
     private String description;
@@ -32,7 +33,11 @@ public class Review {
     @Column(name = "POSTED_AT", nullable = false)
     private LocalDateTime postedAt;
 
-//    @Enumerated(EnumType.STRING)
-//    private ReviewType reviewType;
+    @Column(name = "REVIEW_TYPE")
+    @Enumerated(EnumType.STRING)
+    private ReviewType reviewType;
+
+    @Column(name = "ID_REVIEW_SUBJECT")
+    private Long reviewSubjectId;
 
 }
