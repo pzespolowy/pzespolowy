@@ -9,7 +9,6 @@ import { TrackDetailsService } from 'src/details/services/track-details.service'
 @Component({
 	selector: 'mw-songdetails',
 	templateUrl: './songdetails.component.html',
-	styleUrls: ['./songdetails.component.scss'],
 })
 export class SongdetailsComponent implements OnInit {
 	track$: Observable<Track> = new Observable();

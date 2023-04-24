@@ -1,10 +1,10 @@
 <div class="contentWrapper">
 	<div class="content">
-		<div class="details">
-			<div class="cover" *ngIf="track">
+		<div class="details" *ngIf="track">
+			<div class="cover">
 				<img class="cover-img" [srcset]="track | coverSrcset" />
 			</div>
-			<div class="info" *ngIf="track">
+			<div class="info">
 				<div class="mobile-favorite-wrapper">
 					<div class="mobile-favorite-box">
 						<img
