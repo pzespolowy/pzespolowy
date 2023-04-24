@@ -123,6 +123,7 @@
 		[src]="'assets/icons/starFillIcon.svg'"
 		[alt]="'Filled star'"
 		(click)="openCloseReview()"
+		[ngClass]="isAuth ? 'star-pointer' : ''"
 	/>
 </ng-template>
 <ng-template #unfilledStar>
@@ -130,6 +131,7 @@
 		[src]="'assets/icons/starOutlineIcon.svg'"
 		[alt]="'Star'"
 		(click)="openCloseReview()"
+		[ngClass]="isAuth ? 'star-pointer' : ''"
 	/>
 </ng-template>
 

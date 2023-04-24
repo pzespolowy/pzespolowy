@@ -63,10 +63,12 @@ mw-songdetails {
 					display: inline-flex;
 					position: relative;
 
-					& > img:hover {
-						height: 1.4rem;
-						aspect-ratio: 1;
-						cursor: pointer;
+					.star-pointer {
+						& > img:hover {
+							height: 1.4rem;
+							aspect-ratio: 1;
+							cursor: pointer;
+						}
 					}
 				}
 
