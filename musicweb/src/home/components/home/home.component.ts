@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
 	}
 
 	ngAfterViewInit(): void {
-		setTimeout(this.hidebar.bind(this), 120);
+		setTimeout(this.hidebar.bind(this), 150);
 	}
 
 	hidebar() {

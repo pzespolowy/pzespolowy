@@ -1,5 +1,6 @@
 import { Artist } from './artist.interface';
 import { CreationType } from './creation-type.enum';
+import { Rating } from './ratings.interface';
 
 export interface Track {
 	id: string;
@@ -17,4 +18,6 @@ export interface Track {
 	type: CreationType;
 	preview: string;
 	genre?: string;
+	grade?: number;
+	rating?: Rating;
 }
