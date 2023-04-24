@@ -12,7 +12,7 @@ export interface Album {
 	coverBig: string;
 	coverXl: string;
 	releaseDate: string;
-	artist?: Artist;
+	artist: Artist;
 	genres?: {
 		data: { name: string }[];
 	};

@@ -17,6 +17,7 @@ export interface Track {
 	albumTitle: string;
 	albumId: string;
 	type: CreationType;
+	preview: string;
 	genre?: string;
 	grade?: number;
 	rating?: Rating;

@@ -49,9 +49,10 @@
 				></mw-text-with-label>
 
 				<mw-text-with-label
-					class="row"
+					class="row pointer"
 					[label]="'Album'"
 					[message]="track.albumTitle"
+					[routerLink]="['/musicweb/home/albumdetails', track.albumId]"
 				></mw-text-with-label>
 
 				<mw-text-with-label
@@ -65,6 +66,8 @@
 					[label]="'Release date'"
 					[message]="track.releaseData"
 				></mw-text-with-label>
+
+				<audio class="col-10" controls #audioTrack preload="auto" [src]="track.preview"></audio>
 			</div>
 			<div class="favorite-box">
 				<img
