@@ -1,0 +1,15 @@
+<div class="review-box">
+	<div class="review-grade">
+		<div class="review-author">Jan kowalski</div>
+		<div class="grade">
+			{{ review.grade }}
+			<img [src]="'assets/icons/starOutlineIcon.svg'" [alt]="'Star'" />
+		</div>
+		<div class="date">
+			{{ review.postedAt | date }}
+		</div>
+	</div>
+	<div class="description" *ngIf="review.description">
+		{{ review.description }}
+	</div>
+</div>

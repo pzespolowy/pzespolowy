@@ -1,0 +1,17 @@
+mw-review {
+	font-size: 1rem;
+	.review-box {
+		background: $primary-brown-3;
+		padding: 0.7rem 0.3rem;
+		border-radius: 10px;
+
+		.review-grade {
+			display: flex;
+			gap: 10px;
+		}
+
+		.description {
+			font-size: 0.8em;
+		}
+	}
+}
