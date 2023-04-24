@@ -1,6 +1,6 @@
 import { AlbumResponse } from './album-response.interface';
 import { Artist } from './artist.interface';
-import { CreationType } from './creation-type.enum';
+import { CreationType } from './enums/creation-type.enum';
 
 export interface TrackResponse {
 	id: string;

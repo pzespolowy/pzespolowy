@@ -1,4 +1,4 @@
-import { CreationType } from 'src/app/interfaces/creation-type.enum';
+import { CreationType } from 'src/app/interfaces/enums/creation-type.enum';
 
 export interface SearchData {
 	creationType: CreationType;

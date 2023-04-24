@@ -1,25 +1,29 @@
-import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable, switchMap } from 'rxjs';
+import { ReviewType } from 'src/app/interfaces/enums/review-type.enum';
 import { Track } from 'src/app/interfaces/track.interface';
+import { AuthService } from 'src/app/services/auth.service';
 import { TrackDetailsService } from 'src/details/services/track-details.service';
 
 @Component({
 	selector: 'mw-songdetails',
 	templateUrl: './songdetails.component.html',
-	styleUrls: ['./songdetails.component.scss'],
 })
 export class SongdetailsComponent implements OnInit {
 	track$: Observable<Track> = new Observable();
 	track!: Track;
+	isReviewBoxOpen = false;
 	@ViewChild('audioTrack') audioPlayerRef: ElementRef | undefined;
+	reviewType = ReviewType;
+	isAuth = false;
 
 	constructor(
 		private trackDetailsService: TrackDetailsService,
 		private route: ActivatedRoute,
 		private title: Title,
-		private changeDetector: ChangeDetectorRef
+		private authService: AuthService
 	) {}
 
 	ngOnInit() {
@@ -32,7 +36,19 @@ export class SongdetailsComponent implements OnInit {
 		this.track$.subscribe((x) => {
 			this.track = x;
 			this.title.setTitle(this.track.title);
-			this.changeDetector.detectChanges();
+			this.closeReview();
 		});
+
+		this.isAuth = this.authService.isAuth();
 	}
+
+	openCloseReview() {
+		this.isReviewBoxOpen = !this.isReviewBoxOpen;
+	}
+
+	closeReview() {
+		this.isReviewBoxOpen = false;
+	}
+
+	addToFav() {}
 }

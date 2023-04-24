@@ -15,7 +15,7 @@ import {
 	switchMap,
 	tap,
 } from 'rxjs';
-import { CreationType } from 'src/app/interfaces/creation-type.enum';
+import { CreationType } from 'src/app/interfaces/enums/creation-type.enum';
 import { environment } from 'src/environments/environment';
 import { SearchData } from 'src/search/interfaces/search-data.interface';
 import { TrackResponse } from 'src/app/interfaces/track-response.interface';
@@ -28,15 +28,12 @@ export class SearchService {
 
 	constructor(private http: HttpClient) {}
 
-	private searchData(query: string): Observable<SearchData[]> {
-		const params = new HttpParams({ fromObject: { query } });
+	private searchData(query: string, limit: number): Observable<SearchData[]> {
 		return this.http
-			.get<{ data: TrackResponse[] }>(
-				`${this.apiPath}/homepage/search/tracks`,
-				{
-					params,
-				}
-			)
+			.post<{ data: TrackResponse[] }>(`${this.apiPath}/search/tracks`, {
+				query: query,
+				limit: limit,
+			})
 			.pipe(
 				map((searchResults) =>
 					searchResults.data.map((searchResult) => {
@@ -59,7 +56,7 @@ export class SearchService {
 		return query$.pipe(
 			debounceTime(400),
 			distinctUntilChanged(),
-			switchMap((query) => this.searchData(query))
+			switchMap((query) => this.searchData(query, 20))
 		);
 	}
 }

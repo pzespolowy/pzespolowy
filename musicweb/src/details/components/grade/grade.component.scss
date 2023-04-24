@@ -1,0 +1,96 @@
+mw-grade {
+	&.float-wrapper {
+		position: absolute;
+		width: 35vw;
+		top: -2.4rem;
+		left: 1em;
+	}
+
+	.review-wrapper {
+		position: relative;
+
+		.triangle {
+			width: 10px;
+			height: 10px;
+			transform: rotate(-45deg);
+			top: 2.6rem;
+			left: -5px;
+			background: $primary-brown-3;
+			position: absolute;
+		}
+
+		.review-content {
+			display: grid;
+			grid-template-rows: 0.5fr 1fr 5fr;
+			background: $primary-brown-3;
+			padding: 0.45rem 0.3rem;
+			border-radius: 10px;
+
+			.close {
+				display: flex;
+				justify-content: flex-end;
+				color: $primary-white;
+			}
+
+			.grades {
+				gap: 6px;
+				color: $primary-white;
+				display: flex;
+				align-items: center;
+				padding-left: 3px;
+				font-size: 0.7em;
+			}
+
+			.your-grade-wrapper {
+				display: flex;
+				justify-content: flex-end;
+				flex-grow: 1;
+			}
+		}
+
+		.form-floating {
+			::-webkit-scrollbar {
+				width: 6px;
+			}
+
+			::-webkit-scrollbar-track {
+				background: #f1f1f1;
+			}
+
+			::-webkit-scrollbar-thumb {
+				background: #888;
+			}
+
+			::-webkit-scrollbar-thumb:hover {
+				background: #555;
+			}
+
+			img {
+				position: absolute;
+				right: 0;
+				top: 0;
+				aspect-ratio: 1;
+				height: 1em;
+				filter: invert(2%) sepia(2%) saturate(5608%) hue-rotate(349deg)
+					brightness(93%) contrast(96%);
+			}
+
+			&:not(.form-control:disabled)::before {
+				height: 1em;
+				width: 99%;
+			}
+
+			textarea {
+				min-height: 130px;
+				max-height: 175px;
+			}
+
+			.areaLength {
+				position: absolute;
+				right: 3ch;
+				bottom: 0.2em;
+				font-size: 0.6em;
+			}
+		}
+	}
+}
