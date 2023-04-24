@@ -1,125 +1,134 @@
-.contentWrapper {
-	min-height: 100%;
-	width: 100%;
-	.content {
-		margin: 3%;
-		padding: 1em;
-		background: #d9dbda;
+mw-songdetails {
+	.contentWrapper {
+		min-height: 100%;
+		width: 100%;
+		.content {
+			margin: 3%;
+			padding: 1em;
+			background: #d9dbda;
+			border-radius: 10px;
 
-		.reviews {
-			margin: 3% 1% 3% 3%;
-			width: 95%;
-			display: flex;
-			flex-direction: column;
-			gap: 10px;
-
-			mw-grade {
-				font-size: 1.5rem;
-			}
-
-			mw-review {
-				color: $primary-white;
-			}
-		}
-
-		.details {
-			margin: 3% 1% 3% 3%;
-			display: flex;
-			flex-direction: row;
-			height: 80%;
-			width: 95%;
-
-			.cover {
-				width: 30%;
-				display: flex;
-				align-items: center;
-
-				.cover-img {
-					width: 100%;
-					aspect-ratio: 1 / 1;
-				}
-			}
-
-			.info {
-				padding-left: 0.4em;
-				width: 70%;
-				font-size: 3em;
+			.reviews {
+				margin: 3% 1% 3% 3%;
+				width: 95%;
 				display: flex;
 				flex-direction: column;
+				gap: 10px;
 
-				#your-grade {
-					font-size: 0.5em;
+				mw-grade {
+					font-size: 1.5rem;
 				}
 
-				.mobile-favorite-wrapper {
-					display: none;
-				}
-
-				@media screen and (max-width: 1000px) {
-					font-size: 2em;
+				mw-review {
+					color: $primary-white;
 				}
 			}
 
-			.favorite-box {
-				position: relative;
-
-				.favorite-icon {
-					position: absolute;
-					top: 0;
-					right: 0;
-					color: black;
-					filter: invert(2%) sepia(3%) saturate(2799%)
-						hue-rotate(349deg) brightness(104%) contrast(97%);
-				}
-			}
-
-			.icon-middle {
-				display: inline-flex;
-				position: relative;
-			}
-
-			@media screen and (max-width: 650px) {
-				flex-direction: column;
+			.details {
+				margin: 3% 1% 3% 3%;
+				display: flex;
+				flex-direction: row;
+				height: 80%;
+				width: 95%;
 
 				.cover {
-					width: 80%;
-					margin: auto;
-					aspect-ratio: 1/1;
-					position: relative;
+					width: 30%;
 					display: flex;
-					flex-direction: column;
-					justify-content: space-between;
+					align-items: center;
+
+					.cover-img {
+						width: 100%;
+						aspect-ratio: 1 / 1;
+					}
 				}
 
 				.info {
-					padding: 0;
-					margin-top: 0.5em;
-					width: 100%;
-					grid-auto-rows: 0fr 1.5fr 1.5fr 2fr 2fr 2fr 1fr;
+					padding-left: 0.4em;
+					width: 70%;
+					font-size: 3em;
+					display: flex;
+					flex-direction: column;
+
+					#your-grade {
+						font-size: 0.5em;
+					}
 
 					.mobile-favorite-wrapper {
-						width: 100%;
-						.mobile-favorite-box {
-							position: relative;
-							.mobile-favorite-icon {
-								position: absolute;
-								top: 0;
-								right: 0;
-								filter: invert(2%) sepia(3%) saturate(2799%)
-									hue-rotate(349deg) brightness(104%)
-									contrast(97%);
-							}
-						}
+						display: none;
+					}
+
+					@media screen and (max-width: 1000px) {
+						font-size: 2em;
 					}
 				}
 
 				.favorite-box {
-					display: none;
+					position: relative;
+
+					.favorite-icon {
+						position: absolute;
+						top: 0;
+						right: 0;
+						color: black;
+						filter: invert(2%) sepia(3%) saturate(2799%)
+							hue-rotate(349deg) brightness(104%) contrast(97%);
+					}
 				}
 
-				.in-favourite {
-					filter: invert(13%) sepia(87%) saturate(4856%)
-						hue-rotate(357deg) brightness(71%) contrast(113%);
+				.icon-middle {
+					display: inline-flex;
+					position: relative;
+
+					& > img:hover {
+						height: 1.4rem;
+						aspect-ratio: 1;
+						cursor: pointer;
+					}
+				}
+
+				@media screen and (max-width: 650px) {
+					flex-direction: column;
+
+					.cover {
+						width: 80%;
+						margin: auto;
+						aspect-ratio: 1/1;
+						position: relative;
+						display: flex;
+						flex-direction: column;
+						justify-content: space-between;
+					}
+
+					.info {
+						padding: 0;
+						margin-top: 0.5em;
+						width: 100%;
+						grid-auto-rows: 0fr 1.5fr 1.5fr 2fr 2fr 2fr 1fr;
+
+						.mobile-favorite-wrapper {
+							width: 100%;
+							.mobile-favorite-box {
+								position: relative;
+								.mobile-favorite-icon {
+									position: absolute;
+									top: 0;
+									right: 0;
+									filter: invert(2%) sepia(3%) saturate(2799%)
+										hue-rotate(349deg) brightness(104%)
+										contrast(97%);
+								}
+							}
+						}
+					}
+
+					.favorite-box {
+						display: none;
+					}
+
+					.in-favourite {
+						filter: invert(13%) sepia(87%) saturate(4856%)
+							hue-rotate(357deg) brightness(71%) contrast(113%);
+					}
 				}
 			}
 		}

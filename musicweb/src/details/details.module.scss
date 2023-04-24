@@ -3,3 +3,9 @@
 @import './components/grade/grade.component.scss';
 @import './components/albumdetails/albumdetails.component.scss';
 @import './components/review/review.component.scss';
+
+.text-link {
+	&:hover {
+		color: $secondary-black;
+	}
+}

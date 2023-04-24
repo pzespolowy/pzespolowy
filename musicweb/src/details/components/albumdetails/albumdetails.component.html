@@ -48,21 +48,23 @@
 					[message]="album.releaseDate"
 				></mw-text-with-label>
 
-                <mw-text-with-label
+				<mw-text-with-label
 					class="row"
 					[label]="'Track list:'"
 				></mw-text-with-label>
-				
+
 				<div class="song-wrapper">
-					<ng-container *ngFor="let track of album.tracks; index as i;">
-                	    <div class="h3 pointer"
-						[routerLink]="['/musicweb/home/details', track.id]"
+					<ng-container
+						*ngFor="let track of album.tracks; index as i"
+					>
+						<div
+							class="h3 pointer text-link"
+							[routerLink]="['/musicweb/home/details', track.id]"
 						>
-                	        <div >{{i+1 +'. ' + track.title}}</div>
-                	    </div>
+							<div>{{ i + 1 + '. ' + track.title }}</div>
+						</div>
 					</ng-container>
 				</div>
-
 			</div>
 			<div class="favorite-box">
 				<img
