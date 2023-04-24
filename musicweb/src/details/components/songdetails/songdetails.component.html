@@ -87,32 +87,14 @@
 				/>
 			</div>
 		</div>
-		<div
-			class="reviews"
-			*ngIf="track.rates?.reviews?.length; else noReviews"
-		>
-			<div class="h2 row">
-				{{ 'Reviews(' + track.rates?.reviews?.length + ')' }}
-			</div>
-			<mw-grade
-				class="row"
-				[grade]="track.grade"
-				[id]="track.id"
-				[reviewType]="reviewType.TRACK"
-				[simpleReview]="true"
-			></mw-grade>
-			<mw-review
-				*ngFor="let review of track.rates?.reviews"
-				[review]="review"
-			>
-			</mw-review>
-		</div>
+		<mw-reviews
+			[id]="track.id"
+			[reviews]="track.rates?.reviews"
+			[reviewType]="reviewType.TRACK"
+			[grade]="track.grade"
+		></mw-reviews>
 	</div>
 </div>
-
-<ng-template #noReviews>
-	<div class="h2">This track has not yet any reviews</div>
-</ng-template>
 
 <ng-template #ratingMessageTemplate>
 	<div>

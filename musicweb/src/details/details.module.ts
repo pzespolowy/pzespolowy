@@ -10,6 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AlbumdetailsComponent } from './components/albumdetails/albumdetails.component';
 import { RouterModule } from '@angular/router';
 import { ReviewComponent } from './components/review/review.component';
+import { ReviewsComponent } from './components/reviews/reviews.component';
 
 @NgModule({
 	declarations: [
@@ -20,6 +21,7 @@ import { ReviewComponent } from './components/review/review.component';
 		GradeComponent,
 		AlbumdetailsComponent,
 		ReviewComponent,
+		ReviewsComponent,
 	],
 	imports: [
 		CommonModule,

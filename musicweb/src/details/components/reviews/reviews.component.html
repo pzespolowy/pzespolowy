@@ -1,0 +1,19 @@
+<div class="reviews" *ngIf="reviews?.length; else noReviews">
+	<div class="h2 row">
+		{{ 'Reviews(' + reviews?.length + ')' }}
+	</div>
+	<mw-grade
+		class="row"
+		[(grade)]="grade"
+		[id]="id"
+		[reviewType]="reviewType"
+		[simpleReview]="true"
+	></mw-grade>
+	<mw-review *ngFor="let review of reviews" [review]="review"> </mw-review>
+</div>
+
+<ng-template #noReviews>
+	<div class="h2">
+		This {{ reviewType.toLowerCase() }} has not yet any reviews
+	</div>
+</ng-template>

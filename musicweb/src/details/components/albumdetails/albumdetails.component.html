@@ -73,6 +73,11 @@
 				/>
 			</div>
 		</div>
-		<div class="reviews"></div>
+		<mw-reviews
+			[id]="album.id"
+			[reviews]="album.rates?.reviews"
+			[reviewType]="reviewType.ALBUM"
+			[grade]="album.grade"
+		></mw-reviews>
 	</div>
 </div>

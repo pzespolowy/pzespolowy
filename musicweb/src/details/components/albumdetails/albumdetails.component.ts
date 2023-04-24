@@ -3,16 +3,17 @@ import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable, switchMap } from 'rxjs';
 import { Album } from 'src/app/interfaces/album.interface';
+import { ReviewType } from 'src/app/interfaces/enums/review-type.enum';
 import { AlbumDetailsService } from 'src/details/services/album-details.service';
 
 @Component({
-  selector: 'mw-albumdetails',
-  templateUrl: './albumdetails.component.html',
-  styleUrls: ['./albumdetails.component.scss']
+	selector: 'mw-albumdetails',
+	templateUrl: './albumdetails.component.html',
 })
-export class AlbumdetailsComponent implements OnInit{
-  album$: Observable<Album> = new Observable();
+export class AlbumdetailsComponent implements OnInit {
+	album$: Observable<Album> = new Observable();
 	album!: Album;
+	reviewType = ReviewType;
 
 	constructor(
 		private albumDetailsService: AlbumDetailsService,
