@@ -19,7 +19,7 @@ import { ReviewComponent } from './components/review/review.component';
 		CoverSrcsetPipe,
 		GradeComponent,
 		AlbumdetailsComponent,
-  ReviewComponent,
+		ReviewComponent,
 	],
 	imports: [
 		CommonModule,

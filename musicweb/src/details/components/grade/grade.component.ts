@@ -13,6 +13,9 @@ export class GradeComponent {
 	@Input()
 	grade?: number;
 
+	@Output()
+	gradeChange = new EventEmitter<number>();
+
 	@Input()
 	id!: string;
 
@@ -27,6 +30,7 @@ export class GradeComponent {
 
 	selectedGrade?: number;
 	hoveredGrade = 1;
+	sendedValue?: string;
 
 	review = new FormControl('', { nonNullable: true });
 
@@ -37,7 +41,23 @@ export class GradeComponent {
 
 	selectGrade(newGrade: number) {
 		this.selectedGrade = newGrade;
-		//make api call
+		const grade = this.selectedGrade || this.grade || newGrade;
+		this.reviewService
+			.postReviews(this.id, this.reviewType, grade, this.sendedValue)
+			.subscribe((x) => {
+				this.reviewService.sendResponsePostMessage(
+					x.status,
+					grade,
+					this.reviewType,
+					x.data
+				);
+				if (x.status === 200) {
+					this.grade = grade;
+					this.gradeChange.emit(this.grade);
+				} else {
+					this.selectedGrade = undefined;
+				}
+			});
 	}
 
 	saveReview() {
@@ -48,31 +68,25 @@ export class GradeComponent {
 			);
 			return;
 		}
-		this.grade = this.selectedGrade || this.grade || 1;
+
+		const grade = this.selectedGrade || this.grade || 1;
+		const description = this.review.value;
+
 		this.reviewService
-			.postReviews(
-				this.id,
-				this.reviewType,
-				this.grade,
-				this.review.value
-			)
+			.postReviews(this.id, this.reviewType, grade, description)
 			.subscribe((x) => {
+				this.reviewService.sendResponsePostMessage(
+					x.status,
+					grade,
+					this.reviewType,
+					x.data
+				);
 				if (x.status === 200) {
-					this.customSnackbarService.success(
-						`Successfully added review with grade ${
-							this.grade
-						} to ${this.reviewType.toLowerCase()}`,
-						'Successfully added review'
-					);
+					this.sendedValue = description;
+					this.grade = grade;
+					this.gradeChange.emit(this.grade);
 				} else {
-					this.customSnackbarService.error(
-						`Cannot add review with grade ${
-							this.grade
-						} to ${this.reviewType.toLowerCase()}. Error reason: ${
-							x?.data
-						}`,
-						'Error during review addition'
-					);
+					this.selectedGrade = undefined;
 				}
 			});
 	}

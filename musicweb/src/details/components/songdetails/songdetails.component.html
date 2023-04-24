@@ -154,7 +154,7 @@
 <ng-template #reviewOpen>
 	<mw-grade
 		class="float-wrapper"
-		[grade]="track.grade"
+		[(grade)]="track.grade"
 		[id]="track.id"
 		[reviewType]="reviewType.TRACK"
 		(hideReviewBox)="closeReview()"

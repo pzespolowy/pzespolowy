@@ -23,7 +23,7 @@ mw-grade {
 			display: grid;
 			grid-template-rows: 0.5fr 1fr 5fr;
 			background: $primary-brown-3;
-			padding: 0.7rem 0.3rem;
+			padding: 0.45rem 0.3rem;
 			border-radius: 10px;
 
 			.close {
@@ -49,6 +49,22 @@ mw-grade {
 		}
 
 		.form-floating {
+			::-webkit-scrollbar {
+				width: 6px;
+			}
+
+			::-webkit-scrollbar-track {
+				background: #f1f1f1;
+			}
+
+			::-webkit-scrollbar-thumb {
+				background: #888;
+			}
+
+			::-webkit-scrollbar-thumb:hover {
+				background: #555;
+			}
+
 			img {
 				position: absolute;
 				right: 0;
@@ -60,11 +76,20 @@ mw-grade {
 			}
 
 			&:not(.form-control:disabled)::before {
-				z-index: -1;
+				height: 1em;
+				width: 99%;
 			}
 
 			textarea {
 				min-height: 130px;
+				max-height: 175px;
+			}
+
+			.areaLength {
+				position: absolute;
+				right: 3ch;
+				bottom: 0.2em;
+				font-size: 0.6em;
 			}
 		}
 	}

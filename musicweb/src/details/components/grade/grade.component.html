@@ -58,6 +58,7 @@
 					id="reviewArea"
 					[rows]="4"
 					[formControl]="review"
+					maxlength="512"
 				></textarea>
 				<label for="reviewArea">Review</label>
 				<img
@@ -67,6 +68,9 @@
 					[matTooltipPosition]="'right'"
 					(click)="saveReview()"
 				/>
+				<div class="areaLength">
+					{{ (review.value.length || '0') + '/512' }}
+				</div>
 			</div>
 		</div>
 	</div>
