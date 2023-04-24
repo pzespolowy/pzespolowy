@@ -8,6 +8,8 @@ mw-side-nav-item {
 		align-items: center;
 		img {
 			cursor: pointer;
+			filter: invert(93%) sepia(3%) saturate(81%) hue-rotate(96deg)
+				brightness(105%) contrast(94%);
 		}
 	}
 
