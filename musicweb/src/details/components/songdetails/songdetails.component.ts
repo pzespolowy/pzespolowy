@@ -1,10 +1,4 @@
-import {
-	ChangeDetectorRef,
-	Component,
-	ElementRef,
-	OnInit,
-	ViewChild,
-} from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable, switchMap } from 'rxjs';
@@ -27,8 +21,7 @@ export class SongdetailsComponent implements OnInit {
 	constructor(
 		private trackDetailsService: TrackDetailsService,
 		private route: ActivatedRoute,
-		private title: Title,
-		private changeDetector: ChangeDetectorRef
+		private title: Title
 	) {}
 
 	ngOnInit() {
@@ -42,7 +35,6 @@ export class SongdetailsComponent implements OnInit {
 			this.track = x;
 			this.title.setTitle(this.track.title);
 			this.closeReview();
-			this.changeDetector.detectChanges();
 		});
 	}
 

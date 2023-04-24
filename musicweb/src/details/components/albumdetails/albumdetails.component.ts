@@ -14,6 +14,7 @@ export class AlbumdetailsComponent implements OnInit {
 	album$: Observable<Album> = new Observable();
 	album!: Album;
 	reviewType = ReviewType;
+	isReviewBoxOpen = false;
 
 	constructor(
 		private albumDetailsService: AlbumDetailsService,
@@ -30,7 +31,16 @@ export class AlbumdetailsComponent implements OnInit {
 		);
 		this.album$.subscribe((x) => {
 			this.album = x;
+			this.closeReview();
 			this.title.setTitle(this.album.title);
 		});
+	}
+
+	openCloseReview() {
+		this.isReviewBoxOpen = !this.isReviewBoxOpen;
+	}
+
+	closeReview() {
+		this.isReviewBoxOpen = false;
 	}
 }

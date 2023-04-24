@@ -64,7 +64,15 @@ mw-albumdetails {
 					}
 				}
 
-				.reviews {
+				.icon-middle {
+					display: inline-flex;
+					position: relative;
+
+					& > img:hover {
+						height: 1.4rem;
+						aspect-ratio: 1;
+						cursor: pointer;
+					}
 				}
 
 				@media screen and (max-width: 650px) {

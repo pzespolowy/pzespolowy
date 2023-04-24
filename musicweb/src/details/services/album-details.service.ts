@@ -1,11 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Observable, combineLatestWith, map } from 'rxjs';
 import { AlbumResponse } from 'src/app/interfaces/album-response.interface';
 import { Album } from 'src/app/interfaces/album.interface';
 import { CreationType } from 'src/app/interfaces/enums/creation-type.enum';
 import { TrackResponse } from 'src/app/interfaces/track-response.interface';
 import { environment } from 'src/environments/environment';
+import { ReviewService } from './review.service';
+import { ReviewType } from 'src/app/interfaces/enums/review-type.enum';
 
 @Injectable({
 	providedIn: 'root',
@@ -13,13 +15,19 @@ import { environment } from 'src/environments/environment';
 export class AlbumDetailsService {
 	apiPath = environment.apiPath;
 
-	constructor(private http: HttpClient) {}
+	constructor(
+		private http: HttpClient,
+		private reviewService: ReviewService
+	) {}
 
 	getAlbumDetails(id: string): Observable<Album> {
 		return this.http
 			.get<AlbumResponse>(`${this.apiPath}/albums/${id}`)
 			.pipe(
-				map((albumData) => {
+				combineLatestWith(
+					this.reviewService.getReviews(id, ReviewType.ALBUM)
+				),
+				map(([albumData, rates]) => {
 					const { tracks, ...data } = albumData;
 					const album = {
 						id: data.id,
@@ -34,6 +42,7 @@ export class AlbumDetailsService {
 						tracksCount: data.nb_tracks,
 						tracks: this.getTracks(tracks.data),
 						type: CreationType.ALBUM,
+						rates: rates,
 					};
 					return album;
 				})

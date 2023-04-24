@@ -26,7 +26,8 @@
 				<mw-text-with-label
 					class="row"
 					[label]="'Ratings'"
-					[message]="'0'"
+					[message]="album.rates?.averageRanking?.toString() || '0'"
+					[messageTemplate]="ratingMessageTemplate"
 				></mw-text-with-label>
 
 				<mw-text-with-label
@@ -74,6 +75,7 @@
 			</div>
 		</div>
 		<mw-reviews
+			*ngIf="album"
 			[id]="album.id"
 			[reviews]="album.rates?.reviews"
 			[reviewType]="reviewType.ALBUM"
@@ -81,3 +83,50 @@
 		></mw-reviews>
 	</div>
 </div>
+
+<ng-template #ratingMessageTemplate>
+	<div>
+		<span class="align-middle">{{
+			album.rates?.averageRanking || '0' + ' '
+		}}</span>
+		<span class="align-middle icon-middle">
+			<ng-container
+				*ngTemplateOutlet="
+					album.grade === 0 ? filledStar : unfilledStar
+				"
+			></ng-container>
+			<ng-container
+				*ngIf="isReviewBoxOpen"
+				[ngTemplateOutlet]="reviewOpen"
+			></ng-container>
+		</span>
+		<span class="align-middle" *ngIf="!!album.rates"
+			>{{ ' based on ' + album.rates.reviews.length + ' opinions' }}
+		</span>
+	</div>
+</ng-template>
+
+<ng-template #filledStar>
+	<img
+		[src]="'assets/icons/starFillIcon.svg'"
+		[alt]="'Filled star'"
+		(click)="openCloseReview()"
+	/>
+</ng-template>
+<ng-template #unfilledStar>
+	<img
+		[src]="'assets/icons/starOutlineIcon.svg'"
+		[alt]="'Star'"
+		(click)="openCloseReview()"
+	/>
+</ng-template>
+
+<ng-template #reviewOpen>
+	<mw-grade
+		class="float-wrapper pointer"
+		[(grade)]="album.grade"
+		[id]="album.id"
+		[reviewType]="reviewType.ALBUM"
+		(hideReviewBox)="closeReview()"
+	></mw-grade>
+</ng-template>
