@@ -108,7 +108,7 @@
 				"
 			></ng-container>
 			<ng-container
-				*ngIf="isReviewBoxOpen"
+				*ngIf="isReviewBoxOpen && isAuth"
 				[ngTemplateOutlet]="reviewOpen"
 			></ng-container>
 		</span>

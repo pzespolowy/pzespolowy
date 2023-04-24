@@ -123,6 +123,7 @@
 
 <ng-template #reviewOpen>
 	<mw-grade
+		*ngIf="isAuth"
 		class="float-wrapper pointer"
 		[(grade)]="album.grade"
 		[id]="album.id"

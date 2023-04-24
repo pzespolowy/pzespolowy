@@ -4,6 +4,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable, switchMap } from 'rxjs';
 import { Album } from 'src/app/interfaces/album.interface';
 import { ReviewType } from 'src/app/interfaces/enums/review-type.enum';
+import { AuthService } from 'src/app/services/auth.service';
 import { AlbumDetailsService } from 'src/details/services/album-details.service';
 
 @Component({
@@ -15,11 +16,13 @@ export class AlbumdetailsComponent implements OnInit {
 	album!: Album;
 	reviewType = ReviewType;
 	isReviewBoxOpen = false;
+	isAuth = false;
 
 	constructor(
 		private albumDetailsService: AlbumDetailsService,
 		private route: ActivatedRoute,
-		private title: Title
+		private title: Title,
+		private authService: AuthService
 	) {}
 
 	ngOnInit() {
@@ -34,6 +37,8 @@ export class AlbumdetailsComponent implements OnInit {
 			this.closeReview();
 			this.title.setTitle(this.album.title);
 		});
+
+		this.isAuth = this.authService.isAuth();
 	}
 
 	openCloseReview() {

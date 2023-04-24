@@ -4,6 +4,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable, switchMap } from 'rxjs';
 import { ReviewType } from 'src/app/interfaces/enums/review-type.enum';
 import { Track } from 'src/app/interfaces/track.interface';
+import { AuthService } from 'src/app/services/auth.service';
 import { TrackDetailsService } from 'src/details/services/track-details.service';
 
 @Component({
@@ -16,11 +17,13 @@ export class SongdetailsComponent implements OnInit {
 	isReviewBoxOpen = false;
 	@ViewChild('audioTrack') audioPlayerRef: ElementRef | undefined;
 	reviewType = ReviewType;
+	isAuth = false;
 
 	constructor(
 		private trackDetailsService: TrackDetailsService,
 		private route: ActivatedRoute,
-		private title: Title
+		private title: Title,
+		private authService: AuthService
 	) {}
 
 	ngOnInit() {
@@ -35,6 +38,8 @@ export class SongdetailsComponent implements OnInit {
 			this.title.setTitle(this.track.title);
 			this.closeReview();
 		});
+
+		this.isAuth = this.authService.isAuth();
 	}
 
 	openCloseReview() {
