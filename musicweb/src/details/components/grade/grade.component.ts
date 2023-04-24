@@ -14,10 +14,16 @@ export class GradeComponent {
 	grade?: number;
 
 	@Input()
-	track!: Track;
+	id!: string;
+
+	@Input()
+	reviewType!: ReviewType;
+
+	@Input()
+	simpleReview = false;
 
 	@Output()
-	hideReviewBox: EventEmitter<boolean> = new EventEmitter();
+	hideReviewBox: EventEmitter<void> = new EventEmitter();
 
 	selectedGrade?: number;
 	hoveredGrade = 1;
@@ -42,20 +48,32 @@ export class GradeComponent {
 			);
 			return;
 		}
-		const _grade = this.selectedGrade || this.grade || 1;
+		this.grade = this.selectedGrade || this.grade || 1;
 		this.reviewService
 			.postReviews(
-				this.track.id,
-				ReviewType.TRACK,
-				_grade,
+				this.id,
+				this.reviewType,
+				this.grade,
 				this.review.value
 			)
 			.subscribe((x) => {
-				if (x.status !== 200)
+				if (x.status === 200) {
 					this.customSnackbarService.success(
-						`Successfully added review with grade ${_grade} to track ${this.track.title}`,
+						`Successfully added review with grade ${
+							this.grade
+						} to ${this.reviewType.toLowerCase()}`,
 						'Successfully added review'
 					);
+				} else {
+					this.customSnackbarService.error(
+						`Cannot add review with grade ${
+							this.grade
+						} to ${this.reviewType.toLowerCase()}. Error reason: ${
+							x?.data
+						}`,
+						'Error during review addition'
+					);
+				}
 			});
 	}
 

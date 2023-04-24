@@ -24,14 +24,14 @@
 					id="your-grade"
 					class="row"
 					[label]="'Your grade'"
-					[message]="'0'"
+					[message]="track.grade.toString()"
 					*ngIf="track.grade"
 				></mw-text-with-label>
 
 				<mw-text-with-label
 					class="row"
 					[label]="'Ratings'"
-					[message]="'0'"
+					[message]="track.rates?.averageRanking?.toString() || '0'"
 					[messageTemplate]="ratingMessageTemplate"
 				></mw-text-with-label>
 
@@ -52,7 +52,10 @@
 					class="row pointer"
 					[label]="'Album'"
 					[message]="track.albumTitle"
-					[routerLink]="['/musicweb/home/albumdetails', track.albumId]"
+					[routerLink]="[
+						'/musicweb/home/albumdetails',
+						track.albumId
+					]"
 				></mw-text-with-label>
 
 				<mw-text-with-label
@@ -67,7 +70,13 @@
 					[message]="track.releaseData"
 				></mw-text-with-label>
 
-				<audio class="col-10" controls #audioTrack preload="auto" [src]="track.preview"></audio>
+				<audio
+					class="col-10"
+					controls
+					#audioTrack
+					preload="auto"
+					[src]="track.preview"
+				></audio>
 			</div>
 			<div class="favorite-box">
 				<img
@@ -78,13 +87,38 @@
 				/>
 			</div>
 		</div>
-		<div class="reviews"></div>
+		<div
+			class="reviews"
+			*ngIf="track.rates?.reviews?.length; else noReviews"
+		>
+			<div class="h2 row">
+				{{ 'Reviews(' + track.rates?.reviews?.length + ')' }}
+			</div>
+			<mw-grade
+				class="row"
+				[grade]="track.grade"
+				[id]="track.id"
+				[reviewType]="reviewType.TRACK"
+				[simpleReview]="true"
+			></mw-grade>
+			<mw-review
+				*ngFor="let review of track.rates?.reviews"
+				[review]="review"
+			>
+			</mw-review>
+		</div>
 	</div>
 </div>
 
+<ng-template #noReviews>
+	<div class="h2">This track has not yet any reviews</div>
+</ng-template>
+
 <ng-template #ratingMessageTemplate>
 	<div>
-		<span class="align-middle">{{ track.rating?.rate || '0' + ' ' }}</span>
+		<span class="align-middle">{{
+			track.rates?.averageRanking || '0' + ' '
+		}}</span>
 		<span class="align-middle icon-middle">
 			<ng-container
 				*ngTemplateOutlet="
@@ -96,8 +130,8 @@
 				[ngTemplateOutlet]="reviewOpen"
 			></ng-container>
 		</span>
-		<span class="align-middle" *ngIf="!!track.rating?.gradeCounts"
-			>{{ ' based on ' + track.rating?.gradeCounts }}
+		<span class="align-middle" *ngIf="!!track.rates"
+			>{{ ' based on ' + track.rates.reviews.length + ' opinions' }}
 		</span>
 	</div>
 </ng-template>
@@ -119,7 +153,10 @@
 
 <ng-template #reviewOpen>
 	<mw-grade
+		class="float-wrapper"
 		[grade]="track.grade"
-		(hideReviewBox)="closeReview($event)"
+		[id]="track.id"
+		[reviewType]="reviewType.TRACK"
+		(hideReviewBox)="closeReview()"
 	></mw-grade>
 </ng-template>

@@ -1,11 +1,12 @@
 <div class="review-wrapper">
-	<div class="triangle"></div>
+	<div class="triangle" *ngIf="!simpleReview"></div>
 	<div class="review-content">
 		<div class="pointer close">
 			<span
 				_ngcontent-skr-c87=""
 				class="material-symbols-outlined"
-				(click)="hideReviewBox.emit(true)"
+				(click)="hideReviewBox.emit()"
+				*ngIf="!simpleReview"
 			>
 				close
 			</span>

@@ -3,12 +3,24 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from '../home/components/home/home.component';
 import { SongdetailsComponent } from 'src/details/components/songdetails/songdetails.component';
 import { AlbumdetailsComponent } from 'src/details/components/albumdetails/albumdetails.component';
+import { authGuard } from 'src/app/guards/auth.guard';
 
 const routes: Routes = [
 	{
 		path: 'home',
 		component: HomeComponent,
-		children: [{ path: 'details/:id', component: SongdetailsComponent }, { path: 'albumdetails/:id', component: AlbumdetailsComponent }],
+		children: [
+			{ path: 'details/:id', component: SongdetailsComponent },
+			{ path: 'albumdetails/:id', component: AlbumdetailsComponent },
+			{
+				path: 'setting',
+				loadChildren: () =>
+					import('../profile/profile.module').then(
+						(m) => m.ProfileModule
+					),
+				canMatch: [authGuard],
+			},
+		],
 	},
 	{ path: '', redirectTo: '/musicweb/home', pathMatch: 'full' },
 ];

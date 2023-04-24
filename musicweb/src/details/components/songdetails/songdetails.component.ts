@@ -8,6 +8,7 @@ import {
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable, switchMap } from 'rxjs';
+import { ReviewType } from 'src/app/interfaces/enums/review-type.enum';
 import { Track } from 'src/app/interfaces/track.interface';
 import { TrackDetailsService } from 'src/details/services/track-details.service';
 
@@ -21,6 +22,7 @@ export class SongdetailsComponent implements OnInit {
 	track!: Track;
 	isReviewBoxOpen = false;
 	@ViewChild('audioTrack') audioPlayerRef: ElementRef | undefined;
+	reviewType = ReviewType;
 
 	constructor(
 		private trackDetailsService: TrackDetailsService,
@@ -39,6 +41,7 @@ export class SongdetailsComponent implements OnInit {
 		this.track$.subscribe((x) => {
 			this.track = x;
 			this.title.setTitle(this.track.title);
+			this.closeReview();
 			this.changeDetector.detectChanges();
 		});
 	}
@@ -47,7 +50,7 @@ export class SongdetailsComponent implements OnInit {
 		this.isReviewBoxOpen = !this.isReviewBoxOpen;
 	}
 
-	closeReview(event: boolean) {
+	closeReview() {
 		this.isReviewBoxOpen = false;
 	}
 

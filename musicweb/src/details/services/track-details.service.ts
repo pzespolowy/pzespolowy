@@ -35,7 +35,7 @@ export class TrackDetailsService {
 					coverMedium: album.cover_medium,
 					coverBig: album.cover_big,
 					coverXl: album.cover_xl,
-					reviews: reviews,
+					rates: reviews,
 				};
 				return track;
 			})

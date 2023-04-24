@@ -7,10 +7,23 @@ app-custom-snackbar {
 }
 
 mat-snack-bar-container.success > div {
-	background-color: #ddffdd !important;
-	border: 1px solid #00b337;
+	background-color: #00b337 !important;
+	border: 1px solid #ddffdd;
 
-	app-custom-snackbar > * {
-		color: #00b337;
+	mw-custom-snackbar > * {
+		color: #ddffdd;
 	}
+}
+
+mat-snack-bar-container.error > div {
+	background-color: $secondary-error-text !important;
+	border: 1px solid #ddffdd;
+
+	mw-custom-snackbar > * {
+		color: #ddffdd;
+	}
+}
+
+mat-snack-bar-container {
+	max-width: 30vw;
 }

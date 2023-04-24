@@ -1,8 +1,10 @@
 mw-grade {
-	position: absolute;
-	width: 35vw;
-	top: -2.4rem;
-	left: 1em;
+	&.float-wrapper {
+		position: absolute;
+		width: 35vw;
+		top: -2.4rem;
+		left: 1em;
+	}
 
 	.review-wrapper {
 		position: relative;
@@ -53,12 +55,16 @@ mw-grade {
 				top: 0;
 				aspect-ratio: 1;
 				height: 1em;
-				filter: invert(97%) sepia(5%) saturate(48%) hue-rotate(97deg)
-					brightness(94%) contrast(95%);
+				filter: invert(2%) sepia(2%) saturate(5608%) hue-rotate(349deg)
+					brightness(93%) contrast(96%);
 			}
 
 			&:not(.form-control:disabled)::before {
 				z-index: -1;
+			}
+
+			textarea {
+				min-height: 130px;
 			}
 		}
 	}
