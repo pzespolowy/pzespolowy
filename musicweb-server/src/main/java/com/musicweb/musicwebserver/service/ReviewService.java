@@ -14,7 +14,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -41,13 +40,24 @@ public class ReviewService {
                 .updateReviews(newReview, newReviewDto.getReviewSubjectId());
     }
 
-    private static void checkIfUserAlreadyPostedReview(NewReviewDto newReviewDto, Review review) {
-        if(userAlreadyPostedReview(newReviewDto, review)) {
+    public ReviewSubject getReviewsSubject(ReviewParamsDto reviewParamsDto) {
+        ReviewSubject reviewSubject = null;
+        if(reviewParamsDto.getReviewType().equals(ReviewType.TRACK)) {
+            reviewSubject = trackService.getTrackById(Long.valueOf(reviewParamsDto.getReviewSubjectId()));
+        } else if(reviewParamsDto.getReviewType().equals(ReviewType.ALBUM)){
+            reviewSubject = albumService.getAlbumById(Long.valueOf(reviewParamsDto.getReviewSubjectId()));
+        }
+
+        return reviewSubject;
+    }
+
+    private void checkIfUserAlreadyPostedReview(NewReviewDto newReviewDto, Review review) {
+        if(matchingReviewFound(newReviewDto, review)) {
             throw new UserAlreadyPostedReviewException("This user has already posted a review for this review subject");
         }
     }
 
-    private static boolean userAlreadyPostedReview(NewReviewDto newReviewDto, Review review) {
+    private boolean matchingReviewFound(NewReviewDto newReviewDto, Review review) {
         return review.getReviewType().equals(newReviewDto.getReviewType())
                 && Objects.equals(review.getReviewSubjectId(), newReviewDto.getReviewSubjectId());
     }
@@ -63,14 +73,17 @@ public class ReviewService {
                 .build();
     }
 
-    public List<Review> getReviewsFor(ReviewParamsDto reviewParamsDto) {
-        ReviewSubject reviewSubject = null;
-        if(reviewParamsDto.getReviewType().equals(ReviewType.TRACK)) {
-            reviewSubject = trackService.getTrackById(Long.valueOf(reviewParamsDto.getReviewSubjectId()));
-        } else if(reviewParamsDto.getReviewType().equals(ReviewType.ALBUM)){
-            reviewSubject = albumService.getAlbumById(Long.valueOf(reviewParamsDto.getReviewSubjectId()));
-        }
-
-        return reviewSubject.getReviews();
+    @Transactional
+    public void updateReview(NewReviewDto updatedReviewDto) {
+        User currentUser = userService.getCurrentUser();
+        currentUser.getReviews().forEach(
+                review -> {
+                    if(matchingReviewFound(updatedReviewDto, review)) {
+                        review.setPostedAt(LocalDateTime.now());
+                        review.setGrade(updatedReviewDto.getGrade());
+                        review.setDescription(updatedReviewDto.getDescription());
+                    }
+                }
+        );
     }
 }
