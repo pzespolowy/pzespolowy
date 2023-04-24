@@ -19,14 +19,14 @@ public class ReviewController {
     private final ModelMapper modelMapper;
     private final ReviewService reviewService;
 
-    @GetMapping
+    @PostMapping
     public List<ReviewDto> getReviews(@RequestBody ReviewParamsDto reviewParamsDto) {
         return reviewService.getReviewsFor(reviewParamsDto).stream()
                 .map(review -> modelMapper.map(review, ReviewDto.class))
                 .toList();
     }
 
-    @PostMapping
+    @PostMapping("/new")
     public void postReview(@RequestBody NewReviewDto newReviewDto) {
         reviewService.postNewReview(newReviewDto);
     }
