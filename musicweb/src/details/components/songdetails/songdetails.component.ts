@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable, switchMap } from 'rxjs';
@@ -13,11 +13,13 @@ import { TrackDetailsService } from 'src/details/services/track-details.service'
 export class SongdetailsComponent implements OnInit {
 	track$: Observable<Track> = new Observable();
 	track!: Track;
+	@ViewChild('audioTrack') audioPlayerRef: ElementRef | undefined;
 
 	constructor(
 		private trackDetailsService: TrackDetailsService,
 		private route: ActivatedRoute,
-		private title: Title
+		private title: Title,
+		private changeDetector: ChangeDetectorRef
 	) {}
 
 	ngOnInit() {
@@ -30,6 +32,7 @@ export class SongdetailsComponent implements OnInit {
 		this.track$.subscribe((x) => {
 			this.track = x;
 			this.title.setTitle(this.track.title);
+			this.changeDetector.detectChanges();
 		});
 	}
 }

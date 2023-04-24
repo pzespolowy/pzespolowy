@@ -1,0 +1,76 @@
+<div class="contentWrapper">
+	<div class="content">
+		<div class="details">
+			<div class="cover" *ngIf="album">
+				<img class="cover-img" [srcset]="album | coverSrcset" />
+			</div>
+			<div class="info" *ngIf="album">
+				<div class="mobile-favorite-wrapper">
+					<div class="mobile-favorite-box">
+						<img
+							class="mobile-favorite-icon"
+							src="assets/icons/favoriteIcon.svg"
+						/>
+					</div>
+				</div>
+				<div class="song-title row">
+					<div class="col h1">{{ album.title }}</div>
+				</div>
+				<mw-text-with-label
+					id="your-grade"
+					class="row"
+					[label]="'Your grade'"
+					[message]="'0'"
+				></mw-text-with-label>
+
+				<mw-text-with-label
+					class="row"
+					[label]="'Ratings'"
+					[message]="'0'"
+				></mw-text-with-label>
+
+				<mw-text-with-label
+					class="row"
+					[label]="'Artist'"
+					[message]="album.artist.name"
+				></mw-text-with-label>
+
+				<mw-text-with-label
+					*ngIf="album.genres"
+					class="row"
+					[label]="'Genre'"
+					[message]="album.genres.data[0].name"
+				></mw-text-with-label>
+
+				<mw-text-with-label
+					class="row"
+					[label]="'Release date'"
+					[message]="album.releaseDate"
+				></mw-text-with-label>
+
+                <mw-text-with-label
+					class="row"
+					[label]="'Track list:'"
+				></mw-text-with-label>
+				
+				<div class="song-wrapper">
+					<ng-container *ngFor="let track of album.tracks; index as i;">
+                	    <div class="h3 pointer"
+						[routerLink]="['/musicweb/home/details', track.id]"
+						>
+                	        <div >{{i+1 +'. ' + track.title}}</div>
+                	    </div>
+					</ng-container>
+				</div>
+
+			</div>
+			<div class="favorite-box">
+				<img
+					class="favorite-icon"
+					src="assets/icons/favoriteIcon.svg"
+				/>
+			</div>
+		</div>
+		<div class="reviews"></div>
+	</div>
+</div>
