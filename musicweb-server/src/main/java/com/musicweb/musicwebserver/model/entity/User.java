@@ -39,6 +39,12 @@ public class User {
     @OneToMany
     private List<Review> reviews;
 
+    @OneToMany
+    private List<Track> favouriteTracks;
+
+    @OneToMany
+    private List<Album> favouriteAlbums;
+
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "USER_ROLE",
             joinColumns = @JoinColumn(name = "ID_USER"),
@@ -47,6 +53,22 @@ public class User {
 
     public void addReview(Review review) {
         this.reviews.add(review);
+    }
+
+    public void addFavouriteTrack(Track track) {
+        this.favouriteTracks.add(track);
+    }
+
+    public void removeFavouriteTrack(Track track) {
+        this.favouriteTracks.remove(track);
+    }
+
+    public void addFavouriteAlbum(Album album) {
+        this.favouriteAlbums.add(album);
+    }
+
+    public void removeFavouriteAlbum(Album album) {
+        this.favouriteAlbums.remove(album);
     }
 
 }

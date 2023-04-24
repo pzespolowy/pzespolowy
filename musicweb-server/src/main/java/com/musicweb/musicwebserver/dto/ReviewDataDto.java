@@ -8,6 +8,6 @@ import java.util.List;
 public class ReviewDataDto {
 
     private long numberOfReviews;
-    private List<ReviewDto> reviews;
+    private List<ReviewWithUserDto> reviews;
 
 }

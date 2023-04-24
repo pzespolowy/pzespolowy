@@ -20,9 +20,9 @@ public class Review {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-//    @ManyToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "ID_USER", nullable = false)
-//    private User user;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ID_USER", nullable = false)
+    private User user;
 
     @Column(name = "DESCRIPTION")
     private String description;

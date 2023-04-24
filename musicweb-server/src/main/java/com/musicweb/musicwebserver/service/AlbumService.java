@@ -2,9 +2,11 @@ package com.musicweb.musicwebserver.service;
 
 import com.musicweb.musicwebserver.dto.DetailSearchDto;
 import com.musicweb.musicwebserver.model.entity.Album;
+import com.musicweb.musicwebserver.model.entity.Track;
 import com.musicweb.musicwebserver.repository.AlbumRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,6 +16,7 @@ import java.util.List;
 public class AlbumService {
 
     private final AlbumRepository albumRepository;
+    private final UserService userService;
 
     public void saveNewAlbum(Album album) {
         albumRepository.save(album);
@@ -28,15 +31,17 @@ public class AlbumService {
         return albumRepository.save(album);
     }
 
-    public List<Album> findAlbums(DetailSearchDto detailSearchDto) {
-//        return albumRepository.findAll((root, query, cb) -> {
-//            return cb.and(
-//                    cb.gt(root.get("ranking"), detailSearchDto.getRankingFrom()),
-//                    cb.lt(root.get("ranking"), detailSearchDto.getRankingTo()),
-//                    cb.gt(cb.size(root.get("reviews")), detailSearchDto.getNumberOfOpinionsFrom()),
-//                    cb.lt(cb.size(root.get("reviews")), detailSearchDto.getNumberOfOpinionsTo())
-//                    );
-//        });
-        return null;
+    public void addAlbumToFavourites(Long albumId) {
+        Album album = getAlbumById(albumId);
+        userService.getCurrentUser().addFavouriteAlbum(album);
+    }
+
+    public void removeAlbumFromFavourites(Long albumId) {
+        Album album = getAlbumById(albumId);
+        userService.getCurrentUser().removeFavouriteAlbum(album);
+    }
+
+    public List<Album> getAlbumRanking() {
+        return albumRepository.findAll(Sort.by(Sort.Direction.DESC, "ranking"));
     }
 }

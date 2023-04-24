@@ -32,6 +32,7 @@ public class ReviewService {
         currentUser.getReviews().forEach(review -> checkIfUserAlreadyPostedReview(newReviewDto, review));
 
         Review newReview = createNewReview(newReviewDto);
+        newReview.setUser(currentUser);
         reviewRepository.save(newReview);
         currentUser.addReview(newReview);
         userService.updateUser(currentUser);
@@ -40,7 +41,7 @@ public class ReviewService {
                 .updateReviews(newReview, newReviewDto.getReviewSubjectId());
     }
 
-    public ReviewSubject getReviewsSubject(ReviewParamsDto reviewParamsDto) {
+    public ReviewSubject getReviewSubject(ReviewParamsDto reviewParamsDto) {
         ReviewSubject reviewSubject = null;
         if(reviewParamsDto.getReviewType().equals(ReviewType.TRACK)) {
             reviewSubject = trackService.getTrackById(Long.valueOf(reviewParamsDto.getReviewSubjectId()));

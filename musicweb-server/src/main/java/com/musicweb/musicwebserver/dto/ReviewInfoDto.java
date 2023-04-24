@@ -10,8 +10,9 @@ import java.util.List;
 @Builder
 public class ReviewInfoDto {
 
-//    private int placeInRanking;
+    //    private int placeInRanking;
+    private Integer currentUserGrade;
     private BigDecimal averageRanking;
-    private List<ReviewDto> reviews;
+    private List<ReviewWithUserDto> reviews;
 
 }
