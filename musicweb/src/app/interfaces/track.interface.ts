@@ -1,6 +1,7 @@
 import { Artist } from './artist.interface';
-import { CreationType } from './creation-type.enum';
+import { CreationType } from './enums/creation-type.enum';
 import { Rating } from './ratings.interface';
+import { Review } from './review.interface';
 
 export interface Track {
 	id: string;
@@ -20,4 +21,5 @@ export interface Track {
 	grade?: number;
 	rating?: Rating;
 	isFavourite?: boolean;
+	reviews?: Review[];
 }
