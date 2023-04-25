@@ -70,27 +70,6 @@
                     <i [ngClass]="isSurnameActive ? 'inactive' : 'active'" class="bi bi-pencil" (click)="OnSurnameEdit()"></i>
                 </div>
             </form>
-            <form [formGroup]="emailForm">
-                <mat-form-field>
-                    <mat-label>Email</mat-label>
-                    <input type="email" matInput formControlName="email" />
-                    <mat-error
-                        *ngIf="email?.invalid && (email?.dirty || email?.touched)"
-                    >
-                        <span *ngIf="email?.errors?.['required']"
-                            >Email is <strong>required</strong></span
-                        >
-                        <span *ngIf="email?.errors?.['email']"
-                            >That not looklike email</span
-                        >
-                    </mat-error>
-                </mat-form-field>
-                <div class="action-icons">
-                    <i [ngClass]="isEmailActive ? 'active' : 'inactive'" class="bi bi-x-lg" (click)="OnEmailChange(false)"></i>
-                    <i [ngClass]="isEmailActive ? 'active' : 'inactive'" class="bi bi-check-lg" (click)="OnEmailChange(true)"></i>
-                    <i [ngClass]="isEmailActive ? 'inactive' : 'active'" class="bi bi-pencil" (click)="OnEmailEdit()"></i>
-                </div>
-            </form>
             <form [formGroup]="passwordForm" class="passwordForm">
                 <mat-form-field class="passwordField">
                     <mat-label>Password</mat-label>

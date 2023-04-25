@@ -37,12 +37,6 @@ export class ProfileComponent implements OnInit{
 		}
 	);
 
-  emailForm = this.fb.nonNullable.group(
-		{
-			email: ['', [Validators.required, Validators.email]]
-    }
-	);
-
   nameForm = this.fb.nonNullable.group(
 		{
 			name: ['', Validators.required]
@@ -61,7 +55,6 @@ export class ProfileComponent implements OnInit{
   isNicknameActive = false;
   isNameActive = false;
   isSurnameActive = false;
-  isEmailActive = false;
   isPasswordActive = false;
 
 	error?: string;
@@ -76,21 +69,10 @@ export class ProfileComponent implements OnInit{
   ngOnInit(): void {
     this.playerNick = 'test';
     this.nicknameForm.get('nickname')?.disable();
-    this.emailForm.get('email')?.disable();
     this.nameForm.get('name')?.disable();
     this.surnameForm.get('surname')?.disable();
     this.passwordForm.get('password')?.disable();
     this.passwordForm.get('passwordRepeat')?.disable();
-  }
-
-  OnEmailChange(accepted: boolean){
-    this.isEmailActive = false;
-    this.emailForm.get('email')?.disable();
-  }
-
-  OnEmailEdit(){
-    this.isEmailActive = true;
-    this.emailForm.get('email')?.enable();
   }
 
   OnNameChange(accepted: boolean){
@@ -163,10 +145,6 @@ export class ProfileComponent implements OnInit{
 
 	get nickname() {
 		return this.nicknameForm.get('nickname');
-	}
-
-	get email() {
-		return this.emailForm.get('email');
 	}
 
 	get passwordRepeat() {
