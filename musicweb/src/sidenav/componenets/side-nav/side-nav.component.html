@@ -19,6 +19,7 @@
 		*ngFor="let tab of tabs"
 		[routerLink]="tab.routerLink"
 		routerLinkActive="active-link"
+		[routerLinkActiveOptions]="{ exact: true }"
 		[sideNavData]="tab"
 		[isOpen]="fixedOpen || open"
 		[withoutLabel]="withoutLabel"
