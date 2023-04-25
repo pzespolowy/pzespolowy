@@ -9,8 +9,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AlbumdetailsComponent } from './components/albumdetails/albumdetails.component';
 import { RouterModule } from '@angular/router';
-import { ReviewComponent } from './components/review/review.component';
 import { ReviewsComponent } from './components/reviews/reviews.component';
+import { SharedModule } from 'src/shared/shared.module';
 
 @NgModule({
 	declarations: [
@@ -20,7 +20,6 @@ import { ReviewsComponent } from './components/reviews/reviews.component';
 		CoverSrcsetPipe,
 		GradeComponent,
 		AlbumdetailsComponent,
-		ReviewComponent,
 		ReviewsComponent,
 	],
 	imports: [
@@ -28,6 +27,7 @@ import { ReviewsComponent } from './components/reviews/reviews.component';
 		MatTooltipModule,
 		ReactiveFormsModule,
 		RouterModule,
+		SharedModule,
 	],
 	exports: [SongdetailsComponent],
 })

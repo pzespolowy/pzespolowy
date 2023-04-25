@@ -5,6 +5,12 @@ mw-review {
 		padding: 0.7rem 0.3rem;
 		border-radius: 10px;
 
+		.hover-link {
+			&:hover {
+				color: $secondary-silver;
+			}
+		}
+
 		.review-grade {
 			display: flex;
 			gap: 10px;

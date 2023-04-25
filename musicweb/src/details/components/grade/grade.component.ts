@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ReviewType } from 'src/app/interfaces/enums/review-type.enum';
-import { Track } from 'src/app/interfaces/track.interface';
-import { ReviewService } from 'src/details/services/review.service';
+
 import { CustomSnackbarService } from 'src/shared/services/custom-snackbar.service';
+import { ReviewService } from 'src/shared/services/review.service';
 
 @Component({
 	selector: 'mw-grade',

@@ -3,8 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError, map, of } from 'rxjs';
 import { ReviewType } from 'src/app/interfaces/enums/review-type.enum';
 import { Rank } from 'src/app/interfaces/ranks.interface';
-import { ReviewResponse } from 'src/app/interfaces/review-response.interface';
-import { Review } from 'src/app/interfaces/review.interface';
 import { environment } from 'src/environments/environment.development';
 import { Response } from 'src/shared/interfaces/response.interface';
 import { CustomSnackbarService } from 'src/shared/services/custom-snackbar.service';
@@ -75,26 +73,6 @@ export class ReviewService {
 			.pipe(
 				catchError(() => {
 					return of({ averageRanking: 0, reviews: [] });
-				})
-			);
-	}
-
-	getMyReviews(): Observable<Review[]> {
-		return this.http
-			.get<ReviewResponse[]>(`${this.apiPath}/reviews/currentUser`)
-			.pipe(
-				map((reviews) => {
-					return reviews.map((_review) => {
-						const { reviewSubjectId, ...reviewData } = _review;
-						const review = {
-							...reviewData,
-							id: reviewSubjectId,
-						};
-						return review;
-					});
-				}),
-				catchError(() => {
-					return of([]);
 				})
 			);
 	}
