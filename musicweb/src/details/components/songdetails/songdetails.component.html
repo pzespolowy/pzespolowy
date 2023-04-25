@@ -10,10 +10,8 @@
 						<img
 							class="mobile-favorite-icon"
 							src="assets/icons/favoriteIcon.svg"
-							[ngClass]="
-								!!track.isFavourite ? 'in-favourite' : ''
-							"
-							(onclick)="addToFav()"
+							[ngClass]="!track.isFavourite ? 'in-favourite' : ''"
+							(click)="handleFavChange()"
 						/>
 					</div>
 				</div>
@@ -78,12 +76,18 @@
 					[src]="track.preview"
 				></audio>
 			</div>
-			<div class="favorite-box">
+			<div class="favorite-box" *ngIf="isAuth">
 				<img
-					class="favorite-icon"
+					class="favorite-icon pointer"
 					src="assets/icons/favoriteIcon.svg"
-					[ngClass]="!!track.isFavourite ? 'in-favourite' : ''"
-					(onclick)="addToFav()"
+					[ngClass]="!track.isFavourite ? 'in-favourite' : ''"
+					(click)="handleFavChange()"
+					[matTooltip]="
+						!track.isFavourite
+							? 'Add to favourites'
+							: 'Remove from favourites'
+					"
+					[matTooltipPosition]="'right'"
 				/>
 			</div>
 		</div>

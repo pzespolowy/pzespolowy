@@ -33,7 +33,7 @@ export class FavouriteService {
 			.pipe(
 				map((x) => ({
 					status: 200,
-					data: 'Succefully added to favourites',
+					data: 'Succefully added',
 				})),
 				catchError((x: HttpErrorResponse) => {
 					return of({
@@ -59,7 +59,7 @@ export class FavouriteService {
 			.pipe(
 				map((x) => ({
 					status: 200,
-					data: 'Succefully added to favourites',
+					data: 'Succefully removed',
 				})),
 				catchError((x: HttpErrorResponse) => {
 					return of({

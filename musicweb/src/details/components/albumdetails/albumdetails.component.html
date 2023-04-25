@@ -10,6 +10,8 @@
 						<img
 							class="mobile-favorite-icon"
 							src="assets/icons/favoriteIcon.svg"
+							[ngClass]="!album.isFavourite ? 'in-favourite' : ''"
+							(click)="handleFavChange()"
 						/>
 					</div>
 				</div>
@@ -72,6 +74,14 @@
 				<img
 					class="favorite-icon"
 					src="assets/icons/favoriteIcon.svg"
+					[ngClass]="!album.isFavourite ? 'in-favourite' : ''"
+					(click)="handleFavChange()"
+					[matTooltip]="
+						!album.isFavourite
+							? 'Add to favourites'
+							: 'Remove from favourites'
+					"
+					[matTooltipPosition]="'right'"
 				/>
 			</div>
 		</div>
