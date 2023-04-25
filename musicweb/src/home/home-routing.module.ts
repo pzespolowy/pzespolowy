@@ -20,6 +20,14 @@ const routes: Routes = [
 					),
 				canMatch: [authGuard],
 			},
+			{
+				path: 'reviews',
+				loadChildren: () =>
+					import('./reviews-module/reviews.module').then(
+						(m) => m.ReviewsModule
+					),
+				canMatch: [authGuard],
+			},
 		],
 	},
 	{ path: '', redirectTo: '/musicweb/home', pathMatch: 'full' },

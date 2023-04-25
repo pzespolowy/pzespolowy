@@ -32,7 +32,7 @@ export class ReviewService {
 				description: description,
 			})
 			.pipe(
-				map((_x) => {
+				map(() => {
 					return { status: 200, data: 'OK' };
 				}),
 				catchError((x: HttpErrorResponse) => {
@@ -55,7 +55,7 @@ export class ReviewService {
 				description: description,
 			})
 			.pipe(
-				map((_x) => {
+				map(() => {
 					return { status: 200, data: 'OK' };
 				}),
 				catchError((x: HttpErrorResponse) => {

@@ -42,7 +42,7 @@ export class AuthService {
 				catchError((error: HttpErrorResponse) => {
 					return of({
 						status: error.status ?? 500,
-						message: error.error.message ?? 'Api error',
+						message: error.error.detail ?? 'Api error',
 					});
 				})
 			);
@@ -63,7 +63,7 @@ export class AuthService {
 				catchError((error: HttpErrorResponse) => {
 					return of({
 						status: error.status ?? 500,
-						message: error.error.message ?? 'Api error',
+						message: error.error.detail ?? 'Api error',
 					});
 				})
 			);

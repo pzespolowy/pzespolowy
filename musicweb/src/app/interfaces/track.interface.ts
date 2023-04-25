@@ -18,7 +18,6 @@ export interface Track {
 	type: CreationType;
 	preview: string;
 	genre?: string;
-	grade?: number;
 	isFavourite?: boolean;
 	rates?: Rank;
 }

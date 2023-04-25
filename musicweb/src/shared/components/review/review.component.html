@@ -1,0 +1,40 @@
+<div class="review-box">
+	<ng-container [ngTemplateOutlet]="review ? rev : myRev"> </ng-container>
+</div>
+
+<ng-template #rev>
+	<div class="review-grade">
+		<div class="review-author">{{ review.user?.nickname }}</div>
+		<div class="grade">
+			{{ review.grade }}
+			<img [src]="'assets/icons/starOutlineIcon.svg'" [alt]="'Star'" />
+		</div>
+		<div class="date">
+			{{ review.postedAt | date }}
+		</div>
+	</div>
+	<div class="description" *ngIf="review.description">
+		{{ review.description }}
+	</div>
+</ng-template>
+
+<ng-template #myRev>
+	<div
+		class="review-grade hover-link pointer"
+		[routerLink]="'/musicweb/home/details/' + myReview.id"
+	>
+		<div class="grade">
+			{{ myReview.grade }}
+			<img [src]="'assets/icons/starOutlineIcon.svg'" [alt]="'Star'" />
+		</div>
+		<div class="date">
+			{{ myReview.postedAt | date }}
+		</div>
+		<div class="title" *ngIf="myReview">
+			{{ myReview.title }}
+		</div>
+	</div>
+	<div class="description" *ngIf="myReview.description">
+		{{ myReview.description }}
+	</div>
+</ng-template>

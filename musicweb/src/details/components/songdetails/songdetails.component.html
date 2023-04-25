@@ -10,10 +10,8 @@
 						<img
 							class="mobile-favorite-icon"
 							src="assets/icons/favoriteIcon.svg"
-							[ngClass]="
-								!!track.isFavourite ? 'in-favourite' : ''
-							"
-							(onclick)="addToFav()"
+							[ngClass]="!track.isFavourite ? 'in-favourite' : ''"
+							(click)="handleFavChange()"
 						/>
 					</div>
 				</div>
@@ -24,8 +22,8 @@
 					id="your-grade"
 					class="row"
 					[label]="'Your grade'"
-					[message]="track.grade.toString()"
-					*ngIf="track.grade"
+					[message]="grade.toString() || '0'"
+					*ngIf="track.rates?.currentUserGrade || grade"
 				></mw-text-with-label>
 
 				<mw-text-with-label
@@ -78,20 +76,27 @@
 					[src]="track.preview"
 				></audio>
 			</div>
-			<div class="favorite-box">
+			<div class="favorite-box" *ngIf="isAuth">
 				<img
-					class="favorite-icon"
+					class="favorite-icon pointer"
 					src="assets/icons/favoriteIcon.svg"
-					[ngClass]="!!track.isFavourite ? 'in-favourite' : ''"
-					(onclick)="addToFav()"
+					[ngClass]="!track.isFavourite ? 'in-favourite' : ''"
+					(click)="handleFavChange()"
+					[matTooltip]="
+						!track.isFavourite
+							? 'Add to favourites'
+							: 'Remove from favourites'
+					"
+					[matTooltipPosition]="'right'"
 				/>
 			</div>
 		</div>
 		<mw-reviews
+			*ngIf="track"
 			[id]="track.id"
 			[reviews]="track.rates?.reviews"
 			[reviewType]="reviewType.TRACK"
-			[grade]="track.grade"
+			[(grade)]="grade"
 		></mw-reviews>
 	</div>
 </div>
@@ -103,9 +108,7 @@
 		}}</span>
 		<span class="align-middle icon-middle">
 			<ng-container
-				*ngTemplateOutlet="
-					track.grade === 0 ? filledStar : unfilledStar
-				"
+				*ngTemplateOutlet="grade !== 0 ? filledStar : unfilledStar"
 			></ng-container>
 			<ng-container
 				*ngIf="isReviewBoxOpen && isAuth"
@@ -138,7 +141,7 @@
 <ng-template #reviewOpen>
 	<mw-grade
 		class="float-wrapper pointer"
-		[(grade)]="track.grade"
+		[(grade)]="grade"
 		[id]="track.id"
 		[reviewType]="reviewType.TRACK"
 		(hideReviewBox)="closeReview()"
