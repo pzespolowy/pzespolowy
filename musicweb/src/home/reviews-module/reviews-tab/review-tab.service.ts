@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, firstValueFrom, map, of } from 'rxjs';
 import { ReviewType } from 'src/app/interfaces/enums/review-type.enum';
-import { MyReview } from 'src/app/interfaces/my-reviews.interface';
 import { ReviewResponse } from 'src/app/interfaces/review-response.interface';
 import { Review } from 'src/app/interfaces/review.interface';
 import { AlbumDetailsService } from 'src/details/services/album-details.service';

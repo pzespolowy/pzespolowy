@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, combineLatestWith, map } from 'rxjs';
+import { Observable, combineLatestWith, map } from 'rxjs';
 import { ReviewType } from 'src/app/interfaces/enums/review-type.enum';
 import { TrackResponse } from 'src/app/interfaces/track-response.interface';
 import { Track } from 'src/app/interfaces/track.interface';

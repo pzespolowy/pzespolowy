@@ -31,7 +31,7 @@ export class FavouriteService {
 				params
 			)
 			.pipe(
-				map((x) => ({
+				map(() => ({
 					status: 200,
 					data: 'Succefully added',
 				})),
@@ -57,7 +57,7 @@ export class FavouriteService {
 				params
 			)
 			.pipe(
-				map((x) => ({
+				map(() => ({
 					status: 200,
 					data: 'Succefully removed',
 				})),
