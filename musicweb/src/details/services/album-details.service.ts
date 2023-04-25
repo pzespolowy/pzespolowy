@@ -6,8 +6,8 @@ import { Album } from 'src/app/interfaces/album.interface';
 import { CreationType } from 'src/app/interfaces/enums/creation-type.enum';
 import { TrackResponse } from 'src/app/interfaces/track-response.interface';
 import { environment } from 'src/environments/environment';
-import { ReviewService } from './review.service';
 import { ReviewType } from 'src/app/interfaces/enums/review-type.enum';
+import { ReviewService } from 'src/shared/services/review.service';
 
 @Injectable({
 	providedIn: 'root',
