@@ -4,7 +4,8 @@
 	</div>
 	<mw-grade
 		class="row"
-		[(grade)]="grade"
+		[grade]="grade"
+		(gradeChange)="gradeChanged($event)"
 		[id]="id"
 		[reviewType]="reviewType"
 		[simpleReview]="true"

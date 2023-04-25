@@ -20,25 +20,27 @@ export class TrackDetailsService {
 	) {}
 
 	getTrackDetails(id: string): Observable<Track> {
-		return this.http.get<TrackResponse>(`${this.apiPath}/track/${id}`).pipe(
-			combineLatestWith(
-				this.reviewService.getReviews(id, ReviewType.TRACK)
-			),
-			map(([data, reviews]) => {
-				const { album, release_date, ...trackData } = data;
-				const track = {
-					...trackData,
-					releaseData: release_date,
-					albumId: album.id,
-					albumTitle: album.title,
-					coverSmall: album.cover_small,
-					coverMedium: album.cover_medium,
-					coverBig: album.cover_big,
-					coverXl: album.cover_xl,
-					rates: reviews,
-				};
-				return track;
-			})
-		);
+		return this.http
+			.get<TrackResponse>(`${this.apiPath}/tracks/${id}`)
+			.pipe(
+				combineLatestWith(
+					this.reviewService.getReviews(id, ReviewType.TRACK)
+				),
+				map(([data, reviews]) => {
+					const { album, release_date, ...trackData } = data;
+					const track = {
+						...trackData,
+						releaseData: release_date,
+						albumId: album.id,
+						albumTitle: album.title,
+						coverSmall: album.cover_small,
+						coverMedium: album.cover_medium,
+						coverBig: album.cover_big,
+						coverXl: album.cover_xl,
+						rates: reviews,
+					};
+					return track;
+				})
+			);
 	}
 }

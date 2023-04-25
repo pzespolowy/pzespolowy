@@ -19,7 +19,6 @@ export interface Album {
 	tracksCount?: number;
 	tracks?: Track[];
 	type: CreationType;
-	grade?: number;
 	isFavourite?: boolean;
 	rates?: Rank;
 }

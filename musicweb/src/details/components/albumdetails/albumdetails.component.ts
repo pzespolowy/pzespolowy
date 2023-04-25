@@ -17,6 +17,7 @@ export class AlbumdetailsComponent implements OnInit {
 	reviewType = ReviewType;
 	isReviewBoxOpen = false;
 	isAuth = false;
+	grade!: number;
 
 	constructor(
 		private albumDetailsService: AlbumDetailsService,
@@ -35,6 +36,7 @@ export class AlbumdetailsComponent implements OnInit {
 		this.album$.subscribe((x) => {
 			this.album = x;
 			this.closeReview();
+			this.grade = this.album.rates?.currentUserGrade || 0;
 			this.title.setTitle(this.album.title);
 		});
 

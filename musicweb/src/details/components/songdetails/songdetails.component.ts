@@ -18,6 +18,7 @@ export class SongdetailsComponent implements OnInit {
 	@ViewChild('audioTrack') audioPlayerRef: ElementRef | undefined;
 	reviewType = ReviewType;
 	isAuth = false;
+	grade!: number;
 
 	constructor(
 		private trackDetailsService: TrackDetailsService,
@@ -35,6 +36,7 @@ export class SongdetailsComponent implements OnInit {
 		);
 		this.track$.subscribe((x) => {
 			this.track = x;
+			this.grade = this.track.rates?.currentUserGrade || 0;
 			this.title.setTitle(this.track.title);
 			this.closeReview();
 		});

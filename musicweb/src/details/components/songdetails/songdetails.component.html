@@ -24,8 +24,8 @@
 					id="your-grade"
 					class="row"
 					[label]="'Your grade'"
-					[message]="track.grade.toString()"
-					*ngIf="track.grade"
+					[message]="grade.toString() || '0'"
+					*ngIf="track.rates?.currentUserGrade || grade"
 				></mw-text-with-label>
 
 				<mw-text-with-label
@@ -88,10 +88,11 @@
 			</div>
 		</div>
 		<mw-reviews
+			*ngIf="track"
 			[id]="track.id"
 			[reviews]="track.rates?.reviews"
 			[reviewType]="reviewType.TRACK"
-			[grade]="track.grade"
+			[(grade)]="grade"
 		></mw-reviews>
 	</div>
 </div>
@@ -103,9 +104,7 @@
 		}}</span>
 		<span class="align-middle icon-middle">
 			<ng-container
-				*ngTemplateOutlet="
-					track.grade === 0 ? filledStar : unfilledStar
-				"
+				*ngTemplateOutlet="grade !== 0 ? filledStar : unfilledStar"
 			></ng-container>
 			<ng-container
 				*ngIf="isReviewBoxOpen && isAuth"
@@ -138,7 +137,7 @@
 <ng-template #reviewOpen>
 	<mw-grade
 		class="float-wrapper pointer"
-		[(grade)]="track.grade"
+		[(grade)]="grade"
 		[id]="track.id"
 		[reviewType]="reviewType.TRACK"
 		(hideReviewBox)="closeReview()"

@@ -1,6 +1,6 @@
 <div class="review-box">
 	<div class="review-grade">
-		<div class="review-author">Jan kowalski</div>
+		<div class="review-author">{{ review.user?.nickname }}</div>
 		<div class="grade">
 			{{ review.grade }}
 			<img [src]="'assets/icons/starOutlineIcon.svg'" [alt]="'Star'" />

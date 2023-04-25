@@ -20,7 +20,8 @@
 					id="your-grade"
 					class="row"
 					[label]="'Your grade'"
-					[message]="'0'"
+					[message]="grade.toString() || '0'"
+					*ngIf="album.rates?.currentUserGrade || grade"
 				></mw-text-with-label>
 
 				<mw-text-with-label
@@ -79,7 +80,7 @@
 			[id]="album.id"
 			[reviews]="album.rates?.reviews"
 			[reviewType]="reviewType.ALBUM"
-			[grade]="album.grade"
+			[(grade)]="grade"
 		></mw-reviews>
 	</div>
 </div>
@@ -91,9 +92,7 @@
 		}}</span>
 		<span class="align-middle icon-middle">
 			<ng-container
-				*ngTemplateOutlet="
-					album.grade === 0 ? filledStar : unfilledStar
-				"
+				*ngTemplateOutlet="grade !== 0 ? filledStar : unfilledStar"
 			></ng-container>
 			<ng-container
 				*ngIf="isReviewBoxOpen && isAuth"
@@ -126,7 +125,7 @@
 <ng-template #reviewOpen>
 	<mw-grade
 		class="float-wrapper pointer"
-		[(grade)]="album.grade"
+		[(grade)]="grade"
 		[id]="album.id"
 		[reviewType]="reviewType.ALBUM"
 		(hideReviewBox)="closeReview()"

@@ -1,4 +1,4 @@
-import { Component, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ReviewType } from 'src/app/interfaces/enums/review-type.enum';
 import { Review } from 'src/app/interfaces/review.interface';
 import { AuthService } from 'src/app/services/auth.service';
@@ -9,10 +9,10 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class ReviewsComponent {
 	@Input()
-	grade?: number;
+	grade!: number;
 
 	@Output()
-	gradeChange?: number;
+	gradeChange = new EventEmitter<number>();
 
 	@Input()
 	id!: string;
@@ -27,5 +27,10 @@ export class ReviewsComponent {
 
 	constructor(private authService: AuthService) {
 		this.isAuth = authService.isAuth();
+	}
+
+	gradeChanged(val: number) {
+		this.grade = val;
+		this.gradeChange.emit(val);
 	}
 }
