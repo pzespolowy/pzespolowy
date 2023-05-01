@@ -39,6 +39,7 @@
                         type="text"
                         matInput
                         formControlName="name"
+                        value={{playerName}}
                     />
                     <mat-error *ngIf="name?.invalid && (name?.dirty || name?.touched)">
                         Name is <strong>required</strong>
@@ -57,6 +58,7 @@
                         type="text"
                         matInput
                         formControlName="surname"
+                        value={{playerSurname}}
                     />
                     <mat-error
                         *ngIf="surname?.invalid && (surname?.dirty || surname?.touched)"
@@ -68,27 +70,6 @@
                     <i [ngClass]="isSurnameActive ? 'active' : 'inactive'" class="bi bi-x-lg" (click)="OnSurnameChange(false)"></i>
                     <i [ngClass]="isSurnameActive ? 'active' : 'inactive'" class="bi bi-check-lg" (click)="OnSurnameChange(true)"></i>
                     <i [ngClass]="isSurnameActive ? 'inactive' : 'active'" class="bi bi-pencil" (click)="OnSurnameEdit()"></i>
-                </div>
-            </form>
-            <form [formGroup]="emailForm">
-                <mat-form-field>
-                    <mat-label>Email</mat-label>
-                    <input type="email" matInput formControlName="email" />
-                    <mat-error
-                        *ngIf="email?.invalid && (email?.dirty || email?.touched)"
-                    >
-                        <span *ngIf="email?.errors?.['required']"
-                            >Email is <strong>required</strong></span
-                        >
-                        <span *ngIf="email?.errors?.['email']"
-                            >That not looklike email</span
-                        >
-                    </mat-error>
-                </mat-form-field>
-                <div class="action-icons">
-                    <i [ngClass]="isEmailActive ? 'active' : 'inactive'" class="bi bi-x-lg" (click)="OnEmailChange(false)"></i>
-                    <i [ngClass]="isEmailActive ? 'active' : 'inactive'" class="bi bi-check-lg" (click)="OnEmailChange(true)"></i>
-                    <i [ngClass]="isEmailActive ? 'inactive' : 'active'" class="bi bi-pencil" (click)="OnEmailEdit()"></i>
                 </div>
             </form>
             <form [formGroup]="passwordForm" class="passwordForm">
@@ -143,6 +124,7 @@
                 </div>
             </form>
             <button mat-raised-button color="warn" (click)="deletePopout()">Delete account</button>
+            <button mat-raised-button class="savebtn" (click)="saveAllPopout()">Save all</button>
         </div>
     </div>
 </div>
