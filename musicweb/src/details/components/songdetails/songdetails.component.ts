@@ -85,7 +85,7 @@ export class SongdetailsComponent implements OnInit {
 					);
 				} else {
 					this.snackbarService.error(
-						`Cannot add track ${this.track.title} to favourites`,
+						`Cannot remove track ${this.track.title} from favourites`,
 						x.data
 					);
 				}

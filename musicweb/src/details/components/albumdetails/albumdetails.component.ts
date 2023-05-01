@@ -61,12 +61,12 @@ export class AlbumdetailsComponent implements OnInit {
 			.subscribe((x) => {
 				if (x.status === 200) {
 					this.snackbarService.success(
-						`Succefully added track ${this.album.title} to favourites`,
+						`Succefully added album ${this.album.title} to favourites`,
 						x.data
 					);
 				} else {
 					this.snackbarService.error(
-						`Cannot add track ${this.album.title} to favourites`,
+						`Cannot add album ${this.album.title} to favourites`,
 						x.data
 					);
 				}
@@ -79,12 +79,12 @@ export class AlbumdetailsComponent implements OnInit {
 			.subscribe((x) => {
 				if (x.status === 200) {
 					this.snackbarService.success(
-						`Succefully removed track ${this.album.title} from favourites`,
+						`Succefully removed album ${this.album.title} from favourites`,
 						x.data
 					);
 				} else {
 					this.snackbarService.error(
-						`Cannot add track ${this.album.title} to favourites`,
+						`Cannot remove album ${this.album.title} from favourites`,
 						x.data
 					);
 				}
