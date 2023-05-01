@@ -11,9 +11,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DeleteAccountDialogComponent } from './components/delete-account-dialog/delete-account-dialog.component';
 import { ProfileRoutingModule } from './profile-routing.module';
+import { SaveallDialogComponent } from './components/saveall-dialog/saveall-dialog.component';
 
 @NgModule({
-	declarations: [ProfileComponent, DeleteAccountDialogComponent],
+	declarations: [ProfileComponent, DeleteAccountDialogComponent, SaveallDialogComponent],
 	imports: [
 		CommonModule,
 		MatInputModule,
