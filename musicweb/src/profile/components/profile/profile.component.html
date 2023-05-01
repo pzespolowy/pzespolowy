@@ -39,6 +39,7 @@
                         type="text"
                         matInput
                         formControlName="name"
+                        value={{playerName}}
                     />
                     <mat-error *ngIf="name?.invalid && (name?.dirty || name?.touched)">
                         Name is <strong>required</strong>
@@ -57,6 +58,7 @@
                         type="text"
                         matInput
                         formControlName="surname"
+                        value={{playerSurname}}
                     />
                     <mat-error
                         *ngIf="surname?.invalid && (surname?.dirty || surname?.touched)"
@@ -122,6 +124,7 @@
                 </div>
             </form>
             <button mat-raised-button color="warn" (click)="deletePopout()">Delete account</button>
+            <button mat-raised-button class="savebtn" (click)="saveAllPopout()">Save all</button>
         </div>
     </div>
 </div>

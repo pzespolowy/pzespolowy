@@ -69,7 +69,19 @@
             {
                 width: 60%;
                 font-size: 1.5em;
+                margin-bottom: 2%;
+                
             }
+
+            .savebtn
+            {
+                background-color: #22333b !important;
+				color: #f2f4f3 !important;
+
+                &:hover {
+					background-color: #38474e !important;
+				}
+            }   
 
         }
     }

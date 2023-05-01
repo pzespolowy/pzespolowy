@@ -2,7 +2,6 @@ import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { AuthService } from 'src/app/services/auth.service';
 import { SettingsService } from 'src/profile/services/settings.service';
-import { SnackbarData } from 'src/shared/interfaces/snackbar-data.interface';
 import { CustomSnackbarService } from 'src/shared/services/custom-snackbar.service';
 
 @Component({

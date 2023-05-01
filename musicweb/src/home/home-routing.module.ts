@@ -18,7 +18,7 @@ const routes: Routes = [
 					import('../profile/profile.module').then(
 						(m) => m.ProfileModule
 					),
-				canMatch: [authGuard],
+				
 			},
 		],
 	},
