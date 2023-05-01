@@ -28,6 +28,14 @@ const routes: Routes = [
 					),
 				canMatch: [authGuard],
 			},
+			{
+				path: 'favourite',
+				loadChildren: () =>
+					import('./favourites-module/favourties.module').then(
+						(m) => m.FavouritesModule
+					),
+				canMatch: [authGuard],
+			},
 		],
 	},
 	{ path: '', redirectTo: '/musicweb/home', pathMatch: 'full' },

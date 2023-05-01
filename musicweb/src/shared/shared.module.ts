@@ -8,6 +8,7 @@ import { CustomSnackbarComponent } from './components/custom-snackbar/custom-sna
 import { CustomSnackbarService } from './services/custom-snackbar.service';
 import { ReviewComponent } from './components/review/review.component';
 import { RouterModule } from '@angular/router';
+import { ClickStopPropagationDirective } from './directives/click-stop-propagation.directive';
 
 @NgModule({
 	imports: [MatSnackBarModule, MatCardModule, CommonModule, RouterModule],
@@ -16,8 +17,14 @@ import { RouterModule } from '@angular/router';
 		FirstUpperPipe,
 		CustomSnackbarComponent,
 		ReviewComponent,
+		ClickStopPropagationDirective,
 	],
 	providers: [CustomSnackbarService],
-	exports: [ErrorNotificationComponent, FirstUpperPipe, ReviewComponent],
+	exports: [
+		ErrorNotificationComponent,
+		FirstUpperPipe,
+		ReviewComponent,
+		ClickStopPropagationDirective,
+	],
 })
 export class SharedModule {}
