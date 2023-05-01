@@ -8,6 +8,7 @@ import { Observable, catchError, map, of } from 'rxjs';
 import { ReviewType } from 'src/app/interfaces/enums/review-type.enum';
 import { Response } from '../interfaces/response.interface';
 import { environment } from 'src/environments/environment.development';
+import { FavouriteData } from 'src/home/favourites-module/interfaces/favourite-data.interface';
 
 @Injectable({
 	providedIn: 'root',
@@ -38,7 +39,7 @@ export class FavouriteService {
 				catchError((x: HttpErrorResponse) => {
 					return of({
 						status: x.error.status,
-						data: x.error.details,
+						data: 'Cannot add',
 					});
 				})
 			);
@@ -64,9 +65,29 @@ export class FavouriteService {
 				catchError((x: HttpErrorResponse) => {
 					return of({
 						status: x.error.status,
-						data: x.error.details,
+						data: 'Cannot remove',
 					});
 				})
 			);
+	}
+
+	getFavourites(): Observable<FavouriteData[]> {
+		return of([
+			{
+				id: '123123',
+				title: 'tytul',
+				reviewType: ReviewType.TRACK,
+				artist: {
+					id: 'string',
+					name: 'artista',
+					picture: 'string',
+					picture_small: 'string',
+					picture_medium: 'string',
+					picture_big: 'string',
+					picture_xl: 'string',
+				},
+				coverLink: 'empty',
+			},
+		]);
 	}
 }
