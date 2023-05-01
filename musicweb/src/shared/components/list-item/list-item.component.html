@@ -1,0 +1,25 @@
+<div class="list-item-box">
+    <div class="list-wrapper">
+        <div class="rank" *ngIf="rank">
+            {{rank}}.
+        </div>
+        <div class="no-rank-spacer" *ngIf="!rank">
+            
+        </div>
+        <div class="cover">
+            <img src="assets/photos/test-cover.jpg">
+        </div>
+        <div class="rating">
+            Rating: {{rating}}
+        </div>
+        <div class="title">
+            {{title}}
+        </div>
+        <div class="opinions">
+            {{opinionsCount}} opinions
+        </div>
+        <div class="genre">
+            {{genre}}
+        </div>
+    </div>
+</div>
