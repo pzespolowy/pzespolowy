@@ -1,0 +1,27 @@
+mw-fav-tile {
+	.fav-tile-wrapper {
+		display: flex;
+		background-color: $primary-gray-1;
+		align-content: center;
+		padding: 0.5rem;
+		justify-content: space-between;
+		border-radius: 10px;
+		color: $primary-black;
+
+		.al-middle {
+			display: grid;
+			align-content: center;
+		}
+
+		.favorite-icon {
+			color: black;
+			filter: invert(2%) sepia(3%) saturate(2799%) hue-rotate(349deg)
+				brightness(104%) contrast(97%);
+		}
+
+		.in-favourite {
+			filter: invert(13%) sepia(87%) saturate(4856%) hue-rotate(357deg)
+				brightness(71%) contrast(113%);
+		}
+	}
+}

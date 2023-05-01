@@ -20,6 +20,22 @@ const routes: Routes = [
 					),
 				
 			},
+			{
+				path: 'reviews',
+				loadChildren: () =>
+					import('./reviews-module/reviews.module').then(
+						(m) => m.ReviewsModule
+					),
+				canMatch: [authGuard],
+			},
+			{
+				path: 'favourite',
+				loadChildren: () =>
+					import('./favourites-module/favourties.module').then(
+						(m) => m.FavouritesModule
+					),
+				canMatch: [authGuard],
+			},
 		],
 	},
 	{ path: '', redirectTo: '/musicweb/home', pathMatch: 'full' },

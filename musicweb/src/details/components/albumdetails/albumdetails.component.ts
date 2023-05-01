@@ -6,6 +6,8 @@ import { Album } from 'src/app/interfaces/album.interface';
 import { ReviewType } from 'src/app/interfaces/enums/review-type.enum';
 import { AuthService } from 'src/app/services/auth.service';
 import { AlbumDetailsService } from 'src/details/services/album-details.service';
+import { CustomSnackbarService } from 'src/shared/services/custom-snackbar.service';
+import { FavouriteService } from 'src/shared/services/favourite.service';
 
 @Component({
 	selector: 'mw-albumdetails',
@@ -17,12 +19,15 @@ export class AlbumdetailsComponent implements OnInit {
 	reviewType = ReviewType;
 	isReviewBoxOpen = false;
 	isAuth = false;
+	grade!: number;
 
 	constructor(
 		private albumDetailsService: AlbumDetailsService,
 		private route: ActivatedRoute,
 		private title: Title,
-		private authService: AuthService
+		private authService: AuthService,
+		private snackbarService: CustomSnackbarService,
+		private favouriteService: FavouriteService
 	) {}
 
 	ngOnInit() {
@@ -35,6 +40,7 @@ export class AlbumdetailsComponent implements OnInit {
 		this.album$.subscribe((x) => {
 			this.album = x;
 			this.closeReview();
+			this.grade = this.album.rates?.currentUserGrade || 0;
 			this.title.setTitle(this.album.title);
 		});
 
@@ -47,5 +53,51 @@ export class AlbumdetailsComponent implements OnInit {
 
 	closeReview() {
 		this.isReviewBoxOpen = false;
+	}
+
+	addToFav() {
+		this.favouriteService
+			.postFavourite(this.album.id, ReviewType.ALBUM)
+			.subscribe((x) => {
+				if (x.status === 200) {
+					this.snackbarService.success(
+						`Succefully added album ${this.album.title} to favourites`,
+						x.data
+					);
+				} else {
+					this.snackbarService.error(
+						`Cannot add album ${this.album.title} to favourites`,
+						x.data
+					);
+				}
+			});
+	}
+
+	deleteFromFav() {
+		this.favouriteService
+			.deleteFavourite(this.album.id, ReviewType.ALBUM)
+			.subscribe((x) => {
+				if (x.status === 200) {
+					this.snackbarService.success(
+						`Succefully removed album ${this.album.title} from favourites`,
+						x.data
+					);
+				} else {
+					this.snackbarService.error(
+						`Cannot remove album ${this.album.title} from favourites`,
+						x.data
+					);
+				}
+			});
+	}
+
+	handleFavChange() {
+		// TODO: check if ablsum is favourite
+		// eslint-disable-next-line no-constant-condition
+		if (!false) {
+			this.addToFav();
+		} else {
+			this.deleteFromFav();
+		}
 	}
 }
