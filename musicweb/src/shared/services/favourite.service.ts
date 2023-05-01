@@ -39,7 +39,7 @@ export class FavouriteService {
 				catchError((x: HttpErrorResponse) => {
 					return of({
 						status: x.error.status,
-						data: x.error.details,
+						data: 'Cannot add',
 					});
 				})
 			);
@@ -65,7 +65,7 @@ export class FavouriteService {
 				catchError((x: HttpErrorResponse) => {
 					return of({
 						status: x.error.status,
-						data: x.error.details,
+						data: 'Cannot remove',
 					});
 				})
 			);
