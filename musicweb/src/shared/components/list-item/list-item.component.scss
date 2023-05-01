@@ -1,0 +1,25 @@
+.list-item-box
+{
+    font-size: 1.7em;
+    width: 90%;
+    margin: auto;
+    padding: 1%;
+    background-color: #d9dbda;
+    border-radius: 10px;
+    .list-wrapper{
+        height: 100px;
+        gap: 12px;
+        display: grid;
+        grid-template-columns: 0.3fr 0fr 0.8fr 1.2fr 0.8fr 1.2fr;
+        align-items: center;
+        justify-items: center;
+    }
+
+    .cover{
+        height: inherit;    
+        img{
+            height: inherit;
+        }
+    }
+    
+}

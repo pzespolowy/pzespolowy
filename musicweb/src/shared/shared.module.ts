@@ -9,6 +9,7 @@ import { CustomSnackbarService } from './services/custom-snackbar.service';
 import { ReviewComponent } from './components/review/review.component';
 import { RouterModule } from '@angular/router';
 import { ClickStopPropagationDirective } from './directives/click-stop-propagation.directive';
+import { ListItemComponent } from './components/list-item/list-item.component';
 
 @NgModule({
 	imports: [MatSnackBarModule, MatCardModule, CommonModule, RouterModule],
@@ -18,6 +19,7 @@ import { ClickStopPropagationDirective } from './directives/click-stop-propagati
 		CustomSnackbarComponent,
 		ReviewComponent,
 		ClickStopPropagationDirective,
+		ListItemComponent
 	],
 	providers: [CustomSnackbarService],
 	exports: [
