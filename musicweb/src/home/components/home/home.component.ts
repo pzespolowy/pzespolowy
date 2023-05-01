@@ -14,10 +14,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
 		this.isMobile = window.innerWidth < 650;
 	}
 
-	constructor(private title: Title) {}
-
 	ngOnInit(): void {
-		this.title.setTitle('Homepage');
 		this.isOpen = true;
 		this.isMobile = window.innerWidth < 650;
 	}

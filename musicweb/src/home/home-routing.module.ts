@@ -18,7 +18,6 @@ const routes: Routes = [
 					import('../profile/profile.module').then(
 						(m) => m.ProfileModule
 					),
-				
 			},
 			{
 				path: 'reviews',
@@ -37,6 +36,7 @@ const routes: Routes = [
 				canMatch: [authGuard],
 			},
 		],
+		title: 'Homepage',
 	},
 	{ path: '', redirectTo: '/musicweb/home', pathMatch: 'full' },
 ];

@@ -6,7 +6,6 @@ import { FavouriteData } from '../../interfaces/favourite-data.interface';
 @Component({
 	selector: 'mw-favourites',
 	templateUrl: './favourites.component.html',
-	styleUrls: ['./favourites.component.scss'],
 })
 export class FavouritesComponent implements OnInit {
 	favourites$?: Observable<FavouriteData[]>;
