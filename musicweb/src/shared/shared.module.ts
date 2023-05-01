@@ -19,7 +19,7 @@ import { ListItemComponent } from './components/list-item/list-item.component';
 		CustomSnackbarComponent,
 		ReviewComponent,
 		ClickStopPropagationDirective,
-  		ListItemComponent,
+		ListItemComponent
 	],
 	providers: [CustomSnackbarService],
 	exports: [
