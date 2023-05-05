@@ -1,0 +1,55 @@
+mw-podium-item {
+	.podium-item-wrapper {
+		position: relative;
+		border-radius: 50%;
+		aspect-ratio: 1 / 1;
+		border: 1px solid $primary-brown-2;
+		background-color: $primary-gray-1;
+		color: $primary-black;
+		max-width: 220px;
+
+		display: grid;
+		justify-content: center;
+		align-items: center;
+
+		.rate {
+			position: absolute;
+			right: 15%;
+			top: 1em;
+			color: $primary-white;
+			background-color: $primary-brown-1;
+			width: 1.5em;
+			height: 1.5em;
+			border-radius: 50%;
+		}
+
+		.gold {
+			background-color: $secondary-gold;
+		}
+
+		.silver {
+			background-color: $secondary-silver;
+		}
+
+		.bronze {
+			background-color: $secondary-bronze;
+		}
+
+		.position {
+			position: absolute;
+			right: 15%;
+			bottom: 0;
+			color: $primary-white;
+			border-radius: 50%;
+			width: 2em;
+			height: 2em;
+		}
+
+		img {
+			aspect-ratio: 1 / 1;
+			border-radius: 50%;
+			max-width: 130px;
+			aspect-ratio: 1 / 1;
+		}
+	}
+}

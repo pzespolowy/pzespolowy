@@ -35,6 +35,13 @@ const routes: Routes = [
 					),
 				canMatch: [authGuard],
 			},
+			{
+				path: 'ranking',
+				loadChildren: () =>
+					import('../rankings/rankings.module').then(
+						(m) => m.RankingModule
+					),
+			},
 		],
 		title: 'Homepage',
 	},

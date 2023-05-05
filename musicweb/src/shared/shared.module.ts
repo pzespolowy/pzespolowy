@@ -19,7 +19,7 @@ import { ListItemComponent } from './components/list-item/list-item.component';
 		CustomSnackbarComponent,
 		ReviewComponent,
 		ClickStopPropagationDirective,
-		ListItemComponent
+		ListItemComponent,
 	],
 	providers: [CustomSnackbarService],
 	exports: [
@@ -27,6 +27,7 @@ import { ListItemComponent } from './components/list-item/list-item.component';
 		FirstUpperPipe,
 		ReviewComponent,
 		ClickStopPropagationDirective,
+		ListItemComponent,
 	],
 })
 export class SharedModule {}
