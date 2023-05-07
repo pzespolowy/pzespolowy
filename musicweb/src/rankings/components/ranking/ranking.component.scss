@@ -1,0 +1,47 @@
+mw-ranking {
+	.ranking-wrapper {
+		.ranking-header {
+			background-color: $primary-gray-1;
+
+			.rank-type {
+				display: flex;
+				width: 100%;
+				justify-content: space-around;
+
+				button {
+					background-color: $primary-gray-1;
+					border: none;
+
+					&.active {
+						border-bottom: 2px solid $primary-brown-1;
+					}
+
+					&:disabled {
+						color: $secondary-black-2;
+					}
+				}
+			}
+		}
+
+		.ranking {
+			padding: 1% 0;
+
+			.ranking-list {
+				display: flex;
+				flex-direction: column;
+				gap: 10px;
+			}
+		}
+
+		.no-results {
+			padding-top: 4em;
+			img {
+				justify-self: center;
+			}
+
+			display: grid;
+			justify-content: center;
+			gap: 10px;
+		}
+	}
+}
