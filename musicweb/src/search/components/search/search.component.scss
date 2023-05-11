@@ -38,6 +38,7 @@ mw-search {
 			background-color: $primary-gray-2;
 			max-height: 60vh;
 			overflow-y: auto;
+			z-index: 1;
 		}
 
 		.no-results {

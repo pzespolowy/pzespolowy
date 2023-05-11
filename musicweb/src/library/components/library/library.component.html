@@ -1,0 +1,60 @@
+<div class="library-wrapper">
+	<div class="filter-header">
+		<div class="h2 text-center">Music library</div>
+		<div class="filters" [formGroup]="searchForm">
+			<mat-form-field class="filter-element">
+				<mat-label>Category</mat-label>
+				<mat-select formControlName="category" name="food">
+					<mat-option [value]="'TRACK'">Track</mat-option>
+					<mat-option [value]="'ALBUM'">Album</mat-option>
+				</mat-select>
+			</mat-form-field>
+			<mat-form-field class="filter-element">
+				<mat-label
+					>{{ category | lowercase | mwFirstUpper }} query</mat-label
+				>
+				<input matInput formControlName="categoryQuery" />
+			</mat-form-field>
+			<mat-form-field class="filter-element">
+				<mat-label>Artist name</mat-label>
+				<input matInput formControlName="artistName" />
+			</mat-form-field>
+
+			<mw-double-filter
+				class="filter-element"
+				[form]="searchForm"
+				[label]="'Duration'"
+			>
+			</mw-double-filter>
+
+			<mw-double-filter
+				class="filter-element"
+				[form]="searchForm"
+				[label]="'Opinions'"
+			>
+			</mw-double-filter>
+
+			<mw-double-filter
+				class="filter-element"
+				[form]="searchForm"
+				[label]="'Rates'"
+			>
+			</mw-double-filter>
+
+			<mw-double-filter
+				class="filter-element"
+				[form]="searchForm"
+				[label]="'Year'"
+			>
+			</mw-double-filter>
+
+			<div class="buttons filter-element">
+				<button mat-button color="dark" (click)="clear()">Clear</button>
+				<button mat-raised-button color="dark" (click)="search()">
+					Search
+				</button>
+			</div>
+		</div>
+	</div>
+	<div class="records"></div>
+</div>

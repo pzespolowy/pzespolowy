@@ -1,0 +1,43 @@
+mw-library {
+	.library-wrapper {
+		background-color: $primary-gray-1;
+		padding: 0 2%;
+
+		.filters {
+			display: flex;
+			column-gap: 24px;
+			flex-wrap: wrap;
+
+			.filter-element {
+				flex: 0 1 22%;
+				max-width: 22%;
+
+				.mat-mdc-text-field-wrapper {
+					background-color: $primary-brown-3;
+					input {
+						color: $primary-white;
+					}
+				}
+			}
+
+			.buttons {
+				display: flex;
+				column-gap: 24px;
+				align-items: center;
+				justify-content: flex-end;
+				padding-bottom: 24px;
+				margin-left: auto;
+				justify-self: flex-end;
+
+				button {
+					border-radius: 24px;
+				}
+			}
+
+			mat-label,
+			.mat-mdc-select-value {
+				color: $primary-white;
+			}
+		}
+	}
+}
