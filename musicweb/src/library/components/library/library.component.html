@@ -49,12 +49,37 @@
 			</mw-double-filter>
 
 			<div class="buttons filter-element">
-				<button mat-button color="dark" (click)="clear()">Clear</button>
+				<button
+					*ngIf="isClearButtonVisible"
+					mat-button
+					color="dark"
+					(click)="clear()"
+				>
+					Clear
+				</button>
 				<button mat-raised-button color="dark" (click)="search()">
 					Search
 				</button>
 			</div>
 		</div>
 	</div>
-	<div class="records"></div>
+	<div class="records">
+		<mw-list-item
+			*ngFor="let track of tracks"
+			[coverLink]="track.coverSmall"
+			[rating]="track.rates?.averageRanking || 0"
+			[title]="track.title"
+			[opinionsCount]="track.rates?.reviews?.length"
+		></mw-list-item>
+		<mw-list-item
+			*ngFor="let album of albums"
+			[coverLink]="album.coverSmall"
+			[rating]="album.rates?.averageRanking || 0"
+			[title]="album.title"
+			[opinionsCount]="album.rates?.reviews?.length"
+		></mw-list-item>
+	</div>
+</div>
+<div *ngIf="isSearching" class="overlay">
+	<mat-spinner></mat-spinner>
 </div>

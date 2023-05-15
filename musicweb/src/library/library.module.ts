@@ -10,6 +10,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatOptionModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
 	declarations: [DoubleFilterComponent, LibraryComponent],
@@ -24,6 +25,7 @@ import { MatButtonModule } from '@angular/material/button';
 		MatInputModule,
 		MatOptionModule,
 		MatButtonModule,
+		MatProgressSpinnerModule,
 	],
 })
 export class LibraryModule {}

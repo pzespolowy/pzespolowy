@@ -1,3 +1,4 @@
+import { Album } from './album.interface';
 import { Artist } from './artist.interface';
 import { CreationType } from './enums/creation-type.enum';
 import { Rank } from './ranks.interface';

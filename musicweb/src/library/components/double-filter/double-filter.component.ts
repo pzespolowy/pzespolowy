@@ -20,14 +20,11 @@ export class DoubleFilterComponent implements OnInit {
 	ngOnInit(): void {
 		this.form.addControl(
 			`${this.label.toLowerCase()}From`,
-			this.fb.control(0, Validators.min(0))
+			this.fb.control('', Validators.min(0))
 		);
 		this.form.addControl(
 			`${this.label.toLowerCase()}To`,
-			this.fb.control(
-				this.defualtUpperBound || undefined,
-				Validators.min(0)
-			)
+			this.fb.control(this.defualtUpperBound || '', Validators.min(0))
 		);
 	}
 }
