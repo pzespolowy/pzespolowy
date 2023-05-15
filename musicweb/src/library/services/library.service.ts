@@ -27,9 +27,9 @@ export class LibraryService {
 
 	search(query: string, type: ReviewType): Observable<SearchData[]> {
 		if (type === ReviewType.TRACK) {
-			return this.searchService.searchData(query, 100);
+			return this.searchService.searchData(query, 20);
 		}
-		return this.searchService.searchAlbum(query, 100);
+		return this.searchService.searchAlbum(query, 20);
 	}
 
 	getAlbumDetails(id: string): Observable<Album> {

@@ -70,6 +70,9 @@
 			[rating]="track.rates?.averageRanking || 0"
 			[title]="track.title"
 			[opinionsCount]="track.rates?.reviews?.length"
+			[genre]="track.artist.name"
+			class="text-link pointer"
+			[routerLink]="['/musicweb/home/details', track.id]"
 		></mw-list-item>
 		<mw-list-item
 			*ngFor="let album of albums"
@@ -77,6 +80,9 @@
 			[rating]="album.rates?.averageRanking || 0"
 			[title]="album.title"
 			[opinionsCount]="album.rates?.reviews?.length"
+			[genre]="album?.genres?.data?.[0]?.name"
+			class="text-link pointer"
+			[routerLink]="['/musicweb/home/albumdetails', album.id]"
 		></mw-list-item>
 	</div>
 </div>

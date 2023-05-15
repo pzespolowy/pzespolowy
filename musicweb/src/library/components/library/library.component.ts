@@ -58,6 +58,7 @@ export class LibraryComponent implements OnInit {
 			this.libraryService
 				.search(this.categoryQuery || '', this.reviewType)
 				.subscribe((ranks) => {
+					console.log(ranks);
 					forkJoin(
 						ranks.map((elem) =>
 							this.libraryService.getAlbumDetails(elem.id)
@@ -73,6 +74,7 @@ export class LibraryComponent implements OnInit {
 			this.libraryService
 				.search(this.categoryQuery || '', this.reviewType)
 				.subscribe((ranks) => {
+					console.log(ranks);
 					forkJoin(
 						ranks.map((elem) =>
 							this.libraryService.getTrackDetails(elem.id)
