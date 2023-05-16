@@ -42,6 +42,13 @@ const routes: Routes = [
 						(m) => m.RankingModule
 					),
 			},
+			{
+				path: 'library',
+				loadChildren: () =>
+					import('../library/library.module').then(
+						(m) => m.LibraryModule
+					),
+			},
 		],
 		title: 'Homepage',
 	},

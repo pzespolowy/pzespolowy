@@ -1,0 +1,91 @@
+<div class="library-wrapper">
+	<div class="filter-header">
+		<div class="h2 text-center">Music library</div>
+		<div class="filters" [formGroup]="searchForm">
+			<mat-form-field class="filter-element">
+				<mat-label>Category</mat-label>
+				<mat-select formControlName="category" name="food">
+					<mat-option [value]="'TRACK'">Track</mat-option>
+					<mat-option [value]="'ALBUM'">Album</mat-option>
+				</mat-select>
+			</mat-form-field>
+			<mat-form-field class="filter-element">
+				<mat-label
+					>{{ category | lowercase | mwFirstUpper }} query</mat-label
+				>
+				<input matInput formControlName="categoryQuery" />
+			</mat-form-field>
+			<mat-form-field class="filter-element">
+				<mat-label>Artist name</mat-label>
+				<input matInput formControlName="artistName" />
+			</mat-form-field>
+
+			<mw-double-filter
+				class="filter-element"
+				[form]="searchForm"
+				[label]="'Duration'"
+			>
+			</mw-double-filter>
+
+			<mw-double-filter
+				class="filter-element"
+				[form]="searchForm"
+				[label]="'Opinions'"
+			>
+			</mw-double-filter>
+
+			<mw-double-filter
+				class="filter-element"
+				[form]="searchForm"
+				[label]="'Rates'"
+			>
+			</mw-double-filter>
+
+			<mw-double-filter
+				class="filter-element"
+				[form]="searchForm"
+				[label]="'Year'"
+			>
+			</mw-double-filter>
+
+			<div class="buttons filter-element">
+				<button
+					*ngIf="isClearButtonVisible"
+					mat-button
+					color="dark"
+					(click)="clear()"
+				>
+					Clear
+				</button>
+				<button mat-raised-button color="dark" (click)="search()">
+					Search
+				</button>
+			</div>
+		</div>
+	</div>
+	<div class="records">
+		<mw-list-item
+			*ngFor="let track of tracks"
+			[coverLink]="track.coverSmall"
+			[rating]="track.rates?.averageRanking || 0"
+			[title]="track.title"
+			[opinionsCount]="track.rates?.reviews?.length"
+			[genre]="track.artist.name"
+			class="text-link pointer"
+			[routerLink]="['/musicweb/home/details', track.id]"
+		></mw-list-item>
+		<mw-list-item
+			*ngFor="let album of albums"
+			[coverLink]="album.coverSmall"
+			[rating]="album.rates?.averageRanking || 0"
+			[title]="album.title"
+			[opinionsCount]="album.rates?.reviews?.length"
+			[genre]="album?.genres?.data?.[0]?.name"
+			class="text-link pointer"
+			[routerLink]="['/musicweb/home/albumdetails', album.id]"
+		></mw-list-item>
+	</div>
+</div>
+<div *ngIf="isSearching" class="overlay">
+	<mat-spinner></mat-spinner>
+</div>
