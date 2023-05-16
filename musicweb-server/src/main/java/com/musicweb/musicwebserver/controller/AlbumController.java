@@ -13,6 +13,7 @@ import com.musicweb.musicwebserver.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -27,17 +28,18 @@ public class AlbumController {
     private final UserService userService;
 
     @GetMapping("/{albumId}")
-    public DeezerAlbumDto getAlbumById(@PathVariable String albumId) {
-        DeezerAlbumDto deezerAlbumDto = albumService.retrieveAlbumById(albumId);
+    public List<String> getAlbumById(@PathVariable String albumId) {
+        List<String> res = new ArrayList<>();
+        res.add(albumService.retrieveAlbumById(albumId));
         User user = userService.getCurrentUser();
         if(user == null) {
-            deezerAlbumDto.setIsFavorite(null);
+            res.add("isFavorite: null");
         } else {
-            deezerAlbumDto.setIsFavorite(user.getFavouriteTracks().stream()
-                    .anyMatch(track -> track.getId().equals(Long.valueOf(albumId))));
+            res.add("isFavorite: " + user.getFavouriteTracks().stream()
+                            .anyMatch(track -> track.getId().equals(Long.valueOf(albumId))));
         }
 
-        return deezerAlbumDto;
+        return res;
     }
 
     @PostMapping("/favourites")
