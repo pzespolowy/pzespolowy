@@ -54,7 +54,7 @@ public class AlbumService {
         return albumRepository.findAll(Sort.by(Sort.Direction.DESC, "ranking"));
     }
 
-    public String retrieveAlbumById(String albumId) {
+    public DeezerAlbumDto retrieveAlbumById(String albumId) {
         String res = albumClient.getAlbumById(albumId);
 
         DeezerAlbumDto deezerTrackDto = parseToDeezerAlbum(res);
@@ -69,7 +69,7 @@ public class AlbumService {
                     .build();
             saveNewAlbum(album);
         }
-        return res;
+        return deezerTrackDto;
     }
 
     private DeezerAlbumDto parseToDeezerAlbum(String res) {

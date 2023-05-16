@@ -91,7 +91,7 @@ public class TrackService {
         });
     }
 
-    public String retrieveTrackById(String trackId) {
+    public DeezerTrackDto retrieveTrackById(String trackId) {
         String res = trackClient.getTrackById(trackId);
 
         DeezerTrackDto deezerTrackDto = parseToDeezerTrack(res);
@@ -106,7 +106,7 @@ public class TrackService {
                     .build();
             saveNewTrack(track);
         }
-        return res;
+        return deezerTrackDto;
     }
 
     private DeezerTrackDto parseToDeezerTrack(String res) {
