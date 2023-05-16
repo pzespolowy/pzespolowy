@@ -51,6 +51,9 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "ID_ROLE"))
     private Set<Role> roles;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<Token> tokens;
+
     public void addReview(Review review) {
         this.reviews.add(review);
     }

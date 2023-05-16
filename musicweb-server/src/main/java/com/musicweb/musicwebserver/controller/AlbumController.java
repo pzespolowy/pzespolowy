@@ -1,9 +1,15 @@
 package com.musicweb.musicwebserver.controller;
 
 import com.musicweb.musicwebserver.client.AlbumClient;
+import com.musicweb.musicwebserver.dto.deezer.response.album.DeezerAlbumDto;
+import com.musicweb.musicwebserver.dto.deezer.response.track.DeezerTrackDto;
+import com.musicweb.musicwebserver.dto.ranking.RankingAlbumDto;
+import com.musicweb.musicwebserver.mapper.RankingMapper;
 import com.musicweb.musicwebserver.model.entity.Album;
 import com.musicweb.musicwebserver.model.entity.Track;
+import com.musicweb.musicwebserver.model.entity.User;
 import com.musicweb.musicwebserver.service.AlbumService;
+import com.musicweb.musicwebserver.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,10 +23,21 @@ public class AlbumController {
 
     private final AlbumClient albumClient;
     private final AlbumService albumService;
+    private final RankingMapper rankingMapper;
+    private final UserService userService;
 
     @GetMapping("/{albumId}")
-    public String getAlbumById(@PathVariable Long albumId) {
-        return albumClient.getAlbumById(albumId);
+    public DeezerAlbumDto getAlbumById(@PathVariable String albumId) {
+        DeezerAlbumDto deezerAlbumDto = albumService.retrieveAlbumById(albumId);
+        User user = userService.getCurrentUser();
+        if(user == null) {
+            deezerAlbumDto.setIsFavorite(null);
+        } else {
+            deezerAlbumDto.setIsFavorite(user.getFavouriteTracks().stream()
+                    .anyMatch(track -> track.getId().equals(Long.valueOf(albumId))));
+        }
+
+        return deezerAlbumDto;
     }
 
     @PostMapping("/favourites")
@@ -34,8 +51,10 @@ public class AlbumController {
     }
 
     @GetMapping("/ranking")
-    public List<Album> getAlbumRanking() {
-        return albumService.getAlbumRanking();
+    public List<RankingAlbumDto> getAlbumRanking() {
+        return albumService.getAlbumRanking().stream()
+                .map(rankingMapper::mapToAlbumRankingDto)
+                .toList();
     }
 
 }

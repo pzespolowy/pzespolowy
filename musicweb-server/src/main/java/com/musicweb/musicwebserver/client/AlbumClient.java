@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 public interface AlbumClient {
 
     @GetMapping("/{albumId}")
-    String getAlbumById(@PathVariable Long albumId);
+    String getAlbumById(@PathVariable String albumId);
 
 }

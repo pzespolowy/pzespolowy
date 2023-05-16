@@ -1,9 +1,11 @@
 package com.musicweb.musicwebserver.dto.deezer.response.track;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.musicweb.musicwebserver.dto.deezer.response.DeezerArtistShortDto;
 import lombok.Data;
 
 @Data
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class DeezerTrackDto {
 
     private long id;
@@ -22,5 +24,6 @@ public class DeezerTrackDto {
     private DeezerArtistShortDto artist;
     private DeezerAlbumShortDto album;
     private String type;
+    private Boolean isFavorite;
 
 }

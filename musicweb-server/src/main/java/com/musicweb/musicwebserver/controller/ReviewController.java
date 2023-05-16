@@ -3,6 +3,7 @@ package com.musicweb.musicwebserver.controller;
 import com.musicweb.musicwebserver.dto.*;
 import com.musicweb.musicwebserver.model.entity.Review;
 import com.musicweb.musicwebserver.model.entity.ReviewSubject;
+import com.musicweb.musicwebserver.model.entity.User;
 import com.musicweb.musicwebserver.service.ReviewService;
 import com.musicweb.musicwebserver.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -24,14 +25,19 @@ public class ReviewController {
     @PostMapping
     public ReviewInfoDto getReviews(@RequestBody ReviewParamsDto reviewParamsDto) {
         ReviewSubject reviewSubject = reviewService.getReviewSubject(reviewParamsDto);
+        User currentUser = userService.getCurrentUser();
+        Integer currentUserGrade;
+        if(currentUser == null) {
+            currentUserGrade = null;
+        } else {
+            currentUserGrade = reviewSubject.getReviews().stream()
+                    .filter(review -> review.getUser().equals(userService.getCurrentUser()))
+                    .findFirst()
+                    .orElse(new Review())
+                    .getGrade();
+        }
         return ReviewInfoDto.builder()
-                .currentUserGrade(
-                        reviewSubject.getReviews().stream()
-                                .filter(review -> review.getUser().equals(userService.getCurrentUser()))
-                                .findFirst()
-                                .orElse(new Review())
-                                .getGrade()
-                )
+                .currentUserGrade(currentUserGrade)
                 .reviews(reviewSubject.getReviews().stream()
                         .map(review -> modelMapper.map(review, ReviewWithUserDto.class))
                         .toList())

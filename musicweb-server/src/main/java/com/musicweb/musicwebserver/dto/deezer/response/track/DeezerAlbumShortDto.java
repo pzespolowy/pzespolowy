@@ -1,8 +1,10 @@
 package com.musicweb.musicwebserver.dto.deezer.response.track;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 @Data
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class DeezerAlbumShortDto {
     private int id;
     private String title;
