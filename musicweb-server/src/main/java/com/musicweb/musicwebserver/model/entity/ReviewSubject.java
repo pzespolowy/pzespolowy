@@ -11,7 +11,6 @@ import java.util.List;
 
 @MappedSuperclass
 @NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
 public abstract class ReviewSubject {
@@ -22,6 +21,11 @@ public abstract class ReviewSubject {
 
     @Transient
     private Boolean isFavorite;
+
+    public ReviewSubject(List<Review> reviews, BigDecimal ranking) {
+        this.reviews = reviews;
+        this.ranking = ranking;
+    }
 
     public void addReview(Review review) {
         this.reviews.add(review);
