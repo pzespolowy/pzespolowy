@@ -151,6 +151,7 @@ export class ProfileComponent implements OnInit{
             if(x.status === 200)
             {
               this.snackBarService.success(`Update completed!`, 'Nickname updated in database');
+              this.playerName = this.nickname?.value;
             }
             else
             {
@@ -247,6 +248,10 @@ export class ProfileComponent implements OnInit{
                   if(x.status === 200)
                   {
                     this.snackBarService.success(`Update completed!`, 'Data updated in database');
+                    if(this.isNicknameActive)
+                    {
+                      this.playerName = this.nickname?.value;
+                    }
                   }
                   else
                   {
