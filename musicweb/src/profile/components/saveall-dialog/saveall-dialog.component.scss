@@ -1,0 +1,10 @@
+mat-dialog-actions{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    font-size:2em;
+    .successbtn{
+        background-color: green;
+        color: #f2f4f3;
+    }
+}

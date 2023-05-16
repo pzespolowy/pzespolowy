@@ -1,0 +1,13 @@
+<div
+	class="podium-item-wrapper text-link pointer"
+	(click)="navigateToDetails()"
+>
+	<div class="rate text-center">
+		<span class="align-middle">{{ rate }}</span>
+	</div>
+	<div class="position text-center" [ngClass]="positionClass">
+		<span class="align-middle">{{ position }}</span>
+	</div>
+	<img [src]="coverLink" [alt]="'Cover'" />
+	<div class="title text-center h5">{{ title }}</div>
+</div>

@@ -1,0 +1,9 @@
+<div class="fav-wrapper">
+	<div class="h2 text-center">My favourites</div>
+	<div class="favourites">
+		<mw-fav-tile
+			*ngFor="let fav of favourites$ | async"
+			[favouriteItem]="fav"
+		></mw-fav-tile>
+	</div>
+</div>

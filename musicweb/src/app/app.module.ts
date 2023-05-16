@@ -9,6 +9,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { userReducer } from './store/user.reducer';
 import { AuthInterceptor } from './guards/auth.interceptor';
+import { SharedModule } from 'src/shared/shared.module';
 
 @NgModule({
 	declarations: [AppComponent],
@@ -19,6 +20,7 @@ import { AuthInterceptor } from './guards/auth.interceptor';
 		CommonModule,
 		HttpClientModule,
 		StoreModule.forRoot({ user: userReducer }),
+		SharedModule,
 	],
 	providers: [
 		{

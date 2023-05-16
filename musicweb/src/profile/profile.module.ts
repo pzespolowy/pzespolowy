@@ -10,21 +10,26 @@ import { SharedModule } from 'src/shared/shared.module';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DeleteAccountDialogComponent } from './components/delete-account-dialog/delete-account-dialog.component';
-
+import { ProfileRoutingModule } from './profile-routing.module';
+import { SaveallDialogComponent } from './components/saveall-dialog/saveall-dialog.component';
 
 @NgModule({
-  declarations: [ProfileComponent, DeleteAccountDialogComponent ],
-  imports: [
-    CommonModule,
-    MatInputModule,
-    MatButtonModule,
-    ReactiveFormsModule.withConfig({callSetDisabledState: 'whenDisabledForLegacyCode'}),
-    MatSelectModule,
-    MatCardModule,
-    SharedModule, MatFormFieldModule,
-    MatDialogModule,
-  ],
+	declarations: [ProfileComponent, DeleteAccountDialogComponent, SaveallDialogComponent],
+	imports: [
+		CommonModule,
+		MatInputModule,
+		MatButtonModule,
+		ReactiveFormsModule.withConfig({
+			callSetDisabledState: 'whenDisabledForLegacyCode',
+		}),
+		MatSelectModule,
+		MatCardModule,
+		SharedModule,
+		MatFormFieldModule,
+		MatDialogModule,
+		ProfileRoutingModule,
+	],
 	providers: [],
-  exports: [ProfileComponent, DeleteAccountDialogComponent],
+	exports: [ProfileComponent, DeleteAccountDialogComponent],
 })
-export class ProfileModule { }
+export class ProfileModule {}

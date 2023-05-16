@@ -28,17 +28,17 @@ public class SearchController {
 //                .build());
 //    }
 
-    @GetMapping("/search/tracks")
+    @PostMapping("/search/tracks")
     public TrackSearchResponseDto searchTracks(@RequestBody DetailSearchDto detailSearchDto) {
         return searchService.searchTracks(detailSearchDto);
     }
 
-    @GetMapping("/search/albums")
+    @PostMapping("/search/albums")
     public AlbumSearchResponseDto searchAlbums(@RequestBody DetailSearchDto detailSearchDto) {
         return searchService.searchAlbums(detailSearchDto);
     }
 
-    @GetMapping("/search/artists")
+    @PostMapping("/search/artists")
     public String searchArtists(@RequestBody ArtistSearchRequestDto artistSearchRequestDto) {
         return searchClient.getArtists(artistSearchRequestDto);
     }

@@ -1,0 +1,27 @@
+<div class="fav-tile-wrapper pointer text-link" (click)="goToDetails()">
+	<img
+		class="cover-img"
+		[src]="favouriteItem.coverLink"
+		[alt]="favouriteItem.title + ' cover'"
+	/>
+	<div class="h4 al-middle">
+		<div>{{ favouriteItem.title }}</div>
+	</div>
+	<div class="h4 al-middle">
+		<div>{{ favouriteItem.artist.name }}</div>
+	</div>
+	<div class="h4 al-middle">
+		<div>{{ favouriteItem.reviewType | lowercase }}</div>
+	</div>
+	<img
+		class="favorite-icon pointer"
+		src="assets/icons/favoriteIcon.svg"
+		[ngClass]="isFavourite ? 'in-favourite' : ''"
+		(click)="handleFavChange()"
+		mwClickStopPropagation
+		[matTooltip]="
+			!isFavourite ? 'Add to favourites' : 'Remove from favourites'
+		"
+		[matTooltipPosition]="'right'"
+	/>
+</div>

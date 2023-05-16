@@ -11,6 +11,13 @@ mw-side-nav-item {
 		}
 	}
 
+	&.filter-color {
+		img {
+			filter: invert(93%) sepia(3%) saturate(81%) hue-rotate(96deg)
+				brightness(105%) contrast(94%);
+		}
+	}
+
 	.text {
 		min-width: 200px;
 	}

@@ -1,0 +1,11 @@
+mw-favourites {
+	.fav-wrapper {
+		padding: 1% 2%;
+		.favourites {
+			display: flex;
+			flex-direction: column;
+			gap: 10px;
+			color: $primary-white;
+		}
+	}
+}

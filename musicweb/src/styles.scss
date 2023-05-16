@@ -28,6 +28,31 @@ body {
 	cursor: pointer;
 }
 
+[mat-raised-button].mat-button.mat-dark:not(:disabled),
+[mat-stroked-button].mat-dark:not(:disabled),
+[mat-button].mat-dark:not(:disabled) {
+	color: $primary-brown-1;
+}
+[mat-raised-button].mat-button.mat-dark:hover:not(:disabled) {
+	background-color: #111111;
+}
+
+[mat-stroked-button].mat-dark:hover:not(:disabled) {
+	background-color: #eeeeee;
+}
+
+[mat-raised-button].mat-dark:not(:disabled),
+.mat-flat-button.mat-dark:not(:disabled),
+.mat-fab.mat-dark:not(:disabled),
+.mat-mini-fab.mat-dark:not(:disabled) {
+	color: $primary-white;
+	background-color: $primary-brown-1;
+}
+
+.mat-icon-button.mat-dark:not(:disabled) {
+	color: $primary-brown-1;
+}
+
 @import './app/app.module.scss';
 @import './home/home.module.scss';
 @import './sidenav/sidenav.module.scss';
@@ -36,3 +61,7 @@ body {
 @import './login/login.module.scss';
 @import './shared/shared.module.scss';
 @import './details/details.module.scss';
+@import './home/reviews-module/reviews.module.scss';
+@import './home/favourites-module/favourites.modules.scss';
+@import './rankings/rankings.module.scss';
+@import './library/library.module.scss';

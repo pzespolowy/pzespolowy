@@ -9,7 +9,7 @@
 			/>
 		</div>
 		<div class="col h3" *ngIf="isLogged && !withoutLabel">
-			{{ 'Hi user' }}
+			{{ 'Hi ' + user?.nickname }}
 		</div>
 	</div>
 </div>
@@ -19,9 +19,11 @@
 		*ngFor="let tab of tabs"
 		[routerLink]="tab.routerLink"
 		routerLinkActive="active-link"
+		[routerLinkActiveOptions]="{ exact: true }"
 		[sideNavData]="tab"
 		[isOpen]="fixedOpen || open"
 		[withoutLabel]="withoutLabel"
+		[ngClass]="tab?.additionalClass"
 	>
 	</mw-side-nav-item>
 </div>

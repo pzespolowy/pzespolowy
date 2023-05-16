@@ -1,5 +1,6 @@
 export interface SideNavLink {
-    message: string;
-    iconLink: string;
-    routerLink?: string;
+	message: string;
+	iconLink: string;
+	routerLink?: string;
+	additionalClass?: string;
 }

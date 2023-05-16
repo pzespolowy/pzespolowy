@@ -1,0 +1,77 @@
+<div class="review-wrapper">
+	<div class="triangle" *ngIf="!simpleReview"></div>
+	<div class="review-content">
+		<div class="pointer close">
+			<span
+				_ngcontent-skr-c87=""
+				class="material-symbols-outlined"
+				(click)="hideReviewBox.emit()"
+				*ngIf="!simpleReview"
+			>
+				close
+			</span>
+		</div>
+		<div class="grade">
+			<div class="col grades">
+				<div
+					*ngFor="let i of sequence(hoveredGrade)"
+					(mouseenter)="hoverGrade(i)"
+					(click)="selectGrade(i)"
+				>
+					<img
+						[src]="'assets/icons/starFillIcon.svg'"
+						[alt]="'Filled star'"
+					/>
+				</div>
+				<div
+					*ngFor="let i of sequence(10 - hoveredGrade)"
+					(mouseenter)="hoverGrade(10 - i + 1)"
+					(click)="selectGrade(10 - i + 1)"
+				>
+					<img
+						[src]="'assets/icons/starOutlineIcon.svg'"
+						[alt]="'Star'"
+					/>
+				</div>
+				<div class="grade">
+					{{ hoveredGrade + '/10' }}
+				</div>
+				<div class="your-grade-wrapper">
+					<div class="your-grade">
+						Your grade:
+						{{
+							selectedGrade
+								? selectedGrade + '/10'
+								: grade
+								? grade + '/10'
+								: 'NA'
+						}}
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="review">
+			<div class="form-floating">
+				<textarea
+					class="form-control"
+					placeholder="Leave a review here"
+					id="reviewArea"
+					[rows]="4"
+					[formControl]="review"
+					maxlength="512"
+				></textarea>
+				<label for="reviewArea">Review</label>
+				<img
+					[src]="'assets/icons/saveIcon.svg'"
+					[alt]="'Save review'"
+					[matTooltip]="'Save review'"
+					[matTooltipPosition]="'right'"
+					(click)="saveReview()"
+				/>
+				<div class="areaLength">
+					{{ (review.value.length || '0') + '/512' }}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

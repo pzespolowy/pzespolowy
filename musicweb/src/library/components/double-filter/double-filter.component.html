@@ -1,0 +1,12 @@
+<div class="double-filter" [formGroup]="form">
+	<mat-form-field>
+		<mat-label>{{
+			(label | lowercase | mwFirstUpper) + ' from'
+		}}</mat-label>
+		<input matInput [formControlName]="label.toLowerCase() + 'From'" />
+	</mat-form-field>
+	<mat-form-field>
+		<mat-label>{{ (label | lowercase | mwFirstUpper) + ' to' }}</mat-label>
+		<input matInput [formControlName]="label.toLowerCase() + 'To'" />
+	</mat-form-field>
+</div>

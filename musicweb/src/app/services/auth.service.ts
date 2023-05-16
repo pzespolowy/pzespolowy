@@ -10,6 +10,7 @@ import { Store } from '@ngrx/store';
 import { UserActions } from '../store/user.actions';
 import { JwtService } from './jwt.service';
 import { UserInfo } from '../interfaces/user-info.interface';
+import { Router } from '@angular/router';
 
 @Injectable({
 	providedIn: 'root',
@@ -22,7 +23,8 @@ export class AuthService {
 		private http: HttpClient,
 		private localStorage: LocalStorageService,
 		private store: Store,
-		private jwtService: JwtService
+		private jwtService: JwtService,
+		private router: Router
 	) {}
 
 	public login(user: loginDto) {
@@ -40,7 +42,7 @@ export class AuthService {
 				catchError((error: HttpErrorResponse) => {
 					return of({
 						status: error.status ?? 500,
-						message: error.error.message ?? 'Api error',
+						message: error.error.detail ?? 'Api error',
 					});
 				})
 			);
@@ -61,7 +63,7 @@ export class AuthService {
 				catchError((error: HttpErrorResponse) => {
 					return of({
 						status: error.status ?? 500,
-						message: error.error.message ?? 'Api error',
+						message: error.error.detail ?? 'Api error',
 					});
 				})
 			);
@@ -70,6 +72,7 @@ export class AuthService {
 	logout() {
 		this.localStorage.remove('jwt');
 		this.store.dispatch(UserActions.removeUser());
+		this.router.navigate(['/musicweb/home']);
 	}
 
 	isAuth(): boolean {
