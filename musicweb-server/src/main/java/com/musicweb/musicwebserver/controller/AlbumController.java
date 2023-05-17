@@ -33,10 +33,10 @@ public class AlbumController {
         res.add(albumService.retrieveAlbumById(albumId));
         User user = userService.getCurrentUser();
         if(user == null) {
-            res.add("isFavorite: null");
+            res.add("{\"isFavorite\": null}");
         } else {
-            res.add("isFavorite: " + user.getFavouriteTracks().stream()
-                            .anyMatch(track -> track.getId().equals(Long.valueOf(albumId))));
+            res.add("{\"isFavorite\": " + user.getFavouriteTracks().stream()
+                            .anyMatch(track -> track.getId().equals(Long.valueOf(albumId))) + "}");
         }
 
         return res;
@@ -48,8 +48,8 @@ public class AlbumController {
     }
 
     @DeleteMapping("/favourites")
-    public void removeTrackFromFavourites(@RequestParam Long trackId) {
-        albumService.removeAlbumFromFavourites(trackId);
+    public void removeTrackFromFavourites(@RequestParam Long albumId) {
+        albumService.removeAlbumFromFavourites(albumId);
     }
 
     @GetMapping("/ranking")
