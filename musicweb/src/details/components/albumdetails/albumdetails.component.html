@@ -1,10 +1,10 @@
 <div class="contentWrapper">
-	<div class="content">
+	<div class="content" *ngIf="album">
 		<div class="details">
-			<div class="cover" *ngIf="album">
+			<div class="cover">
 				<img class="cover-img" [srcset]="album | coverSrcset" />
 			</div>
-			<div class="info" *ngIf="album">
+			<div class="info">
 				<div *ngIf="isAuth" class="mobile-favorite-wrapper">
 					<div class="mobile-favorite-box">
 						<img
@@ -88,7 +88,6 @@
 			</div>
 		</div>
 		<mw-reviews
-			*ngIf="album"
 			[id]="album.id"
 			[reviews]="album.rates?.reviews"
 			[reviewType]="reviewType.ALBUM"
