@@ -24,12 +24,47 @@ mw-ranking {
 		}
 
 		.ranking {
-			padding: 1% 0;
+			padding: 10px 2% 24px 2%;
 
 			.ranking-list {
-				display: flex;
-				flex-direction: column;
+				display: grid;
+				grid-template-columns: 1.2fr 1.5fr 1.1fr;
 				gap: 10px;
+				justify-content: center;
+
+				.grid-column-span {
+					grid-column: 1 / span 3;
+				}
+
+				.first {
+					grid-column: 2;
+					grid-row: 1;
+				}
+
+				.second {
+					grid-column: 1;
+					grid-row: 1;
+					padding: 20px;
+
+					.podium-item-wrapper {
+						max-width: 280px;
+					}
+				}
+
+				.third {
+					grid-column: 3;
+					grid-row: 1;
+					padding: 50px;
+
+					.podium-item-wrapper {
+						max-width: 250px;
+					}
+				}
+
+				mw-podium-item {
+					display: grid;
+					justify-items: center;
+				}
 			}
 		}
 

@@ -6,11 +6,10 @@ mw-podium-item {
 		border: 1px solid $primary-brown-2;
 		background-color: $primary-gray-1;
 		color: $primary-black;
-		max-width: 220px;
+		max-width: 300px;
 
 		display: grid;
-		justify-content: center;
-		align-items: center;
+		place-items: center;
 
 		.rate {
 			position: absolute;
@@ -49,7 +48,6 @@ mw-podium-item {
 			aspect-ratio: 1 / 1;
 			border-radius: 50%;
 			max-width: 130px;
-			aspect-ratio: 1 / 1;
 		}
 	}
 }

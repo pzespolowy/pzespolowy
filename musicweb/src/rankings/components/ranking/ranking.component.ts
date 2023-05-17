@@ -24,6 +24,8 @@ export class RankingComponent implements OnInit {
 
 	isArtistDropdownDisabled = true;
 
+	isSearching = true;
+
 	selectedType: ReviewType = ReviewType.TRACK;
 
 	selectedType$: BehaviorSubject<ReviewType> =
@@ -37,33 +39,43 @@ export class RankingComponent implements OnInit {
 		this.rankingService
 			.getRanking(this.selectedType$)
 			.subscribe((ranks) => {
+				this.isSearching = true;
 				forkJoin(
-					ranks.map((elem) =>
-						this.rankingService.getProperDetails(
-							elem,
-							this.selectedType
+					ranks
+						.slice(0, 20)
+						.map((elem) =>
+							this.rankingService.getProperDetails(
+								elem,
+								this.selectedType
+							)
 						)
-					)
 				).subscribe((rnk) => {
+					this.isSearching = false;
 					this.ranking = rnk;
 					this.rankingDefault = rnk;
-					this.artists = [...new Set(rnk.map((elem) => elem.artist))];
-					this.isArtistDropdownDisabled = !!this.artists.length;
+					this.artists = rnk
+						.map((elem) => elem.artist)
+						.reduce((acc, curr) => {
+							if (!acc.find((e) => e.id === curr.id)) {
+								acc.push(curr);
+							}
+							return acc;
+						}, new Array<Artist>());
+					this.isArtistDropdownDisabled = !this.artists.length;
 					if (this.selectedType === ReviewType.ALBUM) {
 						this.genres = [
 							...new Set(rnk.map((elem) => elem.genre || '')),
 						];
-						this.isGenreDropdownDisabled = !!this.artists.length;
+						this.isGenreDropdownDisabled = !this.artists.length;
 					}
 				});
 			});
 	}
 
 	changeSelectedType(reviewType: ReviewType) {
+		this.isSearching = reviewType !== this.selectedType;
 		this.selectedType = reviewType;
-		if (reviewType === ReviewType.ALBUM) {
-			this.isGenreDropdownDisabled = true;
-		}
+		this.isGenreDropdownDisabled = reviewType !== ReviewType.ALBUM;
 
 		this.selectedType$.next(this.selectedType);
 	}
@@ -76,7 +88,7 @@ export class RankingComponent implements OnInit {
 		this.ranking = this.rankingDefault.filter(
 			(elem) =>
 				(!this.genreFilter || elem.genre === this.genreFilter) &&
-				(!this.artistFilter || elem.artist === this.artistFilter)
+				(!this.artistFilter || elem.artist.id === this.artistFilter.id)
 		);
 	}
 

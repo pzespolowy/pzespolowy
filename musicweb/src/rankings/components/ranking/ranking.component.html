@@ -26,14 +26,18 @@
 					{{ artistFilter?.name || 'Artist' }}
 				</button>
 				<ul class="dropdown-menu">
-					<li (click)="clearArtistFilter()">No filter</li>
-					<li *ngFor="let artist of artists">
-						<button
-							class="dropdown-item"
-							(click)="filterArtist(artist)"
-						>
-							{{ artist.name }}
-						</button>
+					<li
+						class="dropdown-item text-center pointer"
+						(click)="clearArtistFilter()"
+					>
+						No filter
+					</li>
+					<li
+						class="dropdown-item text-center pointer"
+						*ngFor="let artist of artists"
+						(click)="filterArtist(artist)"
+					>
+						{{ artist.name }}
 					</li>
 				</ul>
 			</div>
@@ -47,14 +51,18 @@
 					{{ genreFilter || 'Genre' }}
 				</button>
 				<ul class="dropdown-menu">
-					<li (click)="clearGenreFilter()">No filter</li>
-					<li *ngFor="let genre of genres">
-						<button
-							class="dropdown-item"
-							(click)="filterGenre(genre)"
-						>
-							{{ genre }}
-						</button>
+					<li
+						(click)="clearGenreFilter()"
+						class="dropdown-item text-center pointer"
+					>
+						No filter
+					</li>
+					<li
+						*ngFor="let genre of genres"
+						class="dropdown-item text-center pointer"
+						(click)="filterGenre(genre)"
+					>
+						{{ genre }}
 					</li>
 				</ul>
 			</div>
@@ -68,17 +76,24 @@
 					[rating]="rankingElement.ranking"
 					[rank]="i + 1"
 					[title]="rankingElement.title"
-					[genre]="rankingElement?.genre"
+					[genre]="
+						rankingElement?.genre || rankingElement.artist.name
+					"
 					[coverLink]="rankingElement.coverLink"
+					[opinionsCount]="rankingElement.reviews.length"
+					[reviewType]="selectedType"
+					[id]="rankingElement.id"
+					class="grid-column-span"
 				></mw-list-item>
 				<ng-template #podiumElement>
 					<mw-podium-item
 						[position]="i + 1"
-						[coverLink]="rankingElement.coverLink"
+						[coverLink]="rankingElement.coverPodiumLink"
 						[title]="rankingElement.title"
 						[rate]="rankingElement.ranking"
-						[id]="
-							rankingElement.reviews[0].reviewSubjectId.toString()
+						[id]="rankingElement.id"
+						[ngClass]="
+							i === 0 ? 'first' : i === 1 ? 'second' : 'third'
 						"
 					>
 					</mw-podium-item>
@@ -88,8 +103,12 @@
 	</div>
 </div>
 
+<div *ngIf="isSearching" class="overlay">
+	<mat-spinner></mat-spinner>
+</div>
+
 <ng-template #emptyRanking>
-	<div class="no-results">
+	<div class="no-results" *ngIf="!isSearching">
 		<img
 			[src]="'assets/photos/no-results.png'"
 			[width]="256"

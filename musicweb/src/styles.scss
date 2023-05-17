@@ -28,6 +28,17 @@ body {
 	cursor: pointer;
 }
 
+.overlay {
+	position: absolute;
+	width: 100%;
+	top: 0;
+	left: 0;
+	height: 100vh;
+	display: grid;
+	place-items: center;
+	background-color: #81818152;
+}
+
 [mat-raised-button].mat-button.mat-dark:not(:disabled),
 [mat-stroked-button].mat-dark:not(:disabled),
 [mat-button].mat-dark:not(:disabled) {
