@@ -21,32 +21,33 @@ export class AlbumDetailsService {
 	) {}
 
 	getAlbumDetails(id: string): Observable<Album> {
-		return this.http
-			.get<AlbumResponse>(`${this.apiPath}/albums/${id}`)
-			.pipe(
-				combineLatestWith(
-					this.reviewService.getReviews(id, ReviewType.ALBUM)
-				),
-				map(([albumData, rates]) => {
-					const { tracks, ...data } = albumData;
-					const album = {
-						id: data.id,
-						title: data.title,
-						coverSmall: data.cover_small,
-						coverMedium: data.cover_medium,
-						coverBig: data.cover_big,
-						coverXl: data.cover_xl,
-						releaseDate: data.release_date,
-						artist: data.artist,
-						genres: data.genres,
-						tracksCount: data.nb_tracks,
-						tracks: this.getTracks(tracks.data),
-						type: CreationType.ALBUM,
-						rates: rates,
-					};
-					return album;
-				})
-			);
+		return this.http.get<string[]>(`${this.apiPath}/albums/${id}`).pipe(
+			combineLatestWith(
+				this.reviewService.getReviews(id, ReviewType.ALBUM)
+			),
+			map(([albumData, rates]) => {
+				const _data: AlbumResponse = JSON.parse(albumData[0]);
+				const isFavourite = JSON.parse(albumData[1]);
+				const { tracks, ...data } = _data;
+				const album = {
+					...isFavourite,
+					id: data.id,
+					title: data.title,
+					coverSmall: data.cover_small,
+					coverMedium: data.cover_medium,
+					coverBig: data.cover_big,
+					coverXl: data.cover_xl,
+					releaseDate: data.release_date,
+					artist: data.artist,
+					genres: data.genres,
+					tracksCount: data.nb_tracks,
+					tracks: this.getTracks(tracks.data),
+					type: CreationType.ALBUM,
+					rates: rates,
+				};
+				return album;
+			})
+		);
 	}
 
 	private getTracks(tracks: TrackResponse[]) {

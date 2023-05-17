@@ -5,12 +5,14 @@
 				<img class="cover-img" [srcset]="album | coverSrcset" />
 			</div>
 			<div class="info" *ngIf="album">
-				<div class="mobile-favorite-wrapper">
+				<div *ngIf="isAuth" class="mobile-favorite-wrapper">
 					<div class="mobile-favorite-box">
 						<img
 							class="mobile-favorite-icon"
 							src="assets/icons/favoriteIcon.svg"
-							[ngClass]="album.isFavourite ? 'in-favourite' : ''"
+							[ngClass]="
+								!!album.isFavourite ? 'in-favourite' : ''
+							"
 							(click)="handleFavChange()"
 						/>
 					</div>
@@ -70,11 +72,11 @@
 					</ng-container>
 				</div>
 			</div>
-			<div class="favorite-box">
+			<div class="favorite-box" *ngIf="isAuth">
 				<img
 					class="favorite-icon"
 					src="assets/icons/favoriteIcon.svg"
-					[ngClass]="album.isFavourite ? 'in-favourite' : ''"
+					[ngClass]="!!album.isFavourite ? 'in-favourite' : ''"
 					(click)="handleFavChange()"
 					[matTooltip]="
 						!album.isFavourite

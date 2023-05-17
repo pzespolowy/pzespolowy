@@ -4,7 +4,14 @@ import {
 	HttpParams,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, map, of } from 'rxjs';
+import {
+	Observable,
+	catchError,
+	combineLatestWith,
+	concatMap,
+	map,
+	of,
+} from 'rxjs';
 import { ReviewType } from 'src/app/interfaces/enums/review-type.enum';
 import { Response } from '../interfaces/response.interface';
 import { environment } from 'src/environments/environment.development';
@@ -72,22 +79,47 @@ export class FavouriteService {
 	}
 
 	getFavourites(): Observable<FavouriteData[]> {
-		return of([
-			{
-				id: '123123',
-				title: 'tytul',
-				reviewType: ReviewType.TRACK,
-				artist: {
-					id: 'string',
-					name: 'artista',
-					picture: 'string',
-					picture_small: 'string',
-					picture_medium: 'string',
-					picture_big: 'string',
-					picture_xl: 'string',
+		return this.http.get(`${this.apiPath}/users/favorites/tracks`).pipe(
+			combineLatestWith(this.getFavouritesAlbums()),
+			map(([tracks, albums]) => [
+				{
+					id: '123123',
+					title: 'tytul',
+					reviewType: ReviewType.TRACK,
+					artist: {
+						id: 'string',
+						name: 'artista',
+						picture: 'string',
+						picture_small: 'string',
+						picture_medium: 'string',
+						picture_big: 'string',
+						picture_xl: 'string',
+					},
+					coverLink: 'empty',
 				},
-				coverLink: 'empty',
-			},
-		]);
+			])
+		);
+	}
+
+	getFavouritesAlbums(): Observable<FavouriteData[]> {
+		return this.http.get(`${this.apiPath}/users/favorites/albums`).pipe(
+			map((data) => [
+				{
+					id: '123123',
+					title: 'tytul',
+					reviewType: ReviewType.TRACK,
+					artist: {
+						id: 'string',
+						name: 'artista',
+						picture: 'string',
+						picture_small: 'string',
+						picture_medium: 'string',
+						picture_big: 'string',
+						picture_xl: 'string',
+					},
+					coverLink: 'empty',
+				},
+			])
+		);
 	}
 }
