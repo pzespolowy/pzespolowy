@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { forkJoin } from 'rxjs';
 import { Track } from 'src/app/interfaces/track.interface';
 import { HomepageService } from 'src/home/services/homepage.service';
 
@@ -9,11 +10,20 @@ import { HomepageService } from 'src/home/services/homepage.service';
 })
 export class HomepageComponent implements OnInit{
   tracks: Track[] = [];
+  isSearching = false;
 
   constructor(private homepageService : HomepageService) {}
 
   ngOnInit() {
-    this.tracks = this.homepageService.getTracks().subscribe();
-    console.log(this.tracks);
+    this.homepageService.getTracks().subscribe((ranks) => {
+      forkJoin(
+        ranks.map((elem) =>
+          this.homepageService.getTrackRank(elem)
+        )
+      ).subscribe((searchResult) => {
+        this.tracks = searchResult;
+      });
+    });
+    
   }
 }

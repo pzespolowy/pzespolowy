@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, combineLatestWith, map } from 'rxjs';
 import { ReviewType } from 'src/app/interfaces/enums/review-type.enum';
+import { Rank } from 'src/app/interfaces/ranks.interface';
 import { TrackResponse } from 'src/app/interfaces/track-response.interface';
 import { Track } from 'src/app/interfaces/track.interface';
 import { TrackDetailsService } from 'src/details/services/track-details.service';
@@ -15,11 +16,11 @@ import { ReviewService } from 'src/shared/services/review.service';
 export class HomepageService {
   
   apiPath = environment.apiPath;
-  isSearching = false;
 
 	constructor(
 		private http: HttpClient,
-    private reviewService : ReviewService
+    private reviewService : ReviewService,
+    private trackDetailsService: TrackDetailsService,
 	) {}
 
 	getTracks(): Observable<Track[]> {
@@ -41,6 +42,17 @@ export class HomepageService {
 					return track;
         })
 				}))
+	}
+
+  getTrackRank(track: Track): Observable<Track> {
+    return this.reviewService.getReviews(track.id, ReviewType.TRACK).pipe(
+      map((e) => {
+        return {
+          ...track,
+          rates: e
+        }
+      })
+    );
 	}
 
 }
