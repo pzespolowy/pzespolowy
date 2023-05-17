@@ -10,7 +10,9 @@
 						<img
 							class="mobile-favorite-icon"
 							src="assets/icons/favoriteIcon.svg"
-							[ngClass]="track.isFavourite ? 'in-favourite' : ''"
+							[ngClass]="
+								!!track.isFavourite ? 'in-favourite' : ''
+							"
 							(click)="handleFavChange()"
 						/>
 					</div>
@@ -80,7 +82,7 @@
 				<img
 					class="favorite-icon pointer"
 					src="assets/icons/favoriteIcon.svg"
-					[ngClass]="track.isFavourite ? 'in-favourite' : ''"
+					[ngClass]="!!track.isFavourite ? 'in-favourite' : ''"
 					(click)="handleFavChange()"
 					[matTooltip]="
 						!track.isFavourite

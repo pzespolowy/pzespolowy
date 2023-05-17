@@ -92,9 +92,7 @@ export class AlbumdetailsComponent implements OnInit {
 	}
 
 	handleFavChange() {
-		// TODO: check if ablsum is favourite
-		// eslint-disable-next-line no-constant-condition
-		if (!false) {
+		if (!this.album.isFavourite) {
 			this.addToFav();
 		} else {
 			this.deleteFromFav();

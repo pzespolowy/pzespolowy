@@ -1,11 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, firstValueFrom, map, of } from 'rxjs';
-import { ReviewType } from 'src/app/interfaces/enums/review-type.enum';
+import { Observable, catchError, map, of } from 'rxjs';
 import { ReviewResponse } from 'src/app/interfaces/review-response.interface';
 import { Review } from 'src/app/interfaces/review.interface';
-import { AlbumDetailsService } from 'src/details/services/album-details.service';
-import { TrackDetailsService } from 'src/details/services/track-details.service';
 import { environment } from 'src/environments/environment.development';
 
 @Injectable({
@@ -14,11 +11,7 @@ import { environment } from 'src/environments/environment.development';
 export class ReviewTabService {
 	apiPath = environment.apiPath;
 
-	constructor(
-		private http: HttpClient,
-		private trackDetailsService: TrackDetailsService,
-		private albumDetailsService: AlbumDetailsService
-	) {}
+	constructor(private http: HttpClient) {}
 
 	getMyReviews(): Observable<Review[]> {
 		return this.http
@@ -38,22 +31,5 @@ export class ReviewTabService {
 					return of([]);
 				})
 			);
-	}
-
-	async getProperDetails(review: Review) {
-		let title = '';
-		if (review.reviewType === ReviewType.TRACK) {
-			const track = await firstValueFrom(
-				this.trackDetailsService.getTrackDetails(review.id.toString())
-			);
-			title = track.title;
-		} else {
-			const album = await firstValueFrom(
-				this.albumDetailsService.getAlbumDetails(review.id.toString())
-			);
-			title = album.title;
-		}
-
-		return title;
 	}
 }

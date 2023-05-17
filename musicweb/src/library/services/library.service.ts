@@ -1,10 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map } from 'lodash';
-import { Observable, catchError, retry } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Album } from 'src/app/interfaces/album.interface';
 import { ReviewType } from 'src/app/interfaces/enums/review-type.enum';
-import { TrackResponse } from 'src/app/interfaces/track-response.interface';
 import { Track } from 'src/app/interfaces/track.interface';
 import { AlbumDetailsService } from 'src/details/services/album-details.service';
 import { TrackDetailsService } from 'src/details/services/track-details.service';

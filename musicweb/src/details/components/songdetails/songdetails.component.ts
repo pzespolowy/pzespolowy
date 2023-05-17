@@ -93,9 +93,7 @@ export class SongdetailsComponent implements OnInit {
 	}
 
 	handleFavChange() {
-		// TODO: check if track is favourite
-		// eslint-disable-next-line no-constant-condition
-		if (!false) {
+		if (!this.track.isFavourite) {
 			this.addToFav();
 		} else {
 			this.deleteFromFav();
