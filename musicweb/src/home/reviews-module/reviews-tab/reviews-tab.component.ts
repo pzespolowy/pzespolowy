@@ -23,7 +23,11 @@ export class ReviewsTabComponent implements OnInit {
 					.then((_title) => {
 						const insert = { ...elem, title: _title };
 						this.reviews.splice(
-							this.reviews.findIndex((e) => e === elem),
+							this.reviews.findIndex(
+								(e) =>
+									e.id === elem.id &&
+									e.reviewType === elem.reviewType
+							),
 							1,
 							insert
 						);
