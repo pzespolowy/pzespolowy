@@ -46,28 +46,26 @@ export class RankingService {
 		reviewType: ReviewType
 	): Observable<RankingData> {
 		if (reviewType === ReviewType.TRACK) {
-			return this.trackDetailsService
-				.getTrackDetails(rankData.reviews[0].reviewSubjectId.toString())
-				.pipe(
-					map((track) => ({
-						...rankData,
-						title: track.title,
-						artist: track.artist,
-						coverLink: track.coverSmall,
-					}))
-				);
+			return this.trackDetailsService.getTrackDetails(rankData.id).pipe(
+				map((track) => ({
+					...rankData,
+					title: track.title,
+					artist: track.artist,
+					coverPodiumLink: track.coverMedium,
+					coverLink: track.coverSmall,
+				}))
+			);
 		} else {
-			return this.albumDetailsService
-				.getAlbumDetails(rankData.reviews[0].reviewSubjectId.toString())
-				.pipe(
-					map((album) => ({
-						...rankData,
-						title: album.title,
-						artist: album.artist,
-						genre: album.genres?.data[0].name,
-						coverLink: album.coverSmall,
-					}))
-				);
+			return this.albumDetailsService.getAlbumDetails(rankData.id).pipe(
+				map((album) => ({
+					...rankData,
+					title: album.title,
+					artist: album.artist,
+					genre: album.genres?.data[0].name,
+					coverPodiumLink: album.coverMedium,
+					coverLink: album.coverSmall,
+				}))
+			);
 		}
 	}
 

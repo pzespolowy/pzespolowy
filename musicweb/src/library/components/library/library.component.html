@@ -72,6 +72,8 @@
 			[opinionsCount]="track.rates?.reviews?.length"
 			[genre]="track.artist.name"
 			class="text-link pointer"
+			[id]="track.id"
+			[reviewType]="track.type"
 			[routerLink]="['/musicweb/home/details', track.id]"
 		></mw-list-item>
 		<mw-list-item
@@ -82,6 +84,8 @@
 			[opinionsCount]="album.rates?.reviews?.length"
 			[genre]="album?.genres?.data?.[0]?.name"
 			class="text-link pointer"
+			[id]="album.id"
+			[reviewType]="album.type"
 			[routerLink]="['/musicweb/home/albumdetails', album.id]"
 		></mw-list-item>
 	</div>

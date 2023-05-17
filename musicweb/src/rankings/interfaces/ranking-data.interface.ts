@@ -8,5 +8,6 @@ export interface RankingData {
 	title: string;
 	artist: Artist;
 	coverLink: string;
+	coverPodiumLink: string;
 	genre?: string;
 }

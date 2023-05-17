@@ -38,6 +38,7 @@ export class TrackDetailsService {
 					coverBig: album.cover_big,
 					coverXl: album.cover_xl,
 					rates: reviews,
+					type: ReviewType.TRACK,
 				};
 				return track;
 			})

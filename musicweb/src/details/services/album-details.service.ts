@@ -42,7 +42,7 @@ export class AlbumDetailsService {
 					genres: data.genres,
 					tracksCount: data.nb_tracks,
 					tracks: this.getTracks(tracks.data),
-					type: CreationType.ALBUM,
+					type: ReviewType.ALBUM,
 					rates: rates,
 				};
 				return album;
