@@ -16,6 +16,9 @@ import { ReviewType } from 'src/app/interfaces/enums/review-type.enum';
 import { Response } from '../interfaces/response.interface';
 import { environment } from 'src/environments/environment.development';
 import { FavouriteData } from 'src/home/favourites-module/interfaces/favourite-data.interface';
+import { FavouriteResponse } from 'src/home/favourites-module/interfaces/favourite-response.interface';
+import { TrackDetailsService } from 'src/details/services/track-details.service';
+import { AlbumDetailsService } from 'src/details/services/album-details.service';
 
 @Injectable({
 	providedIn: 'root',
@@ -23,7 +26,11 @@ import { FavouriteData } from 'src/home/favourites-module/interfaces/favourite-d
 export class FavouriteService {
 	apiPath = environment.apiPath;
 
-	constructor(private http: HttpClient) {}
+	constructor(
+		private http: HttpClient,
+		private trackDetailsService: TrackDetailsService,
+		private albumDetailsService: AlbumDetailsService
+	) {}
 
 	postFavourite(
 		id: string,
@@ -78,48 +85,58 @@ export class FavouriteService {
 			);
 	}
 
-	getFavourites(): Observable<FavouriteData[]> {
-		return this.http.get(`${this.apiPath}/users/favorites/tracks`).pipe(
-			combineLatestWith(this.getFavouritesAlbums()),
-			map(([tracks, albums]) => [
-				{
-					id: '123123',
-					title: 'tytul',
-					reviewType: ReviewType.TRACK,
-					artist: {
-						id: 'string',
-						name: 'artista',
-						picture: 'string',
-						picture_small: 'string',
-						picture_medium: 'string',
-						picture_big: 'string',
-						picture_xl: 'string',
-					},
-					coverLink: 'empty',
-				},
-			])
-		);
+	getFavourites(): Observable<FavouriteResponse[]> {
+		return this.http
+			.get<{ id: string }[]>(`${this.apiPath}/users/favorites/tracks`)
+			.pipe(
+				combineLatestWith(this.getFavouritesAlbums()),
+				map(([tracks, albums]) => {
+					const _tracks = tracks.map((e) => ({
+						id: e.id,
+						reviewType: ReviewType.TRACK,
+					}));
+					return [..._tracks, ...albums];
+				})
+			);
 	}
 
-	getFavouritesAlbums(): Observable<FavouriteData[]> {
-		return this.http.get(`${this.apiPath}/users/favorites/albums`).pipe(
-			map((data) => [
-				{
-					id: '123123',
-					title: 'tytul',
-					reviewType: ReviewType.TRACK,
-					artist: {
-						id: 'string',
-						name: 'artista',
-						picture: 'string',
-						picture_small: 'string',
-						picture_medium: 'string',
-						picture_big: 'string',
-						picture_xl: 'string',
-					},
-					coverLink: 'empty',
-				},
-			])
-		);
+	getFavouritesAlbums(): Observable<FavouriteResponse[]> {
+		return this.http
+			.get<{ id: string }[]>(`${this.apiPath}/users/favorites/albums`)
+			.pipe(
+				map((data) =>
+					data.map((e) => ({
+						id: e.id,
+						reviewType: ReviewType.ALBUM,
+					}))
+				)
+			);
+	}
+
+	getProperFavDetails(
+		id: string,
+		reviewType: ReviewType
+	): Observable<FavouriteData> {
+		if (reviewType === ReviewType.TRACK) {
+			return this.trackDetailsService.getTrackDetails(id).pipe(
+				map((track) => ({
+					id: id,
+					title: track.title,
+					artist: track.artist.name,
+					coverLink: track.coverSmall,
+					reviewType: reviewType,
+				}))
+			);
+		} else {
+			return this.albumDetailsService.getAlbumDetails(id).pipe(
+				map((album) => ({
+					id: id,
+					title: album.title,
+					artist: album.artist.name,
+					coverLink: album.coverSmall,
+					reviewType: reviewType,
+				}))
+			);
+		}
 	}
 }

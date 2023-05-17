@@ -48,8 +48,8 @@ public class AlbumController {
     }
 
     @DeleteMapping("/favourites")
-    public void removeTrackFromFavourites(@RequestParam Long trackId) {
-        albumService.removeAlbumFromFavourites(trackId);
+    public void removeTrackFromFavourites(@RequestParam Long albumId) {
+        albumService.removeAlbumFromFavourites(albumId);
     }
 
     @GetMapping("/ranking")
