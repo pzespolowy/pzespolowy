@@ -7,9 +7,12 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { HeaderComponent } from './components/header/header.component';
 import { HomeRoutingModule } from './home-routing.module';
 import { DetailsModule } from 'src/details/details.module';
+import { HomepageComponent } from './components/homepage/homepage.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { SharedModule } from 'src/shared/shared.module';
 
 @NgModule({
-	declarations: [HomeComponent, HeaderComponent],
+	declarations: [HomeComponent, HeaderComponent, HomepageComponent],
 	imports: [
 		HomeRoutingModule,
 		SideNavModule,
@@ -17,6 +20,8 @@ import { DetailsModule } from 'src/details/details.module';
 		CommonModule,
 		MatSidenavModule,
 		DetailsModule,
+		MatProgressSpinnerModule,
+		SharedModule,
 	],
 	providers: [],
 })

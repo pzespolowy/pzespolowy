@@ -4,12 +4,14 @@ import { HomeComponent } from '../home/components/home/home.component';
 import { SongdetailsComponent } from 'src/details/components/songdetails/songdetails.component';
 import { AlbumdetailsComponent } from 'src/details/components/albumdetails/albumdetails.component';
 import { authGuard } from 'src/app/guards/auth.guard';
+import { HomepageComponent } from './components/homepage/homepage.component';
 
 const routes: Routes = [
 	{
 		path: 'home',
 		component: HomeComponent,
 		children: [
+			{ path: '', component: HomepageComponent },
 			{ path: 'details/:id', component: SongdetailsComponent },
 			{ path: 'albumdetails/:id', component: AlbumdetailsComponent },
 			{
