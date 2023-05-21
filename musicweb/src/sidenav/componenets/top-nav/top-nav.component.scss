@@ -1,3 +1,5 @@
+@import '../../../variables';
+
 mw-top-nav {
 	color: $primary-white;
 	height: 100%;
@@ -42,7 +44,7 @@ mw-top-nav {
 		}
 	}
 
-	#collapsedMenu{
+	#collapsedMenu {
 		width: 100%;
 	}
 }
