@@ -1,0 +1,10 @@
+version: '3.4'
+
+services:
+  angular:
+    image: musicweb
+    build:
+      context: ./musicweb
+      dockerfile: ./DockerFile
+    ports: 
+      - 4200:4200
