@@ -61,7 +61,7 @@ export class RankingService {
 					...rankData,
 					title: album.title,
 					artist: album.artist,
-					genre: album.genres?.data[0].name,
+					genre: album.genres?.data[0]?.name,
 					coverPodiumLink: album.coverMedium,
 					coverLink: album.coverSmall,
 				}))

@@ -39,6 +39,10 @@ mw-ranking {
 				.first {
 					grid-column: 2;
 					grid-row: 1;
+
+					.podium-item-wrapper {
+						width: 300px;
+					}
 				}
 
 				.second {
@@ -48,6 +52,7 @@ mw-ranking {
 
 					.podium-item-wrapper {
 						max-width: 280px;
+						width: 300px;
 					}
 				}
 
@@ -58,6 +63,7 @@ mw-ranking {
 
 					.podium-item-wrapper {
 						max-width: 250px;
+						width: 300px;
 					}
 				}
 
