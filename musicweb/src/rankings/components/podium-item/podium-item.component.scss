@@ -14,12 +14,15 @@ mw-podium-item {
 		.rate {
 			position: absolute;
 			right: 15%;
-			top: 1em;
+			top: 0.6em;
 			color: $primary-white;
 			background-color: $primary-brown-1;
 			width: 1.5em;
 			height: 1.5em;
 			border-radius: 50%;
+			font-size: 1.4em;
+			display: grid;
+			place-items: center;
 		}
 
 		.gold {
@@ -42,12 +45,25 @@ mw-podium-item {
 			border-radius: 50%;
 			width: 2em;
 			height: 2em;
+			font-size: 1.4em;
+			display: grid;
+			place-items: center;
 		}
 
 		img {
 			aspect-ratio: 1 / 1;
 			border-radius: 50%;
 			max-width: 130px;
+			margin-top: 1em;
+		}
+
+		.title {
+			align-self: start;
+		}
+
+		.opinions {
+			position: absolute;
+			top: 1em;
 		}
 	}
 }

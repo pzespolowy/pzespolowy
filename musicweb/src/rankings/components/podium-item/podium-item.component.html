@@ -2,6 +2,9 @@
 	class="podium-item-wrapper text-link pointer"
 	(click)="navigateToDetails()"
 >
+	<div class="opinions">
+		{{ opinions | mwOpinionsLabel }}
+	</div>
 	<div class="rate text-center">
 		<span class="align-middle">{{ rate }}</span>
 	</div>

@@ -25,6 +25,9 @@ export class PodiumItemComponent implements OnInit {
 	@Input()
 	reviewType!: ReviewType;
 
+	@Input()
+	opinions!: number;
+
 	positionClass = '';
 
 	private postionClasses = {
