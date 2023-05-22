@@ -33,9 +33,9 @@ public class AlbumController {
         res.add(albumService.retrieveAlbumById(albumId));
         User user = userService.getCurrentUser();
         if(user == null) {
-            res.add("{\"isFavorite\": null}");
+            res.add("{\"isFavourite\": null}");
         } else {
-            res.add("{\"isFavorite\": " + user.getFavouriteTracks().stream()
+            res.add("{\"isFavourite\": " + user.getFavouriteTracks().stream()
                             .anyMatch(track -> track.getId().equals(Long.valueOf(albumId))) + "}");
         }
 
