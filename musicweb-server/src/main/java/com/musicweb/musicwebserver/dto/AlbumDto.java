@@ -12,11 +12,10 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class TrackDto {
+public class AlbumDto {
 
     private Long id;
     private List<ReviewDto> reviews;
     private BigDecimal ranking;
     private Boolean isFavorite;
-
 }

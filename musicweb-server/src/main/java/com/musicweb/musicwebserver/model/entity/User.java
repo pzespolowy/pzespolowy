@@ -39,10 +39,10 @@ public class User {
     @OneToMany
     private List<Review> reviews;
 
-    @OneToMany
+    @ManyToMany
     private List<Track> favouriteTracks;
 
-    @OneToMany
+    @ManyToMany
     private List<Album> favouriteAlbums;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
