@@ -11,6 +11,13 @@
 		justify-items: center;
 	}
 
+	@media screen and (max-width: 650px) {
+		.list-wrapper {
+			display: flex;
+			flex-direction: column;
+		}
+	}
+
 	.cover {
 		height: inherit;
 		img {

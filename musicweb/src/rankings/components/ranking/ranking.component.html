@@ -72,7 +72,7 @@
 		<div class="ranking-list">
 			<ng-container *ngFor="let rankingElement of ranking; index as i">
 				<mw-list-item
-					*ngIf="i > 2; else podiumElement"
+					*ngIf="i > 2 || isMobile; else podiumElement"
 					[rating]="rankingElement.ranking"
 					[rank]="i + 1"
 					[title]="rankingElement.title"

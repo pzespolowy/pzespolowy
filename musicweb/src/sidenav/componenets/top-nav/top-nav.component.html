@@ -12,9 +12,9 @@
 				{{ title }}
 			</div>
 		</div>
-		<h2 class="col-6 h2" *ngIf="isLogged && !withoutLabel">
-			{{ 'Hi user' }}
-		</h2>
+		<div class="h2 text-center" *ngIf="isLogged && !withoutLabel">
+			{{ 'Hi ' + user?.name }}
+		</div>
 	</div>
 </div>
 
@@ -25,13 +25,14 @@
 			*ngFor="let tab of tabs"
 			[routerLink]="tab.routerLink"
 			routerLinkActive="active-link"
+			[routerLinkActiveOptions]="{ exact: true }"
 			[sideNavData]="tab"
 			[isOpen]="true"
 			[withoutLabel]="false"
 		>
 		</mw-side-nav-item>
 
-		<ng-template *ngIf="isLogged; else notLogged">
+		<ng-container *ngIf="isLogged; else notLogged">
 			<mw-side-nav-item
 				class="row text-center"
 				[isOpen]="true"
@@ -40,9 +41,10 @@
 					iconLink: 'logoutIcon.svg'
 				}"
 				[withoutLabel]="false"
+				(click)="logout()"
 			>
 			</mw-side-nav-item>
-		</ng-template>
+		</ng-container>
 		<ng-template #notLogged>
 			<mw-side-nav-item
 				class="row text-center"
