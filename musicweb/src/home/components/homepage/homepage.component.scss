@@ -1,0 +1,10 @@
+@import '../../../variables';
+
+mw-homepage {
+	.records {
+		display: grid;
+		row-gap: 10px;
+		background-color: $primary-white;
+		padding: 10px 2%;
+	}
+}

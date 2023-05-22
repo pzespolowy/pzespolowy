@@ -1,6 +1,7 @@
 import { Album } from './album.interface';
 import { Artist } from './artist.interface';
 import { CreationType } from './enums/creation-type.enum';
+import { ReviewType } from './enums/review-type.enum';
 import { Rank } from './ranks.interface';
 
 export interface Track {
@@ -16,7 +17,7 @@ export interface Track {
 	coverXl: string;
 	albumTitle: string;
 	albumId: string;
-	type: CreationType;
+	type: ReviewType;
 	preview: string;
 	genre?: string;
 	isFavourite?: boolean;

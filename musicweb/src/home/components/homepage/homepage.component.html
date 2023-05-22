@@ -1,0 +1,16 @@
+<div class="h2 text-center">Top results</div>
+<div class="records">
+	<mw-list-item
+		*ngFor="let track of tracks"
+		[coverLink]="track.coverSmall"
+		[rating]="track.rates?.averageRanking || 0"
+		[title]="track.title"
+		[opinionsCount]="track.rates?.reviews?.length"
+		[genre]="track.artist.name"
+		[id]="track.id"
+		[reviewType]="track.type"
+	></mw-list-item>
+</div>
+<div *ngIf="isSearching" class="overlay">
+	<mat-spinner></mat-spinner>
+</div>

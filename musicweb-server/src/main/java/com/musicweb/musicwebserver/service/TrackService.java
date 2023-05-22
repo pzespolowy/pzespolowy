@@ -8,6 +8,7 @@ import com.musicweb.musicwebserver.dto.deezer.request.TrackSearchRequestDto;
 import com.musicweb.musicwebserver.dto.deezer.response.track.DeezerTrackDto;
 import com.musicweb.musicwebserver.dto.deezer.response.track.TrackSearchResponseDto;
 import com.musicweb.musicwebserver.model.entity.Track;
+import com.musicweb.musicwebserver.model.entity.User;
 import com.musicweb.musicwebserver.repository.TrackRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.criteria.CriteriaBuilder;
@@ -45,12 +46,16 @@ public class TrackService {
 
     public void addTrackToFavourites(Long trackId) {
         Track track = getTrackById(trackId);
-        userService.getCurrentUser().addFavouriteTrack(track);
+        User user = userService.getCurrentUser();
+        user.addFavouriteTrack(track);
+        userService.updateUser(user);
     }
 
     public void removeTrackFromFavourites(Long trackId) {
         Track track = getTrackById(trackId);
-        userService.getCurrentUser().removeFavouriteTrack(track);
+        User user = userService.getCurrentUser();
+        user.removeFavouriteTrack(track);
+        userService.updateUser(user);
     }
 
     public List<Track> getTrackRanking() {

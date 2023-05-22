@@ -9,6 +9,7 @@ import com.musicweb.musicwebserver.dto.deezer.response.album.DeezerAlbumDto;
 import com.musicweb.musicwebserver.dto.deezer.response.track.DeezerTrackDto;
 import com.musicweb.musicwebserver.model.entity.Album;
 import com.musicweb.musicwebserver.model.entity.Track;
+import com.musicweb.musicwebserver.model.entity.User;
 import com.musicweb.musicwebserver.repository.AlbumRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -42,12 +43,16 @@ public class AlbumService {
 
     public void addAlbumToFavourites(Long albumId) {
         Album album = getAlbumById(albumId);
-        userService.getCurrentUser().addFavouriteAlbum(album);
+        User user = userService.getCurrentUser();
+        user.addFavouriteAlbum(album);
+        userService.updateUser(user);
     }
 
     public void removeAlbumFromFavourites(Long albumId) {
         Album album = getAlbumById(albumId);
-        userService.getCurrentUser().removeFavouriteAlbum(album);
+        User user = userService.getCurrentUser();
+        user.removeFavouriteAlbum(album);
+        userService.updateUser(user);
     }
 
     public List<Album> getAlbumRanking() {

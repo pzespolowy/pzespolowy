@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, forkJoin } from 'rxjs';
 import { FavouriteService } from 'src/shared/services/favourite.service';
 import { FavouriteData } from '../../interfaces/favourite-data.interface';
 
@@ -12,6 +12,15 @@ export class FavouritesComponent implements OnInit {
 	constructor(private favouriteService: FavouriteService) {}
 
 	ngOnInit(): void {
-		this.favourites$ = this.favouriteService.getFavourites();
+		this.favouriteService.getFavourites().subscribe((favs) => {
+			this.favourites$ = forkJoin(
+				favs.map((fav) =>
+					this.favouriteService.getProperFavDetails(
+						fav.id,
+						fav.reviewType
+					)
+				)
+			);
+		});
 	}
 }

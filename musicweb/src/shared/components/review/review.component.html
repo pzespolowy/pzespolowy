@@ -19,10 +19,7 @@
 </ng-template>
 
 <ng-template #myRev>
-	<div
-		class="review-grade hover-link pointer"
-		[routerLink]="'/musicweb/home/details/' + myReview.id"
-	>
+	<div class="review-grade hover-link pointer" (click)="navigateToDetails()">
 		<div class="grade">
 			{{ myReview.grade }}
 			<img [src]="'assets/icons/starOutlineIcon.svg'" [alt]="'Star'" />

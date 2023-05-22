@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-@import 'variables.scss';
+@import './variables';
 html,
 body {
 	height: 100%;
@@ -26,6 +26,17 @@ body {
 
 .pointer {
 	cursor: pointer;
+}
+
+.overlay {
+	position: absolute;
+	width: 100%;
+	top: 0;
+	left: 0;
+	height: 100vh;
+	display: grid;
+	place-items: center;
+	background-color: #81818152;
 }
 
 [mat-raised-button].mat-button.mat-dark:not(:disabled),
