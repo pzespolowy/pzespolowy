@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ReviewType } from 'src/app/interfaces/enums/review-type.enum';
 
@@ -9,7 +9,7 @@ import { ReviewService } from 'src/shared/services/review.service';
 	selector: 'mw-grade',
 	templateUrl: './grade.component.html',
 })
-export class GradeComponent {
+export class GradeComponent implements OnInit {
 	@Input()
 	grade?: number;
 
@@ -25,6 +25,9 @@ export class GradeComponent {
 	@Input()
 	simpleReview = false;
 
+	@Input()
+	userReview?: string;
+
 	@Output()
 	hideReviewBox: EventEmitter<void> = new EventEmitter();
 
@@ -38,6 +41,10 @@ export class GradeComponent {
 		private reviewService: ReviewService,
 		private customSnackbarService: CustomSnackbarService
 	) {}
+
+	ngOnInit(): void {
+		this.review.setValue(this.userReview ?? '');
+	}
 
 	selectGrade(newGrade: number) {
 		this.selectedGrade = newGrade;

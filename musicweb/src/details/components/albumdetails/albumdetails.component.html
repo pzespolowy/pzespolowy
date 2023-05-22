@@ -92,6 +92,7 @@
 			[reviews]="album.rates?.reviews"
 			[reviewType]="reviewType.ALBUM"
 			[(grade)]="grade"
+			[userReview]="this.album.rates?.currentUserReview"
 		></mw-reviews>
 	</div>
 </div>
@@ -140,5 +141,6 @@
 		[id]="album.id"
 		[reviewType]="reviewType.ALBUM"
 		(hideReviewBox)="closeReview()"
+		[userReview]="this.album.rates?.currentUserReview"
 	></mw-grade>
 </ng-template>

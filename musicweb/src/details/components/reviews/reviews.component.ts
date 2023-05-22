@@ -23,6 +23,9 @@ export class ReviewsComponent {
 	@Input()
 	reviews?: Review[];
 
+	@Input()
+	userReview?: string;
+
 	isAuth = false;
 
 	constructor(private authService: AuthService) {

@@ -9,6 +9,7 @@
 		[id]="id"
 		[reviewType]="reviewType"
 		[simpleReview]="true"
+		[userReview]="userReview"
 		*ngIf="isAuth"
 	></mw-grade>
 	<mw-review *ngFor="let review of reviews" [review]="review"> </mw-review>

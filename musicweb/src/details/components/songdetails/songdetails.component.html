@@ -99,6 +99,7 @@
 			[reviews]="track.rates?.reviews"
 			[reviewType]="reviewType.TRACK"
 			[(grade)]="grade"
+			[userReview]="track.rates?.currentUserReview"
 		></mw-reviews>
 	</div>
 </div>
@@ -144,6 +145,7 @@
 	<mw-grade
 		class="float-wrapper pointer"
 		[(grade)]="grade"
+		[userReview]="track.rates?.currentUserReview"
 		[id]="track.id"
 		[reviewType]="reviewType.TRACK"
 		(hideReviewBox)="closeReview()"
