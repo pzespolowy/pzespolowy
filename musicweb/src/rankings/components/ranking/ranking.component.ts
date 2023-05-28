@@ -1,16 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject, Observable, combineLatest, forkJoin } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { BehaviorSubject, Subject, forkJoin, takeUntil } from 'rxjs';
 import { Artist } from 'src/app/interfaces/artist.interface';
 import { ReviewType } from 'src/app/interfaces/enums/review-type.enum';
 import { RankingData } from 'src/rankings/interfaces/ranking-data.interface';
 import { RankingService } from 'src/rankings/services/ranking.service';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
 	selector: 'mw-ranking',
 	templateUrl: './ranking.component.html',
 })
-export class RankingComponent implements OnInit {
-	constructor(private rankingService: RankingService) {}
+export class RankingComponent implements OnInit, OnDestroy {
+	destroyed = new Subject<void>();
 
 	ranking: RankingData[] = [];
 
@@ -35,7 +36,21 @@ export class RankingComponent implements OnInit {
 
 	artistFilter?: Artist;
 
+	isMobile = false;
+
+	constructor(
+		private rankingService: RankingService,
+		private responsive: BreakpointObserver
+	) {}
+
 	ngOnInit(): void {
+		this.responsive
+			.observe([Breakpoints.Handset])
+			.pipe(takeUntil(this.destroyed))
+			.subscribe((x) => {
+				this.isMobile = x.matches;
+			});
+
 		this.rankingService
 			.getRanking(this.selectedType$)
 			.subscribe((ranks) => {
@@ -70,6 +85,11 @@ export class RankingComponent implements OnInit {
 					}
 				});
 			});
+	}
+
+	ngOnDestroy() {
+		this.destroyed.next();
+		this.destroyed.complete();
 	}
 
 	changeSelectedType(reviewType: ReviewType) {

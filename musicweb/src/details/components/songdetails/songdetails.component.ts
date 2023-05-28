@@ -65,6 +65,7 @@ export class SongdetailsComponent implements OnInit {
 						`Succefully added track ${this.track.title} to favourites`,
 						x.data
 					);
+					this.track.isFavourite = true;
 				} else {
 					this.snackbarService.error(
 						`Cannot add track ${this.track.title} to favourites`,
@@ -83,6 +84,7 @@ export class SongdetailsComponent implements OnInit {
 						`Succefully removed track ${this.track.title} from favourites`,
 						x.data
 					);
+					this.track.isFavourite = false;
 				} else {
 					this.snackbarService.error(
 						`Cannot remove track ${this.track.title} from favourites`,

@@ -10,6 +10,9 @@ export class DoubleFilterComponent implements OnInit {
 	label!: string;
 
 	@Input()
+	additionalLabel!: string;
+
+	@Input()
 	form!: FormGroup;
 
 	@Input()

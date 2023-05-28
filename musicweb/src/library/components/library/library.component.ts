@@ -21,6 +21,7 @@ export class LibraryComponent implements OnInit {
 	isSearching = false;
 
 	searchedQuery = 'TRACK';
+	sendedCategoryQuery = '';
 	sendedReview?: ReviewType;
 
 	tracks: Track[] = [];
@@ -61,11 +62,16 @@ export class LibraryComponent implements OnInit {
 			''
 		);
 
-		if (this.category === this.sendedReview) {
+		if (
+			this.category === this.sendedReview &&
+			this.categoryQuery === this.sendedCategoryQuery
+		) {
 			this.filterData();
 			this.isSearching = false;
 			return;
 		}
+
+		this.sendedCategoryQuery = this.categoryQuery || '';
 
 		this.sendedReview =
 			this.category === ReviewType.ALBUM

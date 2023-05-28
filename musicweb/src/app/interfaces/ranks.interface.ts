@@ -4,4 +4,5 @@ export interface Rank {
 	averageRanking: number;
 	reviews: Review[];
 	currentUserGrade?: number;
+	currentUserReview?: string;
 }

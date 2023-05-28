@@ -10,9 +10,17 @@ import { ReviewComponent } from './components/review/review.component';
 import { RouterModule } from '@angular/router';
 import { ClickStopPropagationDirective } from './directives/click-stop-propagation.directive';
 import { ListItemComponent } from './components/list-item/list-item.component';
+import { OpinionsLabelPipe } from './pipes/opinions-label.pipe';
+import { LayoutModule } from '@angular/cdk/layout';
 
 @NgModule({
-	imports: [MatSnackBarModule, MatCardModule, CommonModule, RouterModule],
+	imports: [
+		MatSnackBarModule,
+		MatCardModule,
+		CommonModule,
+		RouterModule,
+		LayoutModule,
+	],
 	declarations: [
 		ErrorNotificationComponent,
 		FirstUpperPipe,
@@ -20,6 +28,7 @@ import { ListItemComponent } from './components/list-item/list-item.component';
 		ReviewComponent,
 		ClickStopPropagationDirective,
 		ListItemComponent,
+		OpinionsLabelPipe,
 	],
 	providers: [CustomSnackbarService],
 	exports: [
@@ -28,6 +37,7 @@ import { ListItemComponent } from './components/list-item/list-item.component';
 		ReviewComponent,
 		ClickStopPropagationDirective,
 		ListItemComponent,
+		OpinionsLabelPipe,
 	],
 })
 export class SharedModule {}
