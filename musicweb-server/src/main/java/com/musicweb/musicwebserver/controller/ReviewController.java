@@ -27,17 +27,21 @@ public class ReviewController {
         ReviewSubject reviewSubject = reviewService.getReviewSubject(reviewParamsDto);
         User currentUser = userService.getCurrentUser();
         Integer currentUserGrade;
+        String currentUserReview;
         if(currentUser == null) {
+            currentUserReview = null;
             currentUserGrade = null;
         } else {
-            currentUserGrade = reviewSubject.getReviews().stream()
+            Review reviewCurrent = reviewSubject.getReviews().stream()
                     .filter(review -> review.getUser().equals(userService.getCurrentUser()))
                     .findFirst()
-                    .orElse(new Review())
-                    .getGrade();
+                    .orElse(new Review());
+            currentUserGrade = reviewCurrent.getGrade();
+            currentUserReview = reviewCurrent.getDescription();
         }
         return ReviewInfoDto.builder()
                 .currentUserGrade(currentUserGrade)
+                .currentUserReview(currentUserReview)
                 .reviews(reviewSubject.getReviews().stream()
                         .map(review -> modelMapper.map(review, ReviewWithUserDto.class))
                         .toList())

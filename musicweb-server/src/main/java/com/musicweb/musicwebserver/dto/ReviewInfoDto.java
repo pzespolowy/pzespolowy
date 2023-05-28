@@ -12,6 +12,7 @@ public class ReviewInfoDto {
 
     //    private int placeInRanking;
     private Integer currentUserGrade;
+    private String currentUserReview;
     private BigDecimal averageRanking;
     private List<ReviewWithUserDto> reviews;
 
