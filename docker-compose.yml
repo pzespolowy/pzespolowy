@@ -1,4 +1,4 @@
-version: '3.4'
+version: "3"
 
 services:
   angular:
@@ -6,5 +6,18 @@ services:
     build:
       context: ./musicweb
       dockerfile: ./DockerFile
-    ports: 
-      - 4200:4200
+    ports:
+      - "4200:4200"
+  springboot:
+    image: musicweb-server
+    build:
+      context: ./musicweb-server
+      dockerfile: ./Dockerfile
+    environment:
+          - SPRING_DATASOURCE_URL = jdbc:postgresql://ec2-34-247-16-250.eu-west-1.compute.amazonaws.com:5432/d3ntv9hfrfsft9?user=jnuszwonkjmgtb&password=b36c1beb758048554b6b1c141779401cf04821e5b1f524d5e545a7b1c9518102
+          - SPRING_DATASOURCE_PASSWORD = b36c1beb758048554b6b1c141779401cf04821e5b1f524d5e545a7b1c9518102
+          - SPRING_DATASOURCE_USERNAME = jnuszwonkjmgtb
+          - SPRING_JPA_HIBERNATE_DDL_AUTO = validate
+          - SPRING_JPA_SHOW_SQL = true
+    ports:
+      - "8080:8080"
