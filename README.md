@@ -57,6 +57,21 @@ List the ready features here:
 - Add track or album review 
 - Add track or album  to favourites
 
+## Launch locally using Docker:
+
+```
+version: "3.4"
+
+services:
+  angular:
+    image: andrzejsasak/pzespolowy-frontend
+    ports:
+      - "4200:4200"
+  springboot:
+    image: andrzejsasak/pzespolowy-backend
+    ports:
+      - "8080:8080"
+```
 
 ## Project Status
 Project is: _finished_ 
