@@ -55,6 +55,11 @@ export class RankingComponent implements OnInit, OnDestroy {
 			.getRanking(this.selectedType$)
 			.subscribe((ranks) => {
 				this.isSearching = true;
+				if (!ranks.length) {
+					this.isSearching = false;
+					this.ranking = [];
+					this.rankingDefault = [];
+				}
 				forkJoin(
 					ranks
 						.slice(0, 20)
